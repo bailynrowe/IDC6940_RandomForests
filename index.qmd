@@ -128,6 +128,10 @@ In a zoomed-in view, the following process is conducted N times, with N acting a
 
 The term random forest can be broken down into “random” and “forest”. The randomness from the bootstrap sampling and random attribute selection ensures that each tree is different. The forest consists of all N decision trees. 
 
+![Venn Diagram for Decision Trees and Random Forest](VennDiagram.png)
+
+As can be seen above, both random forest and decision trees can be useful for ranking feature importance. But the pros and cons of each act are the inverse of the other. For decision trees, you have lessened complexity and easier interpretability, but this may lead to overfitting and lower accuracy. For random forest, you lose interpretability by developing a more complex model, but gain a more accurate model.
+
 ### Performance Measures
 
 Since both decision trees and random forests are applicable to both classification and regression problems, the performance evaluation measures would depend on the type of problem being modeled. The performance measures for a regression-based random forest model would align with a linear regression model. Similarly, the performance evaluation measures for a classification-based random forest model would align with the measures for a logistic regression model. 
@@ -155,6 +159,8 @@ The coefficient of determination (R²) is the proportion of variance in the targ
 #### Classification
 
 A confusion matrix is a table that compares the predicted values with the actual values. The most common visual for a confusion matrix is describe as follows: A table with four squares divided into Actual Values (positive and negative) represented vertically and Predicted Values (positive and negative) represented horizontally. [@Wibowo2023MaskUseDetection] If the classification problem is not binary, the confusion matrix would just scale in size following the n×n formula with n = number of classes.
+
+![Confusion Matrix](ConfusionMatrix.png)
 
 $$
 TP = True Positive; FP = False Positive; FN = False Negative; TN = True Negative
