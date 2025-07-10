@@ -1,7 +1,7 @@
 ---
-title: "Writing a great story for data science projects - Summer 2025"
-subtitle: "This is a Report Template Quarto"
-author: "Bailyn Rowe, Gabriel Gonzalez Rincon (Advisor: Dr. Cohen)"
+title: "A Grape Prediction: Using Random Forest to Predict Wine Quality"
+subtitle: "Summer 2025"
+author: "Bailyn Rowe, Gabriel Gonzalez Rincon, Morgan Watkins (Advisor: Dr. Cohen)"
 date: '`r Sys.Date()`'
 format:
   html:
@@ -24,7 +24,7 @@ to edit)
 ::: callout-important
 **Remember:** Your goal is to make your audience understand and care
 about your findings. By crafting a compelling story, you can effectively
-communicate the value of your data science project.
+communicate the value of your data science project. 
 
 Carefully read this template since it has instructions and tips to
 writing!
@@ -32,62 +32,153 @@ writing!
 
 ## Introduction
 
-The introduction should:
+  The idea for decision tree methodology took root in the 1960s and is collectively attributed to a 1963 paper by Morgan and Sonquist using a regression tree model similar to how decision trees are used in the current day. [@article] The methodology has since expanded to be able to predict for both regression and classification problems. A decision tree is an example of supervised machine learning that resembles a flowchart, in that an instance flows down a set of rules that lead to a final prediction. An instance will flow down the root node and the decision nodes before ending at the terminal node that acts as the final prediction. Several decision tree algorithms have been created, each differing the methods that are used to choose how and when to split the tree: Classification and Regression Trees (CART), Iterative Dichotomiser 3 (ID3), C4.5, Chi-Square Automatic Interaction Detection (CHAID), Multivariate Adaptive Regression Splines (MARS), and Conditional Inference Trees. Random Forest is an ensemble classifier that builds on the concept of decision trees by adding randomness to create multiple trees. The randomness comes in the form of bootstrap sampling and random attribute selection. The bootstrap sampling chooses rows at random, and the random attribute selection chooses columns at random. This ensures that each tree is trained on a randomly selected smaller dataset pulled from the larger training dataset, and there is variation within the trees in the forest. 
 
--   Develop a storyline that captures attention and maintains interest.
+  Random Forest and Decision Tree methodologies can be applied across datasets and industries. Examples, detailed below, include using them within healthcare to determine risk for cardiovascular disease and diabetes, using them in agriculture to predict sugarcane production, using them in emergency management to predict the severity of highway collisions, or using them in technology to predict the number of software faults. In the example detailed in this paper, random forest and decision trees are used to predict the quality of red and white Portuguese "Vinho Verde" wine based on its chemical properties using an open-source dataset found on UC Irvine’s Machine Learning Repository. [@cortez_wine_quality_2009] 
 
--   Your audience is your peers
+Su et al. used random forest methodology to conduct risk assessment to determine individuals at high risk for cardiovascular diseases, shorthanded to “CVD”, in response to a noticeable increase in CVD worldwide, and finding that current prediction models oversimplified the complex relationships between risk factors. [@su2020prediction] The dataset consisted of 498 patients who underwent a physical examination and included their demographic and health information. Using R Studio software, the patients were divided into a training and test dataset randomly, and a random forest prediction model was created to determine the variables most predictive of a cardiovascular event. A logistic regression model was also created using the variables the random forest favored: age, BMI, plasma triglyceride, and diastolic blood pressure. While the random forest and logistic regression models had similar values in terms of accuracy, sensitivity, specificity, positive predictive value, and negative predictive value, the random forest as a prediction model was helpful in evaluating many possible predictor variables and possible complexities between them. 
 
--   Clearly state the problem or question you're addressing.
+As previously shown, healthcare is one of the applications where random forest models can be applied. Another example of this is finding relationships between type II diabetes and possible risk factors. [@xu2017risk] The dataset of 403 instances and 19 features was provided by the University of Virginia School of Medicine. The diabetes outcome was derived from the glycosylated hemoglobin value; a value exceeding 7.0 indicates type II diabetes. To increase model performance, dimensionality reduction was performed, which culled predictors that were irrelevant to our goal of focusing on type II diabetes, and missing values were removed, leaving a grid of 373 instances and 10 features. The random forest model was made. By looking at the nodes on the individual decision trees, it can be seen that waist circumference, hip circumference, weight, and age are impactful predictors. To evaluate the model, k-fold cross validation were k = 10 was used and the accuracy was found to be 85%. When compared against other classification models ( ID3, Naïve Bayes, and Adaboost), the accuracy for random forest was highest.
 
-<!-- -->
+But the applications of random forest models are not limited to healthcare; it can also be used for agricultural purposes by predicting sugarcane yield. [@everingham2016accurate] The dataset consisted of data collected from 1992 to 2013 with variables like previous years’ yield, climate data, rainfall, radiation, etc. An additional variable was derived from yield, determining if it was above or below the median. This addition of a categorical variable allowed for the creation of a classification random forest model. Of the 22 years in the dataset, 19 of them were correctly categorized using this model. The raw numerical value of yield was used to create a regression-based random forest model. The regression random forest model explained 79% of the total variability in yield. While the accuracy of the models is not perfect, combined with other predictions, they can be used as a guide to farming activities and planning. 
 
--   Introduce why it is relevant needs.
+While the prior datasets have spanned industries, they all had a similar formatting of rows plotted against columns presented in a tabular format. But random forest methodology can also be applied to image classification. [@bosch2007image] Image classification works by developing a region of interest, which is the parts of the photo that exhibit high visual similarity with another photo. For example, photos of the same species of flower will look more similar than when compared with another species. The shape of the object is the number of edges it has. The appearance is the number of pixels it has. Using the M pixels and K edges, the spatial pyramid representation is developed, which is used to compare the photos. The Caltech-101 and Caltech-256 datasets were used because of their variance in object categories and number of photos in each class. By doing so, researchers were able to perform similarly to SVM, a more commonly used methodology for image classification, but reducing computational costs by using random forest.
 
--   Provide an overview of your approach.
+In the previous examples, random forest was exclusively applied to the datasets. But other methodologies, such as logistic or linear regression and decision trees, could have been used. 
 
-Example of writing including citing references:
+Since road accidents result in property damage, injury, and death, modeling to find correlated factors is important. The most common statistical model for this is logistic regression. But those models don’t provide insights on how each variable affects overall model performance. Random Forest can help determine variable importance rankings. [@chen2020modeling] Chen et al. performed logistic regression, decision trees in the form of the classification and regression tree (CART) methodology, and random forest on the same training and test datasets to test model performance against each other. The dataset is a compilation of 18 variables pulled from Taiwanese highway traffic accident investigation reports from 2015 to 2019. The important variables were determined by a p-value for logistic regression and the importance score for CART and random forest. These variables were then listed in descending order based on their respective numerical value and compared. Model performance was determined by the accuracy, sensitivity, and specificity. It was found that the random forest model was the most accurate for predicting severity. Random forest and logistic regression were the most sensitive; random forest and CART were the most specific. 
 
-*This is an introduction to ..... regression, which is a non-parametric
-estimator that estimates the conditional expectation of two variables
-which is random. The goal of a kernel regression is to discover the
-non-linear relationship between two random variables. To discover the
-non-linear relationship, kernel estimator or kernel smoothing is the
-main method to estimate the curve for non-parametric statistics. In
-kernel estimator, weight function is known as kernel function
-[@efr2008]. Cite this paper [@bro2014principal]. The GEE [@wang2014].
-The PCA [@daffertshofer2004pca]*. Topology can be used in machine learning [@adams2021topology]
+Kirasich et al. present a simulation-based comparison of random forest and logistic regression for binary classification across a variety of synthetic datasets. [@kirasich2018random] The authors varied dataset characteristics such as noise levels, feature variance, sample size, and number of predictive features (ranging from 1 to 50). The models were evaluated using six core metrics: accuracy, precision, recall, true positive rate, false positive rate, and AUC. The results showed that logistic regression achieved higher average accuracy, particularly in datasets with high noise or variance. In contrast, random forest consistently yielded higher true positive rates, although often at the cost of increased false positives. These trade-offs highlight different strengths: logistic regression offers greater robustness in noisy data environments, while random forests are more aggressive in classifying positives, especially when sensitivity is prioritized. The findings suggest random forests may be more effective in identifying signal across a range of feature complexities. The authors conclude that model choice should depend on the specific performance needs of the application and whether accuracy or sensitivity is more important.
 
-*This is my work and I want to add more work...*
+Modeling Type 2 Diabetes Mellitus (T2DM) is difficult because of the interactions between genetic, environmental, and behavioral factors that classic statistical methods can't accurately model. [@esmaily2018comparison] The dataset included 9,528 subjects from 9 different medical centers in Iran; variables included basic demographic variables, mental health, and health variables specifically relating to diabetes. Using R, both a decision tree model and a random forest model were created. A confusion matrix was created. From this, the accuracy, sensitivity, and specificity were calculated, and the decision tree and random forest performed similarly. By looking at both models, it was determined that BMI, TG, and FHD were the top risk factors.
+
+Courenne et al. compare Random Forest (RF) and Logistic Regression (LR) across 243 real-world binary classification datasets using a neutral, clinical-trial-inspired benchmarking approach. [@couronne2018random] The models were tested using default parameters and evaluated with accuracy, AUC, and Brier score. Results showed that RF outperformed LR on approximately 69 percent of the datasets. Specifically, RF performed better on high-dimensional data, especially when the feature-to-sample ratio was large, while LR held its own in simpler or more linear settings. The study highlights RF’s flexibility and predictive power, but also notes that LR still has advantages in interpretability and in domains where explanatory modeling is key.
+
+Richard Murdoch Montgomery compares Decision Trees, Neural Networks, and Bayesian Networks using the Breast Cancer Wisconsin dataset. [@montgomery2024comparative] It analyzes each model’s strengths, weaknesses, and performance in classification tasks. Decision Trees scored 94 percent accuracy and were praised for their clear, rule-based structure, making them easy to interpret. Neural Networks achieved the highest accuracy at 95 percent, performing well with complex and nonlinear patterns, but lacked interpretability. Bayesian Networks reached 91 percent accuracy and stood out for their ability to handle uncertainty and incorporate expert knowledge, though they required data discretization, which impacted performance. The paper suggests that each method suits different use cases and that hybrid models may offer a balanced solution.
+
+Cushman et al. compared logistic regression and random forest models for predicting American marten occurrence in a 3,884 km² area of northern Idaho. [@cushman2018landscape] Using presence-absence data from 361 hair snare stations, logistic regression selected seven predictors (e.g., canopy cover, road density) via AIC-based model averaging across 12 spatial scales (90–990 m). Random forests selected 14 predictors, including mean elevation (720 m radius), using the Model Improvement Ratio, capturing non-linear relationships. Model performance was assessed using AUC of the TOC curve, with random forests (AUC 0.981) outperforming logistic regression (AUC 0.701) by 28%. Random forests detected fragmentation effects at both fine and broad scales, while logistic regression focused on broader scales. Random forests produced more detailed, heterogeneous habitat suitability maps, making them a superior tool for conservation planning in complex landscapes.
+
+Much of the previous examples have revolved around using random forest for classification, but random forest can also be used for regression. Smith et al. found that using multiple linear regression for particular problems in neuroscience can be difficult due to the assumptions multiple linear regression has for the dataset. [@smith2013comparison] For example, the data is normally distributed. For random forest, no assumptions are made about the distribution of the dataset. In addition to this, interactions between predictors are automatically incorporated, making it easier to model the complex non-linear relationships between variables. Multiple linear regression and random forest were applied to a dataset about rats and tasked with measuring metabolic pathways in their hindbrain. R2 and residual standard error were used to compare the two models. While multiple linear regression performed better than random forest, the researchers do not doubt that it could be useful in other contexts.
+
+Hyperparameter tuning can also be applied to both the decision trees and random forest methodology by continuously tweaking settings not learned in training and examining how that affects model performance. While this increases computational costs by increasing the number of models created, it can increase model performance.
+
+Thomas et al. tried to improve the accuracy and stability of classification using an optimized Random Forest model. [@thomas2024improved] Contrary to traditional Random Forest methods, which randomly select features, this approach introduces two key enhancements. First, it uses Correlation-Based Feature Selection (CFS) to filter out irrelevant or redundant features, allowing the model to focus only on the most valuable information. Second, it applies grid search to systematically fine-tune the hyperparameters, such as the number and depth of trees for optimal performance. These improvements lead to a more accurate, efficient, and robust model for predicting whether a tumor is benign or malignant.
+
+Mao et al. came up with a new way to train trees using ideas from deep learning. [@mao2024can] Instead of building the tree step by step, their method trains the entire tree at once. They replace the hard yes or no splits with smooth, soft splits using a sigmoid function. This helps the computer use gradient descent to learn the best splits. Then, once the tree is trained, it switches back to normal hard rules so it's still easy to understand. They also improve accuracy by starting with smooth splits and making them sharper little by little. Plus, after training the full tree, they go back and fine-tune small parts (called subtrees) to fix any mistakes. In the end, their tree often outperforms random forests on many datasets, because of hyperparameter tuning. 
 
 ## Methods
 
--   Detail the models or algorithms used.
+### Decision Trees
+Decision trees and random forests are examples of supervised machine learning. [@scikit-learn2024decisiontree] Decision Trees represent a sequence of rules in the shape of a tree or a flowchart and operate similarly to how a person may work through the decision of what to wear based on the weather outside. 
 
--   Justify your choices based on the problem and data.
+The decision tree is made up of the root node, the decision nodes, the terminal nodes, and the branches. [@ibm2024decisiontrees] The root node is the starting point for every tree and represents either the initial decision or the unsplit dataset. This is followed by the decision nodes that represent tests based on variables in the dataset. The terminal nodes follow this and are the final outcomes of the tree. The branches serve as the connection between the nodes and visually work as the pathways that can be taken. 
 
-*The common non-parametric regression model is*
-$Y_i = m(X_i) + \varepsilon_i$*, where* $Y_i$ *can be defined as the sum
-of the regression function value* $m(x)$ *for* $X_i$*. Here* $m(x)$ *is
-unknown and* $\varepsilon_i$ *some errors. With the help of this
-definition, we can create the estimation for local averaging i.e.*
-$m(x)$ *can be estimated with the product of* $Y_i$ *average and* $X_i$
-*is near to* $x$*. In other words, this means that we are discovering
-the line through the data points with the help of surrounding data
-points. The estimation formula is printed below [@R-base]:*
+Decision trees predict by moving through each node, starting from the root node and ending at the terminal node, and following the path that applies to that instance. 
+
+### Decision Tree Algorithms
+
+The Classification and Regression Trees (CART) algorithm for making decision trees was referenced in the literature review, but is also what is used when making random forests in R.  Whereas some decision trees favor classification or regression, CART is useful because it can handle both sets of problems. Based on the type of problem, it will use a different method for splitting the tree. For classification, CART uses the Gini impurity to split. A lower Gini impurity indicates a better split. For regression, it uses variance and aims to reduce the most variance with each split. 
+
+In addition to the CART algorithm, there is also Iterative Dichotomiser 3 (ID3), C4.5, Chi-Square Automatic Interaction Detection (CHAID), Multivariate Adaptive Regression Splines (MARS), and Conditional Inference Trees. [@gfg_decision_tree]
+
+At each node, the ID3 method calculates entropy and information gain for each feature and selects the feature that has the highest information gain for splitting. [@prajwala2015comparative] This is repeatedly done at each node until the decision tree is fully grown. ID3 is strictly for classification and cannot handle regression tasks.
+Similar to ID3, C4.5 is used for classification. C4.5 uses the gain ratio in order to reduce bias towards features in the dataset with many values. The gain ratio helps improve accuracy by reducing overfitting. But it may still have issues with overfitting when used with noisy datasets or datasets with many features.
+
+CHAID determines the best method of splitting by using chi-square tests for categorical variables. It chooses the categorical feature with the highest chi-square statistic. It is useful for datasets containing many categorical features. 
+MARS builds upon the previously mentioned CART algorithm. It constructs splines, which is a piecewise linear model that models the relationship between the input and output variables linearly but with variable slopes at different points called knots. 
+
+Conditional Inference Trees uses permutation tests to choose the splits. It aims to choose the feature that minimizes bias. For categorical variables, it uses the Chi-squared test. For numerical variables, it uses the F-test. This process is repeated until the tree is fully grown.
+
+### Entropy, Information Gain, and Gini Impurity
+
+Entropy measures the uncertainty in the dataset. A higher entropy means a more uncertain dataset. A low entropy value is desired as it signals a pure node, meaning most of the data points belong to one class. A higher entropy indicates the data points are more disbursed. 
 
 $$
-M_n(x) = \sum_{i=1}^{n} W_n (X_i) Y_i  \tag{1}
-$$$W_n(x)$ *is the sum of weights that belongs to all real numbers.
-Weights are positive numbers and small if* $X_i$ *is far from* $x$*.*
-
-
-*Another equation:*
-
-$$
-y_i = \beta_0 + \beta_1 X_1 +\varepsilon_i
+Entropy(S) = -Σ [p(i) * log2(p(i))]
 $$
 
+Information gain builds on the concept of entropy. Since a lower entropy value is desired, it is the reduction in entropy after the dataset is split on a feature. 
+
+$$
+IG(S, A) = Entropy(S) - Σ [ (|Sv| / |S|) * Entropy(Sv) ]
+$$
+
+The gain ratio is a computed version of the information gain used in the C4.5 algorithm. It is calculated by dividing the information gain by the intrinsic information. The intrinsic information is the amount of data required to describe an attribute’s values.
+
+The Gini impurity measures the likelihood of randomly selected data being incorrectly classified. 
+
+$$
+Gini(p) = 1 - Σ '(pᵢ²)
+$$
+
+### Random Forest
+
+Random Forest, developed by Leo Breiman in 2001, builds on the existing Decision Tree methodology and applies the principle of “divide and conquer”. [@biau2016random] It is an ensemble learning method that uses multiple decision tree models.
+
+In a simplistic zoomed-out view, random forest creates multiple decision trees, then averages the results of each of the decisions made by each individual tree to provide a prediction. [@simplilearn2023randomforest] In a magical fairy tale view, imagine a person walking up to a forest filled with hundreds of trees and asking the trees a question. Each of the trees has its own answer to the question based on its unique thought process. But to give one final answer to the person, they take a vote, and the answer gets determined by the majority.
+
+In a zoomed-in view, the following process is conducted N times, with N acting as the total number of trees: selection of training data, tree growth, and random attribute selection. Followed by, prediction based on majority vote once all the N trees are created.
+
+1.	Training Data Selection: The dataset is divided into smaller training and test sets. The training dataset is created via bootstrap sampling, which repeatedly resamples from the overall dataset with replacement. This makes each training dataset distinctly different from the others. Because while Dataset A may have 3 instances of row 231, Datasets B and C may have none. 
+2.	Tree Growth: A decision tree is trained using the training dataset created by the bootstrap sampling. 
+
+3.	Random Attribute Selection: At each node in the decision tree, a random subset of features is selected, and only those features are used for the split. 
+
+4.	Majority Vote: The final prediction is the aggregation of all the predictions from the N trees. For classification, this is the class with the highest count of votes. For regression, this is an average of all of the numerical predictions.
+
+The term random forest can be broken down into “random” and “forest”. The randomness from the bootstrap sampling and random attribute selection ensures that each tree is different. The forest consists of all N decision trees. 
+
+### Performance Measures
+
+Since both decision trees and random forests are applicable to both classification and regression problems, the performance evaluation measures would depend on the type of problem being modeled. The performance measures for a regression-based random forest model would align with a linear regression model. Similarly, the performance evaluation measures for a classification-based random forest model would align with the measures for a logistic regression model. 
+
+#### Regression
+
+$$
+MAE = (1/n) * Σ |yᵢ - ŷᵢ|
+$$
+
+The mean absolute error (MAE) is the average of the absolute value differences between the predicted and actual values. It allows for the magnitude of error to be shown, without the cancellation of positives and negatives.
+
+$$
+MSE = (1/n) * Σ [ (yi - ŷi)² ]
+$$
+
+The mean squared error (MSE) is the squared difference between the predicted and actual values.
+
+$$
+R² = 1 - (RSS/TSS)
+$$
+
+The coefficient of determination (R²) is the proportion of variance in the target variable explained by the model on a 0 (poor) to 1 (excellent) scale. In the formula above, RSS is the sum of squared residuals and TSS is the total sum of squares.
+
+#### Classification
+
+A confusion matrix is a table that compares the predicted values with the actual values. The most common visual for a confusion matrix is describe as follows: A table with four squares divided into Actual Values (positive and negative) represented vertically and Predicted Values (positive and negative) represented horizontally. [@Wibowo2023MaskUseDetection] If the classification problem is not binary, the confusion matrix would just scale in size following the n×n formula with n = number of classes.
+
+$$
+TP = True Positive; FP = False Positive; FN = False Negative; TN = True Negative
+$$
+
+From the confusion matrix, the accuracy, sensitivity, and specificity of the model can be calculated. 
+
+$$
+Accuracy=(TP+TN)/(TP+FP+TN+FN)
+$$
+
+The accuracy is the proportion of all predictions that the model got correct.
+
+$$
+Sensitivity=(TP)/(TP+FN)
+$$
+
+The sensitivity is the proportion of true positives that the model got correct and measures the avoidance of false negatives.
+
+$$
+Specificity=(TN)/(TN+FP)
+$$
+
+The specificity is the proportion of true negatives that the model got correct and measures the avoidance of false positives. 
 ## Analysis and Results
 
 ### Data Exploration and Visualization
