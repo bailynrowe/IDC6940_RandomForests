@@ -1,7 +1,7 @@
 ---
-title: "Present a great story for data science projects"
-subtitle: "This is a Slide Template"
-author: "Students names: Bailyn Rowe and Gabriel Gonzalez  (Advisor: Dr. Cohen)"
+title: "Using Random Forest to Predict Wine Quality"
+subtitle: "Summer 2025"
+author: "Bailyn Rowe, Gabriel Gonzalez Rincon, Morgan Watkins (Advisor: Dr. Cohen)"
 date: '`r Sys.Date()`'
 format:
   revealjs
@@ -29,29 +29,63 @@ More information about `revealjs`:
 <https://quarto.org/docs/reference/formats/presentations/revealjs.html>
 :::
 
-## Introduction  {.smaller}
+## Introduction 
 
--   Develop a storyline that captures attention and maintains interest.
+The idea for decision trees came from Morgan and Sonquist. [@article]
 
--   Your audience is your peers
+A decision tree is an example of supervised machine learning and Random Forest is an ensemble classifier that builds on the concept of decision trees by adding randomness.
 
--   Clearly state the problem or question you're addressing.
+In this presentation, random forest and decision trees are used to predict the quality of wine based on its chemical properties.
 
--   Introduce why it is relevant needs.
+## Potential Applications of Random Forest
+Random Forest and Decision Tree methodologies can be applied across datasets and industries.
 
--   Provide an overview of your approach.
+Examples:
 
-In kernel estimator, weight function is known as kernel function
-[@efr2008]. Cite this paper [@bro2014principal]. The GEE [@wang2014].
-The PCA [@daffertshofer2004pca]\*
+-healthcare: risk for cardiovascular disease [@su2020prediction] and diabetes [@xu2017risk]
 
-## Methods
+-agriculture: predict sugarcane production [@everingham2016accurate]
 
--   Detail the models or algorithms used.
+-emergency management: predict severity of highway accidents [@chen2020modeling]
+ 
+## Literature Review  {.smaller}
 
--   Justify your choices based on the problem and data.
+Medical research used random forest methodology to conduct risk assessment to determine individuals at high risk for cardiovascular diseases and the random forest as a prediction model was helpful in evaluating many possible predictor variables and possible complexities between them. [@su2020prediction]
 
+Modeling Type 2 Diabetes Mellitus is difficult because of the interactions between genetic, environmental, and behavioral factors that classic statistical methods can’t accurately model.Both a decision tree model and a random forest model were created. [@esmaily2018comparison] By looking at both models, it was determined that BMI, triglycerides, and family history were the top risk factors.
 
+Everingham applied random forest to a dataset collected from 1992 to 2013, containing variables relating to weather and soil quality, and used that to predict sugarcane yield. [@everingham2016accurate] While the accuracy of the models is not perfect, combined with other predictions, they can be used as a guide to farming activities and planning.
+
+## Decision Trees
+Decision Trees represent a sequence of rules in the shape of a tree or a flowchart.
+
+The decision tree is made up of the root node, the decision nodes, the terminal nodes, and the branches.
+
+There are different algorithms used to make decision trees: ID3, Chi-Square Automatic Interaction Detection, Multivariate Adaptive Regression Splines, and Conditional Inference Trees.
+
+## Classification and Regression Trees (CART)
+The CART algorithm is what R Studio uses to create random forests.
+
+CART is useful for both regression and classification.
+CART uses Gini impurity to split for classification and variance for regression.
+
+The Gini impurity measures the likelihood of randomly selected data being incorrectly classified. 
+
+$$
+Gini(p) = 1 - Σ '(pᵢ²)
+$$
+
+## Random Forest
+
+Random forest creates multiple decision trees, then averages the results of each of the decisions made by each individual tree to provide a prediction.
+
+1. Training Data Selection
+
+2. Tree Growth
+
+3. Random Attribute Selection
+
+4. Majority Vote
 
 ## Data Exploration and Visualization
 
