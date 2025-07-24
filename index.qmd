@@ -104,7 +104,7 @@ In the equation below:
 
 - H(S) is the entropy of the original dataset S before splitting
 
-- Sv is the subset of data where attribute A has value v
+- Sv is the subset of data where attribute A has value v 
 
 $$
 IG(S, A) = Entropy(S) - Σ [ (|Sv| / |S|) * Entropy(Sv) ]
