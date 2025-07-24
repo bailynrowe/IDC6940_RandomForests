@@ -21,20 +21,13 @@ editor:
 Slides: [slides.html](slides.html){target="_blank"} ( Go to `slides.qmd`
 to edit)
 
-::: callout-important
-**Remember:** Your goal is to make your audience understand and care
-about your findings. By crafting a compelling story, you can effectively
-communicate the value of your data science project. 
-
-Carefully read this template since it has instructions and tips to
-writing!
-:::
-
 ## Introduction
 
   The idea for decision tree methodology took root in the 1960s and is collectively attributed to a 1963 paper by Morgan and Sonquist using a regression tree model similar to how decision trees are used in the current day. [@article] The methodology has since expanded to be able to predict for both regression and classification problems. A decision tree is an example of supervised machine learning that resembles a flowchart, in that an instance flows down a set of rules that lead to a final prediction. An instance will flow down the root node and the decision nodes before ending at the terminal node that acts as the final prediction. Several decision tree algorithms have been created, each differing the methods that are used to choose how and when to split the tree: Classification and Regression Trees (CART), Iterative Dichotomiser 3 (ID3), C4.5, Chi-Square Automatic Interaction Detection (CHAID), Multivariate Adaptive Regression Splines (MARS), and Conditional Inference Trees. Random Forest is an ensemble classifier that builds on the concept of decision trees by adding randomness to create multiple trees. The randomness comes in the form of bootstrap sampling and random attribute selection. The bootstrap sampling chooses rows at random, and the random attribute selection chooses columns at random. This ensures that each tree is trained on a randomly selected smaller dataset pulled from the larger training dataset, and there is variation within the trees in the forest. 
 
   Random Forest and Decision Tree methodologies can be applied across datasets and industries. Examples, detailed below, include using them within healthcare to determine risk for cardiovascular disease and diabetes, using them in agriculture to predict sugarcane production, using them in emergency management to predict the severity of highway collisions, or using them in technology to predict the number of software faults. In the example detailed in this paper, random forest and decision trees are used to predict the quality of red and white Portuguese "Vinho Verde" wine based on its chemical properties using an open-source dataset found on UC Irvine’s Machine Learning Repository. [@cortez_wine_quality_2009] 
+
+### Literature Review 
 
 Su et al. used random forest methodology to conduct risk assessment to determine individuals at high risk for cardiovascular diseases, shorthanded to “CVD”, in response to a noticeable increase in CVD worldwide, and finding that current prediction models oversimplified the complex relationships between risk factors. [@su2020prediction] The dataset consisted of 498 patients who underwent a physical examination and included their demographic and health information. Using R Studio software, the patients were divided into a training and test dataset randomly, and a random forest prediction model was created to determine the variables most predictive of a cardiovascular event. A logistic regression model was also created using the variables the random forest favored: age, BMI, plasma triglyceride, and diastolic blood pressure. While the random forest and logistic regression models had similar values in terms of accuracy, sensitivity, specificity, positive predictive value, and negative predictive value, the random forest as a prediction model was helpful in evaluating many possible predictor variables and possible complexities between them. 
 
@@ -93,11 +86,25 @@ Conditional Inference Trees uses permutation tests to choose the splits. It aims
 
 Entropy measures the uncertainty in the dataset. A higher entropy means a more uncertain dataset. A low entropy value is desired as it signals a pure node, meaning most of the data points belong to one class. A higher entropy indicates the data points are more disbursed. 
 
+In the equation below:
+
+- S is the dataset at a given node
+
+- p(i) is the proportion of samples in S that belong to class i.
+
 $$
 Entropy(S) = -Σ [p(i) * log2(p(i))]
 $$
 
 Information gain builds on the concept of entropy. Since a lower entropy value is desired, it is the reduction in entropy after the dataset is split on a feature. 
+
+In the equation below:
+
+- IG(S,A) is the information gain from splitting dataset S using attribute A
+
+- H(S) is the entropy of the original dataset S before splitting
+
+- Sv is the subset of data where attribute A has value v
 
 $$
 IG(S, A) = Entropy(S) - Σ [ (|Sv| / |S|) * Entropy(Sv) ]
@@ -106,6 +113,12 @@ $$
 The gain ratio is a computed version of the information gain used in the C4.5 algorithm. It is calculated by dividing the information gain by the intrinsic information. The intrinsic information is the amount of data required to describe an attribute’s values.
 
 The Gini impurity measures the likelihood of randomly selected data being incorrectly classified. 
+
+In the equation below:
+
+- S is the dataset at a given node
+
+- p(i) is the proportion of samples in S that belong to class i.
 
 $$
 Gini(p) = 1 - Σ '(pᵢ²)
@@ -128,9 +141,7 @@ In a zoomed-in view, the following process is conducted N times, with N acting a
 
 The term random forest can be broken down into “random” and “forest”. The randomness from the bootstrap sampling and random attribute selection ensures that each tree is different. The forest consists of all N decision trees. 
 
-![Venn Diagram for Decision Trees and Random Forest](VennDiagram.png)
-
-As can be seen above, both random forest and decision trees can be useful for ranking feature importance. But the pros and cons of each act are the inverse of the other. For decision trees, you have lessened complexity and easier interpretability, but this may lead to overfitting and lower accuracy. For random forest, you lose interpretability by developing a more complex model, but gain a more accurate model.
+Both random forest and decision trees can be useful for ranking feature importance. But the pros and cons of each act are the inverse of the other. For decision trees, you have lessened complexity and easier interpretability, but this may lead to overfitting and lower accuracy. For random forest, you lose interpretability by developing a more complex model, but gain a more accurate model.
 
 ### Performance Measures
 
