@@ -6,6 +6,7 @@ date: '`r Sys.Date()`'
 format:
   html:
     code-fold: true
+    code-tools: true
 course: Capstone Projects in Data Science
 bibliography: references.bib # file contains bibtex for references
 #always_allow_html: true # this allows to get PDF with HTML features
@@ -23,102 +24,362 @@ to edit)
 
 ## Introduction
 
-  The idea for decision tree methodology took root in the 1960s and is collectively attributed to a 1963 paper by Morgan and Sonquist using a regression tree model similar to how decision trees are used in the current day. [@article] The methodology has since expanded to be able to predict for both regression and classification problems. A decision tree is an example of supervised machine learning that resembles a flowchart, in that an instance flows down a set of rules that lead to a final prediction. An instance will flow down the root node and the decision nodes before ending at the terminal node that acts as the final prediction. Several decision tree algorithms have been created, each differing the methods that are used to choose how and when to split the tree: Classification and Regression Trees (CART), Iterative Dichotomiser 3 (ID3), C4.5, Chi-Square Automatic Interaction Detection (CHAID), Multivariate Adaptive Regression Splines (MARS), and Conditional Inference Trees. Random Forest is an ensemble classifier that builds on the concept of decision trees by adding randomness to create multiple trees. The randomness comes in the form of bootstrap sampling and random attribute selection. The bootstrap sampling chooses rows at random, and the random attribute selection chooses columns at random. This ensures that each tree is trained on a randomly selected smaller dataset pulled from the larger training dataset, and there is variation within the trees in the forest. 
+The idea for decision tree methodology took root in the 1960s and is
+collectively attributed to a 1963 paper by Morgan and Sonquist using a
+regression tree model similar to how decision trees are used in the
+current day. [@article] The methodology has since expanded to be able to
+predict for both regression and classification problems. A decision tree
+is an example of supervised machine learning that resembles a flowchart,
+in that an instance flows down a set of rules that lead to a final
+prediction. An instance will flow down the root node and the decision
+nodes before ending at the terminal node that acts as the final
+prediction. Several decision tree algorithms have been created, each
+differing the methods that are used to choose how and when to split the
+tree: Classification and Regression Trees (CART), Iterative Dichotomiser
+3 (ID3), C4.5, Chi-Square Automatic Interaction Detection (CHAID),
+Multivariate Adaptive Regression Splines (MARS), and Conditional
+Inference Trees. Random Forest is an ensemble classifier that builds on
+the concept of decision trees by adding randomness to create multiple
+trees. The randomness comes in the form of bootstrap sampling and random
+attribute selection. The bootstrap sampling chooses rows at random, and
+the random attribute selection chooses columns at random. This ensures
+that each tree is trained on a randomly selected smaller dataset pulled
+from the larger training dataset, and there is variation within the
+trees in the forest.
 
-  Random Forest and Decision Tree methodologies can be applied across datasets and industries. Examples, detailed below, include using them within healthcare to determine risk for cardiovascular disease and diabetes, using them in agriculture to predict sugarcane production, using them in emergency management to predict the severity of highway collisions, or using them in technology to predict the number of software faults. In the example detailed in this paper, random forest and decision trees are used to predict the quality of red and white Portuguese "Vinho Verde" wine based on its chemical properties using an open-source dataset found on UC Irvine’s Machine Learning Repository. [@cortez_wine_quality_2009] 
+Random Forest and Decision Tree methodologies can be applied across
+datasets and industries. Examples, detailed below, include using them
+within healthcare to determine risk for cardiovascular disease and
+diabetes, using them in agriculture to predict sugarcane production,
+using them in emergency management to predict the severity of highway
+collisions, or using them in technology to predict the number of
+software faults. In the example detailed in this paper, random forest
+and decision trees are used to predict the quality of red and white
+Portuguese "Vinho Verde" wine based on its chemical properties using an
+open-source dataset found on UC Irvine’s Machine Learning Repository.
+[@cortez_wine_quality_2009]
 
-### Literature Review 
+### Literature Review
 
-Su et al. used random forest methodology to conduct risk assessment to determine individuals at high risk for cardiovascular diseases, shorthanded to “CVD”, in response to a noticeable increase in CVD worldwide, and finding that current prediction models oversimplified the complex relationships between risk factors. [@su2020prediction] The dataset consisted of 498 patients who underwent a physical examination and included their demographic and health information. Using R Studio software, the patients were divided into a training and test dataset randomly, and a random forest prediction model was created to determine the variables most predictive of a cardiovascular event. A logistic regression model was also created using the variables the random forest favored: age, BMI, plasma triglyceride, and diastolic blood pressure. While the random forest and logistic regression models had similar values in terms of accuracy, sensitivity, specificity, positive predictive value, and negative predictive value, the random forest as a prediction model was helpful in evaluating many possible predictor variables and possible complexities between them. 
+Su et al. used random forest methodology to conduct risk assessment to
+determine individuals at high risk for cardiovascular diseases,
+shorthanded to “CVD”, in response to a noticeable increase in CVD
+worldwide, and finding that current prediction models oversimplified the
+complex relationships between risk factors. [@su2020prediction] The
+dataset consisted of 498 patients who underwent a physical examination
+and included their demographic and health information. Using R Studio
+software, the patients were divided into a training and test dataset
+randomly, and a random forest prediction model was created to determine
+the variables most predictive of a cardiovascular event. A logistic
+regression model was also created using the variables the random forest
+favored: age, BMI, plasma triglyceride, and diastolic blood pressure.
+While the random forest and logistic regression models had similar
+values in terms of accuracy, sensitivity, specificity, positive
+predictive value, and negative predictive value, the random forest as a
+prediction model was helpful in evaluating many possible predictor
+variables and possible complexities between them.
 
-As previously shown, healthcare is one of the applications where random forest models can be applied. Another example of this is finding relationships between type II diabetes and possible risk factors. [@xu2017risk] The dataset of 403 instances and 19 features was provided by the University of Virginia School of Medicine. The diabetes outcome was derived from the glycosylated hemoglobin value; a value exceeding 7.0 indicates type II diabetes. To increase model performance, dimensionality reduction was performed, which culled predictors that were irrelevant to our goal of focusing on type II diabetes, and missing values were removed, leaving a grid of 373 instances and 10 features. The random forest model was made. By looking at the nodes on the individual decision trees, it can be seen that waist circumference, hip circumference, weight, and age are impactful predictors. To evaluate the model, k-fold cross validation were k = 10 was used and the accuracy was found to be 85%. When compared against other classification models ( ID3, Naïve Bayes, and Adaboost), the accuracy for random forest was highest.
+As previously shown, healthcare is one of the applications where random
+forest models can be applied. Another example of this is finding
+relationships between type II diabetes and possible risk factors.
+[@xu2017risk] The dataset of 403 instances and 19 features was provided
+by the University of Virginia School of Medicine. The diabetes outcome
+was derived from the glycosylated hemoglobin value; a value exceeding
+7.0 indicates type II diabetes. To increase model performance,
+dimensionality reduction was performed, which culled predictors that
+were irrelevant to our goal of focusing on type II diabetes, and missing
+values were removed, leaving a grid of 373 instances and 10 features.
+The random forest model was made. By looking at the nodes on the
+individual decision trees, it can be seen that waist circumference, hip
+circumference, weight, and age are impactful predictors. To evaluate the
+model, k-fold cross validation were k = 10 was used and the accuracy was
+found to be 85%. When compared against other classification models (
+ID3, Naïve Bayes, and Adaboost), the accuracy for random forest was
+highest.
 
-But the applications of random forest models are not limited to healthcare; it can also be used for agricultural purposes by predicting sugarcane yield. [@everingham2016accurate] The dataset consisted of data collected from 1992 to 2013 with variables like previous years’ yield, climate data, rainfall, radiation, etc. An additional variable was derived from yield, determining if it was above or below the median. This addition of a categorical variable allowed for the creation of a classification random forest model. Of the 22 years in the dataset, 19 of them were correctly categorized using this model. The raw numerical value of yield was used to create a regression-based random forest model. The regression random forest model explained 79% of the total variability in yield. While the accuracy of the models is not perfect, combined with other predictions, they can be used as a guide to farming activities and planning. 
+But the applications of random forest models are not limited to
+healthcare; it can also be used for agricultural purposes by predicting
+sugarcane yield. [@everingham2016accurate] The dataset consisted of data
+collected from 1992 to 2013 with variables like previous years’ yield,
+climate data, rainfall, radiation, etc. An additional variable was
+derived from yield, determining if it was above or below the median.
+This addition of a categorical variable allowed for the creation of a
+classification random forest model. Of the 22 years in the dataset, 19
+of them were correctly categorized using this model. The raw numerical
+value of yield was used to create a regression-based random forest
+model. The regression random forest model explained 79% of the total
+variability in yield. While the accuracy of the models is not perfect,
+combined with other predictions, they can be used as a guide to farming
+activities and planning.
 
-While the prior datasets have spanned industries, they all had a similar formatting of rows plotted against columns presented in a tabular format. But random forest methodology can also be applied to image classification. [@bosch2007image] Image classification works by developing a region of interest, which is the parts of the photo that exhibit high visual similarity with another photo. For example, photos of the same species of flower will look more similar than when compared with another species. The shape of the object is the number of edges it has. The appearance is the number of pixels it has. Using the M pixels and K edges, the spatial pyramid representation is developed, which is used to compare the photos. The Caltech-101 and Caltech-256 datasets were used because of their variance in object categories and number of photos in each class. By doing so, researchers were able to perform similarly to SVM, a more commonly used methodology for image classification, but reducing computational costs by using random forest.
+While the prior datasets have spanned industries, they all had a similar
+formatting of rows plotted against columns presented in a tabular
+format. But random forest methodology can also be applied to image
+classification. [@bosch2007image] Image classification works by
+developing a region of interest, which is the parts of the photo that
+exhibit high visual similarity with another photo. For example, photos
+of the same species of flower will look more similar than when compared
+with another species. The shape of the object is the number of edges it
+has. The appearance is the number of pixels it has. Using the M pixels
+and K edges, the spatial pyramid representation is developed, which is
+used to compare the photos. The Caltech-101 and Caltech-256 datasets
+were used because of their variance in object categories and number of
+photos in each class. By doing so, researchers were able to perform
+similarly to SVM, a more commonly used methodology for image
+classification, but reducing computational costs by using random forest.
 
-In the previous examples, random forest was exclusively applied to the datasets. But other methodologies, such as logistic or linear regression and decision trees, could have been used. 
+In the previous examples, random forest was exclusively applied to the
+datasets. But other methodologies, such as logistic or linear regression
+and decision trees, could have been used.
 
-Since road accidents result in property damage, injury, and death, modeling to find correlated factors is important. The most common statistical model for this is logistic regression. But those models don’t provide insights on how each variable affects overall model performance. Random Forest can help determine variable importance rankings. [@chen2020modeling] Chen et al. performed logistic regression, decision trees in the form of the classification and regression tree (CART) methodology, and random forest on the same training and test datasets to test model performance against each other. The dataset is a compilation of 18 variables pulled from Taiwanese highway traffic accident investigation reports from 2015 to 2019. The important variables were determined by a p-value for logistic regression and the importance score for CART and random forest. These variables were then listed in descending order based on their respective numerical value and compared. Model performance was determined by the accuracy, sensitivity, and specificity. It was found that the random forest model was the most accurate for predicting severity. Random forest and logistic regression were the most sensitive; random forest and CART were the most specific. 
+Since road accidents result in property damage, injury, and death,
+modeling to find correlated factors is important. The most common
+statistical model for this is logistic regression. But those models
+don’t provide insights on how each variable affects overall model
+performance. Random Forest can help determine variable importance
+rankings. [@chen2020modeling] Chen et al. performed logistic regression,
+decision trees in the form of the classification and regression tree
+(CART) methodology, and random forest on the same training and test
+datasets to test model performance against each other. The dataset is a
+compilation of 18 variables pulled from Taiwanese highway traffic
+accident investigation reports from 2015 to 2019. The important
+variables were determined by a p-value for logistic regression and the
+importance score for CART and random forest. These variables were then
+listed in descending order based on their respective numerical value and
+compared. Model performance was determined by the accuracy, sensitivity,
+and specificity. It was found that the random forest model was the most
+accurate for predicting severity. Random forest and logistic regression
+were the most sensitive; random forest and CART were the most specific.
 
-Kirasich et al. present a simulation-based comparison of random forest and logistic regression for binary classification across a variety of synthetic datasets. [@kirasich2018random] The authors varied dataset characteristics such as noise levels, feature variance, sample size, and number of predictive features (ranging from 1 to 50). The models were evaluated using six core metrics: accuracy, precision, recall, true positive rate, false positive rate, and AUC. The results showed that logistic regression achieved higher average accuracy, particularly in datasets with high noise or variance. In contrast, random forest consistently yielded higher true positive rates, although often at the cost of increased false positives. These trade-offs highlight different strengths: logistic regression offers greater robustness in noisy data environments, while random forests are more aggressive in classifying positives, especially when sensitivity is prioritized. The findings suggest random forests may be more effective in identifying signal across a range of feature complexities. The authors conclude that model choice should depend on the specific performance needs of the application and whether accuracy or sensitivity is more important.
+Kirasich et al. present a simulation-based comparison of random forest
+and logistic regression for binary classification across a variety of
+synthetic datasets. [@kirasich2018random] The authors varied dataset
+characteristics such as noise levels, feature variance, sample size, and
+number of predictive features (ranging from 1 to 50). The models were
+evaluated using six core metrics: accuracy, precision, recall, true
+positive rate, false positive rate, and AUC. The results showed that
+logistic regression achieved higher average accuracy, particularly in
+datasets with high noise or variance. In contrast, random forest
+consistently yielded higher true positive rates, although often at the
+cost of increased false positives. These trade-offs highlight different
+strengths: logistic regression offers greater robustness in noisy data
+environments, while random forests are more aggressive in classifying
+positives, especially when sensitivity is prioritized. The findings
+suggest random forests may be more effective in identifying signal
+across a range of feature complexities. The authors conclude that model
+choice should depend on the specific performance needs of the
+application and whether accuracy or sensitivity is more important.
 
-Modeling Type 2 Diabetes Mellitus (T2DM) is difficult because of the interactions between genetic, environmental, and behavioral factors that classic statistical methods can't accurately model. [@esmaily2018comparison] The dataset included 9,528 subjects from 9 different medical centers in Iran; variables included basic demographic variables, mental health, and health variables specifically relating to diabetes. Using R, both a decision tree model and a random forest model were created. A confusion matrix was created. From this, the accuracy, sensitivity, and specificity were calculated, and the decision tree and random forest performed similarly. By looking at both models, it was determined that BMI, TG, and FHD were the top risk factors.
+Modeling Type 2 Diabetes Mellitus (T2DM) is difficult because of the
+interactions between genetic, environmental, and behavioral factors that
+classic statistical methods can't accurately model.
+[@esmaily2018comparison] The dataset included 9,528 subjects from 9
+different medical centers in Iran; variables included basic demographic
+variables, mental health, and health variables specifically relating to
+diabetes. Using R, both a decision tree model and a random forest model
+were created. A confusion matrix was created. From this, the accuracy,
+sensitivity, and specificity were calculated, and the decision tree and
+random forest performed similarly. By looking at both models, it was
+determined that BMI, TG, and FHD were the top risk factors.
 
-Courenne et al. compare Random Forest (RF) and Logistic Regression (LR) across 243 real-world binary classification datasets using a neutral, clinical-trial-inspired benchmarking approach. [@couronne2018random] The models were tested using default parameters and evaluated with accuracy, AUC, and Brier score. Results showed that RF outperformed LR on approximately 69 percent of the datasets. Specifically, RF performed better on high-dimensional data, especially when the feature-to-sample ratio was large, while LR held its own in simpler or more linear settings. The study highlights RF’s flexibility and predictive power, but also notes that LR still has advantages in interpretability and in domains where explanatory modeling is key.
+Courenne et al. compare Random Forest (RF) and Logistic Regression (LR)
+across 243 real-world binary classification datasets using a neutral,
+clinical-trial-inspired benchmarking approach. [@couronne2018random] The
+models were tested using default parameters and evaluated with accuracy,
+AUC, and Brier score. Results showed that RF outperformed LR on
+approximately 69 percent of the datasets. Specifically, RF performed
+better on high-dimensional data, especially when the feature-to-sample
+ratio was large, while LR held its own in simpler or more linear
+settings. The study highlights RF’s flexibility and predictive power,
+but also notes that LR still has advantages in interpretability and in
+domains where explanatory modeling is key.
 
-Richard Murdoch Montgomery compares Decision Trees, Neural Networks, and Bayesian Networks using the Breast Cancer Wisconsin dataset. [@montgomery2024comparative] It analyzes each model’s strengths, weaknesses, and performance in classification tasks. Decision Trees scored 94 percent accuracy and were praised for their clear, rule-based structure, making them easy to interpret. Neural Networks achieved the highest accuracy at 95 percent, performing well with complex and nonlinear patterns, but lacked interpretability. Bayesian Networks reached 91 percent accuracy and stood out for their ability to handle uncertainty and incorporate expert knowledge, though they required data discretization, which impacted performance. The paper suggests that each method suits different use cases and that hybrid models may offer a balanced solution.
+Richard Murdoch Montgomery compares Decision Trees, Neural Networks, and
+Bayesian Networks using the Breast Cancer Wisconsin dataset.
+[@montgomery2024comparative] It analyzes each model’s strengths,
+weaknesses, and performance in classification tasks. Decision Trees
+scored 94 percent accuracy and were praised for their clear, rule-based
+structure, making them easy to interpret. Neural Networks achieved the
+highest accuracy at 95 percent, performing well with complex and
+nonlinear patterns, but lacked interpretability. Bayesian Networks
+reached 91 percent accuracy and stood out for their ability to handle
+uncertainty and incorporate expert knowledge, though they required data
+discretization, which impacted performance. The paper suggests that each
+method suits different use cases and that hybrid models may offer a
+balanced solution.
 
-Cushman et al. compared logistic regression and random forest models for predicting American marten occurrence in a 3,884 km² area of northern Idaho. [@cushman2018landscape] Using presence-absence data from 361 hair snare stations, logistic regression selected seven predictors (e.g., canopy cover, road density) via AIC-based model averaging across 12 spatial scales (90–990 m). Random forests selected 14 predictors, including mean elevation (720 m radius), using the Model Improvement Ratio, capturing non-linear relationships. Model performance was assessed using AUC of the TOC curve, with random forests (AUC 0.981) outperforming logistic regression (AUC 0.701) by 28%. Random forests detected fragmentation effects at both fine and broad scales, while logistic regression focused on broader scales. Random forests produced more detailed, heterogeneous habitat suitability maps, making them a superior tool for conservation planning in complex landscapes.
+Cushman et al. compared logistic regression and random forest models for
+predicting American marten occurrence in a 3,884 km² area of northern
+Idaho. [@cushman2018landscape] Using presence-absence data from 361 hair
+snare stations, logistic regression selected seven predictors (e.g.,
+canopy cover, road density) via AIC-based model averaging across 12
+spatial scales (90–990 m). Random forests selected 14 predictors,
+including mean elevation (720 m radius), using the Model Improvement
+Ratio, capturing non-linear relationships. Model performance was
+assessed using AUC of the TOC curve, with random forests (AUC 0.981)
+outperforming logistic regression (AUC 0.701) by 28%. Random forests
+detected fragmentation effects at both fine and broad scales, while
+logistic regression focused on broader scales. Random forests produced
+more detailed, heterogeneous habitat suitability maps, making them a
+superior tool for conservation planning in complex landscapes.
 
-Much of the previous examples have revolved around using random forest for classification, but random forest can also be used for regression. Smith et al. found that using multiple linear regression for particular problems in neuroscience can be difficult due to the assumptions multiple linear regression has for the dataset. [@smith2013comparison] For example, the data is normally distributed. For random forest, no assumptions are made about the distribution of the dataset. In addition to this, interactions between predictors are automatically incorporated, making it easier to model the complex non-linear relationships between variables. Multiple linear regression and random forest were applied to a dataset about rats and tasked with measuring metabolic pathways in their hindbrain. R2 and residual standard error were used to compare the two models. While multiple linear regression performed better than random forest, the researchers do not doubt that it could be useful in other contexts.
+Much of the previous examples have revolved around using random forest
+for classification, but random forest can also be used for regression.
+Smith et al. found that using multiple linear regression for particular
+problems in neuroscience can be difficult due to the assumptions
+multiple linear regression has for the dataset. [@smith2013comparison]
+For example, the data is normally distributed. For random forest, no
+assumptions are made about the distribution of the dataset. In addition
+to this, interactions between predictors are automatically incorporated,
+making it easier to model the complex non-linear relationships between
+variables. Multiple linear regression and random forest were applied to
+a dataset about rats and tasked with measuring metabolic pathways in
+their hindbrain. R2 and residual standard error were used to compare the
+two models. While multiple linear regression performed better than
+random forest, the researchers do not doubt that it could be useful in
+other contexts.
 
-Hyperparameter tuning can also be applied to both the decision trees and random forest methodology by continuously tweaking settings not learned in training and examining how that affects model performance. While this increases computational costs by increasing the number of models created, it can increase model performance.
+Hyperparameter tuning can also be applied to both the decision trees and
+random forest methodology by continuously tweaking settings not learned
+in training and examining how that affects model performance. While this
+increases computational costs by increasing the number of models
+created, it can increase model performance.
 
-Thomas et al. tried to improve the accuracy and stability of classification using an optimized Random Forest model. [@thomas2024improved] Contrary to traditional Random Forest methods, which randomly select features, this approach introduces two key enhancements. First, it uses Correlation-Based Feature Selection (CFS) to filter out irrelevant or redundant features, allowing the model to focus only on the most valuable information. Second, it applies grid search to systematically fine-tune the hyperparameters, such as the number and depth of trees for optimal performance. These improvements lead to a more accurate, efficient, and robust model for predicting whether a tumor is benign or malignant.
+Thomas et al. tried to improve the accuracy and stability of
+classification using an optimized Random Forest model.
+[@thomas2024improved] Contrary to traditional Random Forest methods,
+which randomly select features, this approach introduces two key
+enhancements. First, it uses Correlation-Based Feature Selection (CFS)
+to filter out irrelevant or redundant features, allowing the model to
+focus only on the most valuable information. Second, it applies grid
+search to systematically fine-tune the hyperparameters, such as the
+number and depth of trees for optimal performance. These improvements
+lead to a more accurate, efficient, and robust model for predicting
+whether a tumor is benign or malignant.
 
-Mao et al. came up with a new way to train trees using ideas from deep learning. [@mao2024can] Instead of building the tree step by step, their method trains the entire tree at once. They replace the hard yes or no splits with smooth, soft splits using a sigmoid function. This helps the computer use gradient descent to learn the best splits. Then, once the tree is trained, it switches back to normal hard rules so it's still easy to understand. They also improve accuracy by starting with smooth splits and making them sharper little by little. Plus, after training the full tree, they go back and fine-tune small parts (called subtrees) to fix any mistakes. In the end, their tree often outperforms random forests on many datasets, because of hyperparameter tuning. 
+Mao et al. came up with a new way to train trees using ideas from deep
+learning. [@mao2024can] Instead of building the tree step by step, their
+method trains the entire tree at once. They replace the hard yes or no
+splits with smooth, soft splits using a sigmoid function. This helps the
+computer use gradient descent to learn the best splits. Then, once the
+tree is trained, it switches back to normal hard rules so it's still
+easy to understand. They also improve accuracy by starting with smooth
+splits and making them sharper little by little. Plus, after training
+the full tree, they go back and fine-tune small parts (called subtrees)
+to fix any mistakes. In the end, their tree often outperforms random
+forests on many datasets, because of hyperparameter tuning.
 
 ## Methods
 
 ### Decision Trees
-Decision trees and random forests are examples of supervised machine learning. [@scikit-learn2024decisiontree] Decision Trees represent a sequence of rules in the shape of a tree or a flowchart and operate similarly to how a person may work through the decision of what to wear based on the weather outside. 
 
-The decision tree is made up of the root node, the decision nodes, the terminal nodes, and the branches. [@ibm2024decisiontrees] The root node is the starting point for every tree and represents either the initial decision or the unsplit dataset. This is followed by the decision nodes that represent tests based on variables in the dataset. The terminal nodes follow this and are the final outcomes of the tree. The branches serve as the connection between the nodes and visually work as the pathways that can be taken. 
+Decision trees and random forests are examples of supervised machine
+learning. [@scikit-learn2024decisiontree] Decision Trees represent a
+sequence of rules in the shape of a tree or a flowchart and operate
+similarly to how a person may work through the decision of what to wear
+based on the weather outside.
 
-Decision trees predict by moving through each node, starting from the root node and ending at the terminal node, and following the path that applies to that instance. 
+The decision tree is made up of the root node, the decision nodes, the
+terminal nodes, and the branches. [@ibm2024decisiontrees] The root node
+is the starting point for every tree and represents either the initial
+decision or the unsplit dataset. This is followed by the decision nodes
+that represent tests based on variables in the dataset. The terminal
+nodes follow this and are the final outcomes of the tree. The branches
+serve as the connection between the nodes and visually work as the
+pathways that can be taken.
+
+Decision trees predict by moving through each node, starting from the
+root node and ending at the terminal node, and following the path that
+applies to that instance.
 
 ### Decision Tree Algorithms
 
-The Classification and Regression Trees (CART) algorithm for making decision trees was referenced in the literature review, but is also what is used when making random forests in R.  Whereas some decision trees favor classification or regression, CART is useful because it can handle both sets of problems. Based on the type of problem, it will use a different method for splitting the tree. For classification, CART uses the Gini impurity to split. A lower Gini impurity indicates a better split. For regression, it uses variance and aims to reduce the most variance with each split. 
+The Classification and Regression Trees (CART) algorithm for making
+decision trees was referenced in the literature review, but is also what
+is used when making random forests in R. Whereas some decision trees
+favor classification or regression, CART is useful because it can handle
+both sets of problems. Based on the type of problem, it will use a
+different method for splitting the tree. For classification, CART uses
+the Gini impurity to split. A lower Gini impurity indicates a better
+split. For regression, it uses variance and aims to reduce the most
+variance with each split.
 
-In addition to the CART algorithm, there is also Iterative Dichotomiser 3 (ID3), C4.5, Chi-Square Automatic Interaction Detection (CHAID), Multivariate Adaptive Regression Splines (MARS), and Conditional Inference Trees. [@gfg_decision_tree]
+In addition to the CART algorithm, there is also Iterative Dichotomiser
+3 (ID3), C4.5, Chi-Square Automatic Interaction Detection (CHAID),
+Multivariate Adaptive Regression Splines (MARS), and Conditional
+Inference Trees. [@gfg_decision_tree]
 
-At each node, the ID3 method calculates entropy and information gain for each feature and selects the feature that has the highest information gain for splitting. [@prajwala2015comparative] This is repeatedly done at each node until the decision tree is fully grown. ID3 is strictly for classification and cannot handle regression tasks.
-Similar to ID3, C4.5 is used for classification. C4.5 uses the gain ratio in order to reduce bias towards features in the dataset with many values. The gain ratio helps improve accuracy by reducing overfitting. But it may still have issues with overfitting when used with noisy datasets or datasets with many features.
+At each node, the ID3 method calculates entropy and information gain for
+each feature and selects the feature that has the highest information
+gain for splitting. [@prajwala2015comparative] This is repeatedly done
+at each node until the decision tree is fully grown. ID3 is strictly for
+classification and cannot handle regression tasks. Similar to ID3, C4.5
+is used for classification. C4.5 uses the gain ratio in order to reduce
+bias towards features in the dataset with many values. The gain ratio
+helps improve accuracy by reducing overfitting. But it may still have
+issues with overfitting when used with noisy datasets or datasets with
+many features.
 
-CHAID determines the best method of splitting by using chi-square tests for categorical variables. It chooses the categorical feature with the highest chi-square statistic. It is useful for datasets containing many categorical features. 
-MARS builds upon the previously mentioned CART algorithm. It constructs splines, which is a piecewise linear model that models the relationship between the input and output variables linearly but with variable slopes at different points called knots. 
+CHAID determines the best method of splitting by using chi-square tests
+for categorical variables. It chooses the categorical feature with the
+highest chi-square statistic. It is useful for datasets containing many
+categorical features. MARS builds upon the previously mentioned CART
+algorithm. It constructs splines, which is a piecewise linear model that
+models the relationship between the input and output variables linearly
+but with variable slopes at different points called knots.
 
-Conditional Inference Trees uses permutation tests to choose the splits. It aims to choose the feature that minimizes bias. For categorical variables, it uses the Chi-squared test. For numerical variables, it uses the F-test. This process is repeated until the tree is fully grown.
+Conditional Inference Trees uses permutation tests to choose the splits.
+It aims to choose the feature that minimizes bias. For categorical
+variables, it uses the Chi-squared test. For numerical variables, it
+uses the F-test. This process is repeated until the tree is fully grown.
 
 ### Entropy, Information Gain, and Gini Impurity
 
-Entropy measures the uncertainty in the dataset. A higher entropy means a more uncertain dataset. A low entropy value is desired as it signals a pure node, meaning most of the data points belong to one class. A higher entropy indicates the data points are more disbursed. 
+Entropy measures the uncertainty in the dataset. A higher entropy means
+a more uncertain dataset. A low entropy value is desired as it signals a
+pure node, meaning most of the data points belong to one class. A higher
+entropy indicates the data points are more disbursed.
 
 In the equation below:
 
-- S is the dataset at a given node
+-   S is the dataset at a given node
 
-- p(i) is the proportion of samples in S that belong to class i.
+-   p(i) is the proportion of samples in S that belong to class i.
 
 $$
 Entropy(S) = -Σ [p(i) * log2(p(i))]
 $$
 
-Information gain builds on the concept of entropy. Since a lower entropy value is desired, it is the reduction in entropy after the dataset is split on a feature. 
+Information gain builds on the concept of entropy. Since a lower entropy
+value is desired, it is the reduction in entropy after the dataset is
+split on a feature.
 
 In the equation below:
 
-- IG(S,A) is the information gain from splitting dataset S using attribute A
+-   IG(S,A) is the information gain from splitting dataset S using
+    attribute A
 
-- H(S) is the entropy of the original dataset S before splitting
+-   H(S) is the entropy of the original dataset S before splitting
 
-- Sv is the subset of data where attribute A has value v 
+-   Sv is the subset of data where attribute A has value v
 
 $$
 IG(S, A) = Entropy(S) - Σ [ (|Sv| / |S|) * Entropy(Sv) ]
 $$
 
-The gain ratio is a computed version of the information gain used in the C4.5 algorithm. It is calculated by dividing the information gain by the intrinsic information. The intrinsic information is the amount of data required to describe an attribute’s values.
+The gain ratio is a computed version of the information gain used in the
+C4.5 algorithm. It is calculated by dividing the information gain by the
+intrinsic information. The intrinsic information is the amount of data
+required to describe an attribute’s values.
 
-The Gini impurity measures the likelihood of randomly selected data being incorrectly classified. 
+The Gini impurity measures the likelihood of randomly selected data
+being incorrectly classified.
 
 In the equation below:
 
-- S is the dataset at a given node
+-   S is the dataset at a given node
 
-- p(i) is the proportion of samples in S that belong to class i.
+-   p(i) is the proportion of samples in S that belong to class i.
 
 $$
 Gini(p) = 1 - Σ '(pᵢ²)
@@ -126,26 +387,65 @@ $$
 
 ### Random Forest
 
-Random Forest, developed by Leo Breiman in 2001, builds on the existing Decision Tree methodology and applies the principle of “divide and conquer”. [@biau2016random] It is an ensemble learning method that uses multiple decision tree models.
+Random Forest, developed by Leo Breiman in 2001, builds on the existing
+Decision Tree methodology and applies the principle of “divide and
+conquer”. [@biau2016random] It is an ensemble learning method that uses
+multiple decision tree models.
 
-In a simplistic zoomed-out view, random forest creates multiple decision trees, then averages the results of each of the decisions made by each individual tree to provide a prediction. [@simplilearn2023randomforest] In a magical fairy tale view, imagine a person walking up to a forest filled with hundreds of trees and asking the trees a question. Each of the trees has its own answer to the question based on its unique thought process. But to give one final answer to the person, they take a vote, and the answer gets determined by the majority.
+In a simplistic zoomed-out view, random forest creates multiple decision
+trees, then averages the results of each of the decisions made by each
+individual tree to provide a prediction. [@simplilearn2023randomforest]
+In a magical fairy tale view, imagine a person walking up to a forest
+filled with hundreds of trees and asking the trees a question. Each of
+the trees has its own answer to the question based on its unique thought
+process. But to give one final answer to the person, they take a vote,
+and the answer gets determined by the majority.
 
-In a zoomed-in view, the following process is conducted N times, with N acting as the total number of trees: selection of training data, tree growth, and random attribute selection. Followed by, prediction based on majority vote once all the N trees are created.
+In a zoomed-in view, the following process is conducted N times, with N
+acting as the total number of trees: selection of training data, tree
+growth, and random attribute selection. Followed by, prediction based on
+majority vote once all the N trees are created.
 
-1.	Training Data Selection: The dataset is divided into smaller training and test sets. The training dataset is created via bootstrap sampling, which repeatedly resamples from the overall dataset with replacement. This makes each training dataset distinctly different from the others. Because while Dataset A may have 3 instances of row 231, Datasets B and C may have none. 
-2.	Tree Growth: A decision tree is trained using the training dataset created by the bootstrap sampling. 
+1.  Training Data Selection: The dataset is divided into smaller
+    training and test sets. The training dataset is created via
+    bootstrap sampling, which repeatedly resamples from the overall
+    dataset with replacement. This makes each training dataset
+    distinctly different from the others. Because while Dataset A may
+    have 3 instances of row 231, Datasets B and C may have none.
 
-3.	Random Attribute Selection: At each node in the decision tree, a random subset of features is selected, and only those features are used for the split. 
+2.  Tree Growth: A decision tree is trained using the training dataset
+    created by the bootstrap sampling.
 
-4.	Majority Vote: The final prediction is the aggregation of all the predictions from the N trees. For classification, this is the class with the highest count of votes. For regression, this is an average of all of the numerical predictions.
+3.  Random Attribute Selection: At each node in the decision tree, a
+    random subset of features is selected, and only those features are
+    used for the split.
 
-The term random forest can be broken down into “random” and “forest”. The randomness from the bootstrap sampling and random attribute selection ensures that each tree is different. The forest consists of all N decision trees. 
+4.  Majority Vote: The final prediction is the aggregation of all the
+    predictions from the N trees. For classification, this is the class
+    with the highest count of votes. For regression, this is an average
+    of all of the numerical predictions.
 
-Both random forest and decision trees can be useful for ranking feature importance. But the pros and cons of each act are the inverse of the other. For decision trees, you have lessened complexity and easier interpretability, but this may lead to overfitting and lower accuracy. For random forest, you lose interpretability by developing a more complex model, but gain a more accurate model.
+The term random forest can be broken down into “random” and “forest”.
+The randomness from the bootstrap sampling and random attribute
+selection ensures that each tree is different. The forest consists of
+all N decision trees.
+
+Both random forest and decision trees can be useful for ranking feature
+importance. But the pros and cons of each act are the inverse of the
+other. For decision trees, you have lessened complexity and easier
+interpretability, but this may lead to overfitting and lower accuracy.
+For random forest, you lose interpretability by developing a more
+complex model, but gain a more accurate model.
 
 ### Performance Measures
 
-Since both decision trees and random forests are applicable to both classification and regression problems, the performance evaluation measures would depend on the type of problem being modeled. The performance measures for a regression-based random forest model would align with a linear regression model. Similarly, the performance evaluation measures for a classification-based random forest model would align with the measures for a logistic regression model. 
+Since both decision trees and random forests are applicable to both
+classification and regression problems, the performance evaluation
+measures would depend on the type of problem being modeled. The
+performance measures for a regression-based random forest model would
+align with a linear regression model. Similarly, the performance
+evaluation measures for a classification-based random forest model would
+align with the measures for a logistic regression model.
 
 #### Regression
 
@@ -153,23 +453,37 @@ $$
 MAE = (1/n) * Σ |yᵢ - ŷᵢ|
 $$
 
-The mean absolute error (MAE) is the average of the absolute value differences between the predicted and actual values. It allows for the magnitude of error to be shown, without the cancellation of positives and negatives.
+The mean absolute error (MAE) is the average of the absolute value
+differences between the predicted and actual values. It allows for the
+magnitude of error to be shown, without the cancellation of positives
+and negatives.
 
 $$
 MSE = (1/n) * Σ [ (yi - ŷi)² ]
 $$
 
-The mean squared error (MSE) is the squared difference between the predicted and actual values.
+The mean squared error (MSE) is the squared difference between the
+predicted and actual values.
 
 $$
 R² = 1 - (RSS/TSS)
 $$
 
-The coefficient of determination (R²) is the proportion of variance in the target variable explained by the model on a 0 (poor) to 1 (excellent) scale. In the formula above, RSS is the sum of squared residuals and TSS is the total sum of squares.
+The coefficient of determination (R²) is the proportion of variance in
+the target variable explained by the model on a 0 (poor) to 1
+(excellent) scale. In the formula above, RSS is the sum of squared
+residuals and TSS is the total sum of squares.
 
 #### Classification
 
-A confusion matrix is a table that compares the predicted values with the actual values. The most common visual for a confusion matrix is describe as follows: A table with four squares divided into Actual Values (positive and negative) represented vertically and Predicted Values (positive and negative) represented horizontally. [@Wibowo2023MaskUseDetection] If the classification problem is not binary, the confusion matrix would just scale in size following the n×n formula with n = number of classes.
+A confusion matrix is a table that compares the predicted values with
+the actual values. The most common visual for a confusion matrix is
+describe as follows: A table with four squares divided into Actual
+Values (positive and negative) represented vertically and Predicted
+Values (positive and negative) represented horizontally.
+[@Wibowo2023MaskUseDetection] If the classification problem is not
+binary, the confusion matrix would just scale in size following the n×n
+formula with n = number of classes.
 
 ![Confusion Matrix](ConfusionMatrix.png)
 
@@ -177,82 +491,477 @@ $$
 TP = True Positive; FP = False Positive; FN = False Negative; TN = True Negative
 $$
 
-From the confusion matrix, the accuracy, sensitivity, and specificity of the model can be calculated. 
+From the confusion matrix, the accuracy, sensitivity, and specificity of
+the model can be calculated.
 
 $$
 Accuracy=(TP+TN)/(TP+FP+TN+FN)
 $$
 
-The accuracy is the proportion of all predictions that the model got correct.
+The accuracy is the proportion of all predictions that the model got
+correct.
 
 $$
 Sensitivity=(TP)/(TP+FN)
 $$
 
-The sensitivity is the proportion of true positives that the model got correct and measures the avoidance of false negatives.
+The sensitivity is the proportion of true positives that the model got
+correct and measures the avoidance of false negatives.
 
 $$
 Specificity=(TN)/(TN+FP)
 $$
 
-The specificity is the proportion of true negatives that the model got correct and measures the avoidance of false positives. 
+The specificity is the proportion of true negatives that the model got
+correct and measures the avoidance of false positives.
 
 ## Analysis and Results
 
-### Data Exploration and Visualization
+### Dataset Overview and Preprocessing
 
--   Describe your data sources and collection process.
+This analysis predicts wine quality using physicochemical properties
+from the [UCI Machine Learning
+Repository](https://archive.ics.uci.edu/dataset/186/wine+quality) "Vinho
+Verde" dataset, comprising 1,599 red and 4,898 white wine samples (6,497
+total). Each sample includes 11 features (e.g., alcohol, volatile
+acidity, sulphates) and a quality score (3–8) even though the quality
+score original was described as a range from 0-10 in practice was a
+range from 3-8, we binned it into a the new feature with three
+categories: Low (3–4), Medium (5–6), and High (7–8). This column
+distinguishes red and white wines. The goal is to identify key
+predictors of quality and evaluate classification models, with Random
+Forest as the primary focus.
 
--   Present initial findings and insights through visualizations.
+#### Addressing Class Imbalance
 
--   Highlight unexpected patterns or anomalies.
+This is a moderately imbalanced classification problem, where the
+"Medium" class dominates. Class imbalance can bias models toward
+majority predictions.
 
-A study was conducted to determine how...
-
-```{r, warning=FALSE, echo=T, message=FALSE}
-# loading packages 
+```{r}
+# Install and load required packages
+options(repos = c(CRAN = "https://cran.rstudio.com"))
+if (!require(tidyverse)) install.packages("tidyverse")
+if (!require(caret)) install.packages("caret")
+if (!require(randomForest)) install.packages("randomForest")
+if (!require(corrplot)) install.packages("corrplot")
+if (!require(pROC)) install.packages("pROC")
+if (!require(yardstick)) install.packages("yardstick")
 library(tidyverse)
-library(knitr)
-library(ggthemes)
-library(ggrepel)
-library(dslabs)
+library(caret)
+library(randomForest)
+library(corrplot)
+library(pROC)
+library(yardstick)
+
+# Suppress warnings for cleaner output
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+# Load and clean data
+library(janitor)
+red_wine_cleaned <- read_delim("winequality-red.csv", delim = ";") %>%
+  clean_names() %>%
+  mutate(
+    quality_category = factor(case_when(
+      quality <= 5 ~ "Low",
+      quality == 6 ~ "Medium",
+      quality >= 7 ~ "High"
+    ), levels = c("Low", "Medium", "High")),
+    type = "red"
+  ) %>%
+  filter(!is.na(quality_category))
+
+white_wine_cleaned <- read_delim("winequality-white.csv", delim = ";") %>%
+  clean_names() %>%
+  mutate(
+    quality_category = factor(case_when(
+      quality <= 5 ~ "Low",
+      quality == 6 ~ "Medium",
+      quality >= 7 ~ "High"
+    ), levels = c("Low", "Medium", "High")),
+    type = "white"
+  ) %>%
+  filter(!is.na(quality_category))
+
+combined_wine <- bind_rows(red_wine_cleaned, white_wine_cleaned)
+
+# Bar chart
+ggplot(red_wine_cleaned, aes(x = quality_category)) +
+  geom_bar(fill = "skyblue") +
+  labs(
+    title = "Distribution of Wine Quality Categories (Red Wine)",
+    x = "Quality Category",
+    y = "Count"
+  )
+
+# Bar chart
+ggplot(white_wine_cleaned, aes(x = quality_category)) +
+  geom_bar(fill = "skyblue") +
+  labs(
+    title = "Distribution of Wine Quality Categories (White Wine)",
+    x = "Quality Category",
+    y = "Count"
+  )
 ```
 
-```{r, warning=FALSE, echo=TRUE}
-# Load Data
-kable(head(murders))
+#### Class Distribution
 
-ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
+To assess the overall patterns in wine quality, the red and white wine
+datasets were merged into a unified dataset (combined_wine). This
+combined set allows a broader perspective on how physicochemical
+properties vary across both wine types and quality levels.
 
-  ggplot1 + geom_point(aes(col=region), size = 4) +
-  geom_text_repel(aes(label=abb)) +
-  scale_x_log10() +
-  scale_y_log10() +
-  geom_smooth(formula = "y~x", method=lm,se = F)+
-  xlab("Populations in millions (log10 scale)") + 
-  ylab("Total number of murders (log10 scale)") +
-  ggtitle("US Gun Murders in 2010") +
-  scale_color_discrete(name = "Region")+
-      theme_bw()
-  
+-   Total Samples: 6,497
 
+    -   Red Wine: 1,599
+
+    -   White Wine: 4,898
+
+-   Quality Categories:
+
+    -   Low (≤ 5): 2,384 samples
+
+    -   Medium (= 6): 2,836 samples
+
+    -   High (≥ 7): 1,277 samples
+
+Most wines fall into the medium category, with high-quality wines
+representing the smallest group.
+
+```{r}
+# Bar chart 
+ggplot(combined_wine, aes(x = quality_category, fill = type)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Distribution of Wine Quality Categories by Wine Type",
+    x = "Quality Category",
+    y = "Count",
+    fill = "Wine Type"
+  )
 ```
 
-### Modeling and Results
+### Exploratory Analysis
 
--   Explain your data preprocessing and cleaning steps.
+The combined dataset (6,497 samples) shows a moderately imbalanced class
+distribution: Low (2,384), Medium (2,836), and High (1,277). Key
+predictors: alcohol, volatile acidity, and sulphates, They were analyzed
+across red, white, and combined datasets.
 
--   Present your key findings in a clear and concise manner.
+-   **Alcohol**: Strongly positively correlated with quality (r = 0.44).
+    It is the most consistent indicator of higher wine quality across
+    all wine types.
 
--   Use visuals to support your claims.
+-   **Volatile Acidity**: Moderately negatively correlated (r = -0.27),
+    suggesting that excessive volatile acidity is linked to lower wine
+    quality.
 
--   **Tell a story about what the data reveals.**
+-   **Sulphates**: Very weak positive correlation with quality (r =
+    0.04), showing minimal practical impact overall, particularly in
+    white wines.
+
+The boxplot below illustrates these trends for the combined dataset,
+with clear separation for alcohol across quality categories. The
+correlation heatmap confirms alcohol (r = 0.44), volatile acidity (r =
+-0.27), while other features (including sulphates) show weaker
+associations.
 
 ```{r}
 
+# Bar chart 
+ggplot(combined_wine, aes(x = quality_category, fill = type)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Distribution of Wine Quality Categories by Wine Type",
+    x = "Quality Category",
+    y = "Count",
+    fill = "Wine Type"
+  )
+
+# Correlation heatmap
+numeric_data <- combined_wine %>% select(where(is.numeric))
+cor_matrix <- cor(numeric_data, use = "complete.obs")
+corrplot(cor_matrix, method = "color", type = "upper", tl.col = "black",
+         tl.cex = 0.8, addCoef.col = "black", number.cex = 0.7, diag = FALSE)
+
+# Boxplot for alcohol
+ggplot(combined_wine, aes(x = quality_category, y = alcohol, fill = type)) +
+  geom_boxplot(position = position_dodge(width = 0.8)) +
+  labs(title = "Alcohol Content by Wine Quality and Type",
+       x = "Quality Category", y = "Alcohol (%)", fill = "Wine Type") +
+  theme_minimal()
+
+# Boxplot for volatile acidity
+ggplot(combined_wine, aes(x = quality_category, y = volatile_acidity, fill = type)) +
+  geom_boxplot(position = position_dodge(width = 0.8)) +
+  labs(title = "Volatile Acidity by Wine Quality and Type",
+       x = "Quality Category", y = "Volatile Acidity (g/L)", fill = "Wine Type") +
+  theme_minimal()
 ```
 
-### Conclusion
+### Variable Importance
+
+#### Combined Dataset
+
+```{r}
+# Split data and train
+set.seed(100)  
+train_indices_combined <- createDataPartition(combined_wine$quality_category, p = 0.7, list = FALSE)
+train_data_combined <- combined_wine[train_indices_combined, ]
+test_data_combined <- combined_wine[-train_indices_combined, ]
+
+train_rf_combined <- train_data_combined %>% select(-quality)
+test_rf_combined <- test_data_combined %>% select(-quality)
+
+rf_model_combined <- randomForest(quality_category ~ ., data = train_rf_combined, ntree = 200, mtry = 3, importance = TRUE)
+
+# Variable importance plot
+varImpPlot(rf_model_combined, , main = "Variable Importance - Combined Wine")
+
+```
+
+#### Red Wine Dataset
+
+```{r}
+# Split data and train
+set.seed(100)  
+train_indices_red <- createDataPartition(red_wine_cleaned$quality_category, p = 0.7, list = FALSE)
+train_data_red <- red_wine_cleaned[train_indices_red, ]
+test_data_red <- red_wine_cleaned[-train_indices_red, ]
+
+train_rf_ml_red <- train_data_red %>% select(-quality)
+test_rf_ml_red <- test_data_red %>% select(-quality)
+
+rf_model_ml_red <- randomForest(quality_category ~ ., data = train_rf_ml_red, ntree = 200, mtry = 3, importance = TRUE)
+
+# Variable importance plot
+varImpPlot(rf_model_ml_red, main = "Variable Importance - Red Wine")
+
+```
+
+#### White Wine Dataset
+
+```{r}
+# Split data and train
+set.seed(100)  
+train_indices_white <- createDataPartition(white_wine_cleaned$quality_category, p = 0.7, list = FALSE)
+train_data_white <- white_wine_cleaned[train_indices_white, ]
+test_data_white <- white_wine_cleaned[-train_indices_white, ]
+
+train_rf_white <- train_data_white %>% select(-quality)
+test_rf_white <- test_data_white %>% select(-quality)
+
+rf_model_rf_white <- randomForest(quality_category ~ ., data = train_rf_white, ntree = 200, mtry = 3, importance = TRUE)
+
+# Variable importance plot
+varImpPlot(rf_model_rf_white, main = "Variable Importance - White Wine")
+
+```
+
+#### Which Chemical Features Are the Most Important Predictors of Wine Quality?
+
+To understand which features have the greatest impact on wine quality,
+we trained Random Forest models separately for red, white, and combined
+datasets, then visualized variable importance. This helped us highlight
+the most influential predictors in each case:
+
+-   [Combined Dataset:]{.underline} Alcohol, volatile acidity, and
+    sulphates
+
+-   [Red Wine:]{.underline} Sulphates, volatile acidity, and alcohol
+
+-   [White Wine:]{.underline} Alcohol, sulphates, and volatile acidity
+
+These results suggest that while alcohol is consistently important,
+sulphates and volatile acidity also play key roles in predicting wine
+quality across both wine types.
+
+#### Can We Predict Wine Quality from Chemistry?
+
+Our analysis shows that the answer is yes. By training models such as
+logistic regression, decision trees, and random forests, we were able to
+make reasonably accurate predictions using features like alcohol
+content, acidity levels, and sulphates. These results highlight the
+strong relationship between a wine’s chemistry and its perceived
+quality.
+
+### Data Modeling and Results
+
+Three classification models: Random Forest, Decision Tree, and Logistic
+Regression (combined dataset only) were trained using a 70/30 train-test
+split. Random Forest outperformed the baselines, leveraging its ability
+to capture non-linear relationships. The table below summarizes model
+performance, followed by detailed Random Forest results for the combined
+dataset.
+
+#### Precision, Recall, and F1 – Combined Dataset
+
+| Class  | Model               | Precision | Recall   | F1 Score |
+|--------|---------------------|-----------|----------|----------|
+| Low    | **Random Forest**   | **0.79**  | **0.75** | **0.77** |
+|        | Logistic Regression | 0.64      | 0.64     | 0.64     |
+|        | Decision Tree       | 0.64      | 0.62     | 0.63     |
+| Medium | **Random Forest**   | **0.66**  | **0.76** | **0.71** |
+|        | Logistic Regression | 0.52      | 0.63     | 0.57     |
+|        | Decision Tree       | 0.51      | 0.58     | 0.54     |
+| High   | **Random Forest**   | **0.75**  | **0.57** | **0.65** |
+|        | Logistic Regression | 0.54      | 0.30     | 0.38     |
+|        | Decision Tree       | 0.51      | 0.39     | 0.44     |
+
+Note: Random Forest consistently delivers better balance across all
+classes. Logistic Regression performs competitively for the Medium class
+but drops significantly for High quality wines compare to Random Forest.
+
+#### Precision, Recall, and F1 – White Wine
+
+| Class  | Model             | Precision | Recall   | F1 Score |
+|--------|-------------------|-----------|----------|----------|
+| Low    | **Random Forest** | **0.79**  | **0.67** | **0.73** |
+|        | Decision Tree     | 0.64      | 0.52     | 0.58     |
+| Medium | **Random Forest** | **0.66**  | **0.78** | **0.71** |
+|        | Decision Tree     | 0.52      | 0.75     | 0.61     |
+| High   | **Random Forest** | **0.75**  | **0.64** | **0.69** |
+|        | Decision Tree     | 0.65      | 0.23     | 0.34     |
+
+Note: Random Forest produced higher and more balanced scores across all
+classes, particularly High quality wines, where the Decision Tree showed
+very poor recall. The improvement in precision for both Low and High
+categories also highlights better overall performance.
+
+#### Precision, Recall, and F1 – Red Wine
+
+| Class  | Model             | Precision | Recall   | F1 Score |
+|--------|-------------------|-----------|----------|----------|
+| Low    | **Random Forest** | **0.80**  | **0.80** | **0.80** |
+|        | Decision Tree     | 0.70      | 0.78     | 0.74     |
+| Medium | **Random Forest** | **0.69**  | **0.71** | **0.70** |
+|        | Decision Tree     | 0.56      | 0.56     | 0.56     |
+| High   | **Random Forest** | **0.72**  | **0.63** | **0.67** |
+|        | Decision Tree     | 0.62      | 0.40     | 0.48     |
+
+Note: Overall, Random Forest had stronger precision and recall across
+all classes, especially in minority class (High), leading to a more
+balanced model.
+
+#### Accuraccy and AUC's
+
+| Dataset    | Model               | Accuracy  | Avg AUC   |
+|------------|---------------------|-----------|-----------|
+| Red Wine   | Random Forest       | **74.1%** | **0.879** |
+|            | Decision Tree       | 63.9%     | 0.777     |
+| White Wine | Random Forest       | **71.6%** | **0.882** |
+|            | Decision Tree       | 56.1%     | 0.710     |
+| Combined   | Random Forest       | **72.1%** | **0.884** |
+|            | Decision Tree       | 55.5%     | 0.723     |
+|            | Logistic Regression | 56.7%     | 0.756     |
+
+### Random Forest Results (Combined Dataset)
+
+The Random Forest model achieved 72.1% accuracy and an average AUC of
+0.884. The confusion matrix shows strong performance for Low
+(sensitivity: 0.75) and Medium (0.76) classes, with High quality wines
+(0.57) less accurate due to class imbalance.
+
+```         
+Confusion Matrix (Random Forest, Combined Dataset):
+         Reference
+Prediction  Low  Medium  High
+    Low     536    136     5
+    Medium  171    650   159
+    High      8     64   219
+```
+
+ROC curves demonstrate excellent discriminative power, particularly for
+High (AUC: 0.916) and Low (0.909) quality wines.
+
+```{r}
+# Train Random Forest
+set.seed(100)
+train_indices_combined <- createDataPartition(combined_wine$quality_category, p = 0.7, list = FALSE)
+train_data_combined <- combined_wine[train_indices_combined, ]
+test_data_combined <- combined_wine[-train_indices_combined, ]
+
+train_rf_combined <- train_data_combined %>% select(-quality)
+test_rf_combined <- test_data_combined %>% select(-quality)
+
+rf_model_combined <- randomForest(quality_category ~ ., data = train_rf_combined, ntree = 200, mtry = 3)
+
+# Predict and evaluate
+rf_preds_combined <- predict(rf_model_combined, test_rf_combined)
+rf_probs_combined <- predict(rf_model_combined, test_rf_combined, type = "prob")
+
+# ROC curves
+colors <- c("red", "blue", "green")
+classes <- colnames(rf_probs_combined)
+roc_first <- roc(test_rf_combined$quality_category == classes[1], rf_probs_combined[, classes[1]])
+plot(roc_first, col = colors[1], main = "Random Forest ROC Curves (Combined Wine)", lwd = 2)
+for (i in 2:length(classes)) {
+  roc_i <- roc(test_rf_combined$quality_category == classes[i], rf_probs_combined[, classes[i]])
+  lines(roc_i, col = colors[i], lwd = 2)
+}
+legend("bottomright", legend = classes, col = colors, lwd = 2)
+```
+
+### Performance of Baseline Models
+
+-   **Decision Tree**: Achieved lower accuracy (55.5–63.9%) and AUC
+    (0.710–0.777), struggling with High quality wines due to overfitting
+    and simpler decision boundaries.
+-   **Logistic Regression**: Recorded 56.7% accuracy and 0.756 AUC, with
+    poor performance on High quality wines (sensitivity: 0.30).
+
+### Results
+
+#### Impact of Class Imbalance
+
+The dataset is moderately imbalanced, with the Medium quality class
+being the most common. This imbalance affects model performance, as seen
+in Logistic Regression and Decision Tree models, which tend to over
+predict Medium wines. High quality wines, being the least represented,
+are harder to classify accurately, with models showing lower sensitivity
+for this class. Random Forest mitigates this effect better than the
+other models, offering more balanced performance across all classes.
+
+#### Wine Quality
+
+Across models and datasets, alcohol show to the strongest predictor for
+high quality wines. Higher quality wines also tend to have lower
+volatile acidity and, in red wines, higher sulphate levels. These
+patterns provide a strong basis for understanding what distinguishes
+high and low quality wines based on their chemical properties.
+
+#### Red vs. White Prediction Performance
+
+When we tested the models separately, Random Forest did a bit better on
+red wine than white. It was especially more accurate at classifying low
+and high quality red wines. On the other hand, the white wine model was
+more balanced overall, but its precision was a little lower.
+
+#### Model Reliability and Real-World
+
+The Random Forest model proved to be reliable across all datasets (red,
+white, and combined). It handled even the difficult classes like High
+quality wines pretty well, with good sensitivity and precision. Because
+it captures complex patterns and gives balanced results, it could
+actually be useful in real life wine product creation, quality checks,
+and marketing.
+
+#### Best Model
+
+All models show meaningful predictive power. Random Forest consistently
+outperformed others.
+
+Random Forest was the best model, achieving 71.6–74.1% accuracy and
+0.879–0.884 AUC across datasets, excelling in capturing non-linear
+relationships. Alcohol, volatile acidity, and density were the strongest
+predictors of wine quality. Limitations include class imbalance, which
+impacts High quality wine detection, and the absence of sensory data,
+which could enhance predictions. These findings suggest Random Forest is
+a reliable tool for winemakers to predict quality based on
+physicochemical properties.
+
+Detailed R code for data preprocessing, visualizations, and model
+training is available [link](Wine%20Prediction.html).
+
+## Conclusion
 
 Decision tree and random forest methodology were applied to the red and white wine dataset on the UC Irvine’s Machine Learning Repository in order to predict the quality on the scale, of low to medium to high, of the wine based on its chemical properties.
 
