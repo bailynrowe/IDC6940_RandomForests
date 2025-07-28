@@ -17,47 +17,75 @@ editor:
     wrap: 72
 ---
 
-## Introduction 
+## Introduction
 
 The idea for decision trees came from Morgan and Sonquist. [@article]
 
-A decision tree is an example of supervised machine learning and Random Forest is an ensemble classifier that builds on the concept of decision trees by adding randomness.
+A decision tree is an example of supervised machine learning and Random
+Forest is an ensemble classifier that builds on the concept of decision
+trees by adding randomness.
 
-In this presentation, random forest and decision trees are used to predict the quality of wine based on its chemical properties.
+In this presentation, random forest and decision trees are used to
+predict the quality of wine based on its chemical properties.
 
 ## Potential Applications of Random Forest
-Random Forest and Decision Tree methodologies can be applied across datasets and industries.
+
+Random Forest and Decision Tree methodologies can be applied across
+datasets and industries.
 
 Examples:
 
--healthcare: risk for cardiovascular disease [@su2020prediction] and diabetes [@xu2017risk]
+-healthcare: risk for cardiovascular disease [@su2020prediction] and
+diabetes [@xu2017risk]
 
 -agriculture: predict sugarcane production [@everingham2016accurate]
 
--emergency management: predict severity of highway accidents [@chen2020modeling]
- 
-## Literature Review  {.smaller}
+-emergency management: predict severity of highway accidents
+[@chen2020modeling]
 
-Medical research used random forest methodology to conduct risk assessment to determine individuals at high risk for cardiovascular diseases and the random forest as a prediction model was helpful in evaluating many possible predictor variables and possible complexities between them. [@su2020prediction]
+## Literature Review {.smaller}
 
-Modeling Type 2 Diabetes Mellitus is difficult because of the interactions between genetic, environmental, and behavioral factors that classic statistical methods can’t accurately model.Both a decision tree model and a random forest model were created. [@esmaily2018comparison] By looking at both models, it was determined that BMI, triglycerides, and family history were the top risk factors.
+Medical research used random forest methodology to conduct risk
+assessment to determine individuals at high risk for cardiovascular
+diseases and the random forest as a prediction model was helpful in
+evaluating many possible predictor variables and possible complexities
+between them. [@su2020prediction]
 
-Everingham applied random forest to a dataset collected from 1992 to 2013, containing variables relating to weather and soil quality, and used that to predict sugarcane yield. [@everingham2016accurate] While the accuracy of the models is not perfect, combined with other predictions, they can be used as a guide to farming activities and planning.
+Modeling Type 2 Diabetes Mellitus is difficult because of the
+interactions between genetic, environmental, and behavioral factors that
+classic statistical methods can’t accurately model.Both a decision tree
+model and a random forest model were created. [@esmaily2018comparison]
+By looking at both models, it was determined that BMI, triglycerides,
+and family history were the top risk factors.
+
+Everingham applied random forest to a dataset collected from 1992 to
+2013, containing variables relating to weather and soil quality, and
+used that to predict sugarcane yield. [@everingham2016accurate] While
+the accuracy of the models is not perfect, combined with other
+predictions, they can be used as a guide to farming activities and
+planning.
 
 ## Decision Trees
-Decision Trees represent a sequence of rules in the shape of a tree or a flowchart.
 
-The decision tree is made up of the root node, the decision nodes, the terminal nodes, and the branches.
+Decision Trees represent a sequence of rules in the shape of a tree or a
+flowchart.
 
-There are different algorithms used to make decision trees: ID3, Chi-Square Automatic Interaction Detection, Multivariate Adaptive Regression Splines, and Conditional Inference Trees.
+The decision tree is made up of the root node, the decision nodes, the
+terminal nodes, and the branches.
+
+There are different algorithms used to make decision trees: ID3,
+Chi-Square Automatic Interaction Detection, Multivariate Adaptive
+Regression Splines, and Conditional Inference Trees.
 
 ## Classification and Regression Trees (CART)
+
 The CART algorithm is what R Studio uses to create random forests.
 
-CART is useful for both regression and classification.
-CART uses Gini impurity to split for classification and variance for regression.
+CART is useful for both regression and classification. CART uses Gini
+impurity to split for classification and variance for regression.
 
-The Gini impurity measures the likelihood of randomly selected data being incorrectly classified. 
+The Gini impurity measures the likelihood of randomly selected data
+being incorrectly classified.
 
 $$
 Gini(p) = 1 - Σ '(pᵢ²)
@@ -65,66 +93,108 @@ $$
 
 ## Random Forest
 
-Random forest creates multiple decision trees, then averages the results of each of the decisions made by each individual tree to provide a prediction.
+Random forest creates multiple decision trees, then averages the results
+of each of the decisions made by each individual tree to provide a
+prediction.
 
-1. Training Data Selection
+1.  Training Data Selection
 
-2. Tree Growth
+2.  Tree Growth
 
-3. Random Attribute Selection
+3.  Random Attribute Selection
 
-4. Majority Vote
+4.  Majority Vote
 
-## Data Exploration and Visualization
+## Data Exploration
 
--   Describe your data sources and collection process.
+-   Dataset: 6,497 wine samples (Red: 1,599 \| White: 4,898)
 
--   Present initial findings and insights through visualizations.
+-   Features: 11 chemical properties + wine type
 
--   Highlight unexpected patterns or anomalies.
+-   Target: Wine Quality (originally 0–10, binned into Low, Medium,
+    High)
 
-## Data Exploration and Visualization {.smaller}
+-   Class Imbalance:
 
-A study was conducted to determine how...
+    Medium class dominates, which can bias models
+
+## Wine Quality by Wine Type
+
+-   ![](Wine_Quality_Class_Dist.jpg)
 
 ```{r, warning=FALSE, echo=F, message=FALSE}
-# loading packages 
-library(tidyverse)
-library(knitr)
-library(ggthemes)
-library(ggrepel)
-library(dslabs)
+
 ```
+
+## Preprocessing & Feature Insights
+
+Feature Selection: Focused on top correlated features
+
+Key Predictors:
+
+-   Alcohol (+0.44): Strongest positive correlation
+
+-   Volatile Acidity (–0.27): Negative correlation
+
+-   Sulphates (+0.04): Weak and dataset-specific
+
+## Correlation Results
+
+![](correlations.jpg)
 
 ```{r, warning=FALSE, echo=F}
-# Load Data
-#kable(head(murders))
-
-ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
-
-  ggplot1 + geom_point(aes(col=region), size = 4) +
-  geom_text_repel(aes(label=abb)) +
-  scale_x_log10() +
-  scale_y_log10() +
-  geom_smooth(formula = "y~x", method=lm,se = F)+
-  xlab("Populations in millions (log10 scale)") + 
-  ylab("Total number of murders (log10 scale)") +
-  ggtitle("US Gun Murders in 2010") +
-  scale_color_discrete(name = "Region")+
-      theme_bw()
-  
 
 ```
 
-## Modeling and Results
+## Modeling Approach
 
--   Explain your data preprocessing and cleaning steps.
+-   Models Used:
 
--   Present your key findings in a clear and concise manner.
+-   Random Forest (primary)
 
--   Use visuals to support your claims.
+-   Decision Tree (baseline)
 
--   **Tell a story about what the data reveals.**
+-   Logistic Regression (combined dataset only)
+
+-   Split: 70/30 train-test split
+
+-   Goal: Predict quality class based on chemistry
+
+-   Metrics: Accuracy, AUC and others
+
+```{r}
+
+```
+
+## Accuracy & AUC
+
+| Dataset    | Model               | Accuracy | Avg AUC |
+|------------|---------------------|----------|---------|
+| Red Wine   | Random Forest       | 74.1%    | 0.879   |
+| Red Wine   | Decision Tree       | 63.9%    | 0.777   |
+| White Wine | Random Forest       | 71.6%    | 0.882   |
+| White Wine | Decision Tree       | 56.1%    | 0.710   |
+| Combined   | Random Forest       | 72.1%    | 0.884   |
+| Combined   | Logistic Regression | 56.7%    | 0.756   |
+| Combined   | Decision Tree       | 55.5%    | 0.723   |
+
+```{r}
+
+```
+
+## Insights & Real-World Use
+
+-   Best Model: Random Forest – strong performance and balanced across
+    classes
+
+-   Most Predictive Feature: Alcohol
+
+-   Limitations:
+
+    -   Class imbalance
+
+-   Real Use: Could guide product quality checks and marketing
+    strategies
 
 ```{r}
 
