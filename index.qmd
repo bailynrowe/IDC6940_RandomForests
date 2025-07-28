@@ -254,8 +254,17 @@ ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total))
 
 ### Conclusion
 
--   Summarize your key findings.
+Decision tree and random forest methodology were applied to the red and white wine dataset on the UC Irvine’s Machine Learning Repository in order to predict the quality on the scale, of low to medium to high, of the wine based on its chemical properties.
 
--   Discuss the implications of your results.
+A decision tree resembles a flowchart with nodes connected by branches. Random forest builds on this by adding randomness in the form of bootstrap sampling and random attribute selection and then creating multiple trees that provide a final prediction via majority voting. 
+
+The red and white wine datasets were used to create a decision tree and a random forest. Then, they were combined into one dataset, and decision tree, random forest, and logistic regression methodologies were applied. 
+
+Wine quality was measured on a scale of 0 (poor) to 10 (excellent). Then, the variable was computed on a low (less than or equal to 5), medium(six), and high (greater than or equal to 7) scale. While in differing orders of importance between datasets, the features that have the most impact on wine quality are alcohol content, volatile acidity, and sulphates. 
+
+Much of the existing research on predicting wine quality from its chemical composition uses the same dataset used in this paper. This is likely due to data collection in the viticulture (wine production) industry being “extremely difficult and expensive”. [@bhardwaj2022machine] Therefore, the results found here align with existing research on the topic. Gupta applied linear regression and labeled volatile acidity, sulphates, and alcohol as the most impactful due to having a low p-value. [@gupta2018selection] Dahal et al. employed four machine learning models on the data; the Gradient Boosting Regressor showed the best performance and labeled alcohol, sulphates, and volatile acidity as having the highest feature importance. [@dahal2021prediction] Free sulfur dioxide, citric acid, and residual sugar as the lowest. 
+
+Future work in the field could include labeling the chemical compounds specifically, rather than grouping them. The dataset used here groups the chemicals based on their classification: volatile acids, chlorides, alcohol, and sulphates. But there are many chemicals that fall under these groupings. For example, Bhardwaj et al. used a dataset on New Zealand Pinot noir wine that had a more zoomed-in view of the chemical composition. They found that the variables with the highest importance were heptan-1-ol, 2-phenethyl acetate, and ethyl octanoate. [@bhardwaj2022machine] Ethyl octanoate and 2-phenethyl acetate are esters, and heptan-1-ol is an alcohol. These results are not comparable to our data due to the lack of ester content as a variable. 
+
 
 ## References
