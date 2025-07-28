@@ -122,9 +122,7 @@ prediction.
 
 -   ![](Wine_Quality_Class_Dist.jpg)
 
-```{r, warning=FALSE, echo=F, message=FALSE}
 
-```
 
 ## Preprocessing & Feature Insights
 
@@ -142,9 +140,7 @@ Key Predictors:
 
 ![](correlations.jpg)
 
-```{r, warning=FALSE, echo=F}
 
-```
 
 ## Modeling Approach
 
@@ -162,9 +158,7 @@ Key Predictors:
 
 -   Metrics: Accuracy, AUC and others
 
-```{r}
 
-```
 
 ## Accuracy & AUC
 
@@ -178,9 +172,7 @@ Key Predictors:
 | Combined   | Logistic Regression | 56.7%    | 0.756   |
 | Combined   | Decision Tree       | 55.5%    | 0.723   |
 
-```{r}
 
-```
 
 ## Insights & Real-World Use
 
@@ -196,9 +188,7 @@ Key Predictors:
 -   Real Use: Could guide product quality checks and marketing
     strategies
 
-```{r}
 
-```
 
 ## Conclusion
 
