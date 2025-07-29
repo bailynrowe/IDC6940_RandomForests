@@ -191,9 +191,8 @@ Key Predictors:
 
 
 ## Conclusion
+The red and white wine datasets were used to create a decision tree and a random forest. Then, they were combined into one dataset, and decision tree, random forest, and logistic regression methodologies were applied in order to predict the quality on the scale, of low to medium to high, of the wine based on its chemical properties.
 
--   Summarize your key findings.
-
--   Discuss the implications of your results.
+While in differing orders of importance between datasets, the features that have the most impact on wine quality are alcohol content, volatile acidity, and sulphates.
 
 ## References
