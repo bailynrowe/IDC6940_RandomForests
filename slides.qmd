@@ -122,8 +122,6 @@ prediction.
 
 -   ![](Wine_Quality_Class_Dist.jpg)
 
-
-
 ## Preprocessing & Feature Insights
 
 Feature Selection: Focused on top correlated features
@@ -140,25 +138,21 @@ Key Predictors:
 
 ![](correlations.jpg)
 
-
-
 ## Modeling Approach
 
 -   Models Used:
 
--   Random Forest (primary)
+    -   Random Forest (primary)
 
--   Decision Tree (baseline)
+    -   Decision Tree (baseline)
 
--   Logistic Regression (combined dataset only)
+    -   Logistic Regression (combined dataset only)
 
 -   Split: 70/30 train-test split
 
 -   Goal: Predict quality class based on chemistry
 
 -   Metrics: Accuracy, AUC and others
-
-
 
 ## Accuracy & AUC
 
@@ -172,27 +166,36 @@ Key Predictors:
 | Combined   | Logistic Regression | 56.7%    | 0.756   |
 | Combined   | Decision Tree       | 55.5%    | 0.723   |
 
-
-
 ## Insights & Real-World Use
 
--   Best Model: Random Forest – strong performance and balanced across
-    classes
-
--   Most Predictive Feature: Alcohol
-
--   Limitations:
-
-    -   Class imbalance
-
--   Real Use: Could guide product quality checks and marketing
-    strategies
-
-
+-   **Best Model:**
+    -   Random Forest consistently achieved the best results across all
+        datasets (red, white, and combined).
+    -   Captures complex, non-linear patterns and delivers balanced
+        precision and recall, especially for minority classes.
+-   **Most Predictive Features:**
+    -   Alcohol (strongest positive correlation with quality)
+    -   Volatile Acidity (negatively correlated)
+    -   Sulphates (dataset-dependent relevance)
+-   **Limitations:**
+    -   Limitations include class imbalance and lack of broader metadata
+        (e.g., grape type, wine brand, price), though quality ratings
+        themselves are derived from sensory evaluation.
+-   **Real-World Application Potential:**
+    -   Can assist winemakers and distributors in automating quality
+        control, optimizing production, or targeting high quality wines
+        for marketing.
 
 ## Conclusion
-The red and white wine datasets were used to create a decision tree and a random forest. Then, they were combined into one dataset, and decision tree, random forest, and logistic regression methodologies were applied in order to predict the quality on the scale, of low to medium to high, of the wine based on its chemical properties.
 
-While in differing orders of importance between datasets, the features that have the most impact on wine quality are alcohol content, volatile acidity, and sulphates.
+The red and white wine datasets were used to create a decision tree and
+a random forest. Then, they were combined into one dataset, and decision
+tree, random forest, and logistic regression methodologies were applied
+in order to predict the quality on the scale, of low to medium to high,
+of the wine based on its chemical properties.
+
+While in differing orders of importance between datasets, the features
+that have the most impact on wine quality are alcohol content, volatile
+acidity, and sulphates.
 
 ## References
