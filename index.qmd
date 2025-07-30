@@ -387,10 +387,10 @@ $$
 
 ### Random Forest
 
-Random Forest, developed by Leo Breiman in 2001 [@breiman2001random], builds on the existing
-Decision Tree methodology and applies the principle of “divide and
-conquer”. [@biau2016random] It is an ensemble learning method that uses
-multiple decision tree models.
+Random Forest, developed by Leo Breiman in 2001 [@breiman2001random],
+builds on the existing Decision Tree methodology and applies the
+principle of “divide and conquer”. [@biau2016random] It is an ensemble
+learning method that uses multiple decision tree models.
 
 In a simplistic zoomed-out view, random forest creates multiple decision
 trees, then averages the results of each of the decisions made by each
@@ -505,13 +505,36 @@ distinguishes red and white wines. The goal is to identify key
 predictors of quality and evaluate classification models, with Random
 Forest as the primary focus.
 
-#### Addressing Class Imbalance
+#### Variable Description:
 
-This is a moderately imbalanced classification problem, where the
-"Medium" class dominates. Class imbalance can bias models toward
-majority predictions.
+| Variable Name | Role | Type | Description |
+|----------------|----------------|----------------|------------------------|
+| fixed_acidity | Feature | Continuous | (g(tartaric acid)/dm³) |
+| volatile_acidity | Feature | Continuous | (g(acetic acid)/dm³) |
+| citric_acid | Feature | Continuous | (g/dm³) |
+| residual_sugar | Feature | Continuous | (g/dm³) |
+| chlorides | Feature | Continuous | (g(sodium chloride)/dm³) |
+| free_sulfur_dioxide | Feature | Continuous | (mg/dm³) |
+| total_sulfur_dioxide | Feature | Continuous | (mg/dm³) |
+| density | Feature | Continuous | (g/cm³) |
+| pH | Feature | Continuous | pH scale (unitless) |
+| sulphates | Feature | Continuous | (g(potassium sulphate)/dm³) |
+| alcohol | Feature | Continuous | (% vol.) |
+| quality | Target | Integer | Sensory score between 0 and 10 |
+| quality_category | Derived Target | Categorical | Binned as "Low", "Medium", or "High" |
+| type | Other | Categorical | Wine type: "red" or "white" |
+
+#### Summary Statistics
+
+The following tables summarize the combined_wine dataset, which includes
+6,497 samples of both red and white wines. The first table presents
+summary statistics for all numeric features, while the second provides
+an overview of categorical variables such as wine type and quality
+category.
 
 ```{r}
+
+
 # Install and load required packages
 options(repos = c(CRAN = "https://cran.rstudio.com"))
 if (!require(tidyverse)) install.packages("tidyverse")
@@ -557,26 +580,55 @@ white_wine_cleaned <- read_delim("winequality-white.csv", delim = ";") %>%
 
 combined_wine <- bind_rows(red_wine_cleaned, white_wine_cleaned)
 
-# Bar chart
-ggplot(red_wine_cleaned, aes(x = quality_category)) +
-  geom_bar(fill = "skyblue") +
-  labs(
-    title = "Distribution of Wine Quality Categories (Red Wine)",
-    x = "Quality Category",
-    y = "Count"
+
+#SUMMARY STATISTICS
+
+library(skimr)
+library(dplyr)
+library(knitr)
+
+
+combined_wine$type <- as.factor(combined_wine$type)
+
+
+skim_df <- skim(combined_wine)
+
+#Summary for Numeric Variables
+skim_numeric <- skim_df %>%
+  filter(skim_type == "numeric") %>%
+  select(
+    Variable = skim_variable,
+    Mean = numeric.mean,
+    SD = numeric.sd,
+    Min = numeric.p0,
+    Q1 = numeric.p25,
+    Median = numeric.p50,
+    Q3 = numeric.p75,
+    Max = numeric.p100
   )
 
-# Bar chart
-ggplot(white_wine_cleaned, aes(x = quality_category)) +
-  geom_bar(fill = "skyblue") +
-  labs(
-    title = "Distribution of Wine Quality Categories (White Wine)",
-    x = "Quality Category",
-    y = "Count"
+kable(skim_numeric, caption = "Summary Statistics for Numeric Variables")
+
+# Summary for Categoricals
+skim_categorical <- skim_df %>%
+  filter(skim_type == "factor") %>%
+  select(
+    Variable = skim_variable,
+    Missing = n_missing,
+    Complete = complete_rate,
+    Unique = factor.n_unique,
+    Top_Values = factor.top_counts
   )
+
+kable(skim_categorical, caption = "Summary Statistics for Categorical Variables")
+
 ```
 
-#### Class Distribution
+#### Addressing Class Imbalance and Distribution
+
+This is a moderately imbalanced classification problem, where the
+"Medium" class dominates. Class imbalance can bias models toward
+majority predictions.
 
 To assess the overall patterns in wine quality, the red and white wine
 datasets were merged into a unified dataset (combined_wine). This
@@ -614,31 +666,16 @@ ggplot(combined_wine, aes(x = quality_category, fill = type)) +
 
 ### Exploratory Analysis
 
-The combined dataset (6,497 samples) shows a moderately imbalanced class
-distribution: Low (2,384), Medium (2,836), and High (1,277). Key
-predictors: alcohol, volatile acidity, and sulphates, They were analyzed
-across red, white, and combined datasets.
+To better understand the data, we performed exploratory analysis on key
+features related to wine quality. The combined dataset includes 6,497
+wine samples (both red and white), categorized by quality into Low,
+Medium, and High classes. We focused on visualizing distributions,
+correlations, and relationships between physicochemical attributes and
+wine quality.
 
--   **Alcohol**: Strongly positively correlated with quality (r = 0.44).
-    It is the most consistent indicator of higher wine quality across
-    all wine types.
-
--   **Volatile Acidity**: Moderately negatively correlated (r = -0.27),
-    suggesting that excessive volatile acidity is linked to lower wine
-    quality.
-
--   **Sulphates**: Very weak positive correlation with quality (r =
-    0.04), showing minimal practical impact overall, particularly in
-    white wines.
-
-The boxplot below illustrates these trends for the combined dataset,
-with clear separation for alcohol across quality categories. The
-correlation heatmap confirms alcohol (r = 0.44), volatile acidity (r =
--0.27), while other features (including sulphates) show weaker
-associations.
+#### Distribution of Wine Quality Categories by Type
 
 ```{r}
-
 # Bar chart 
 ggplot(combined_wine, aes(x = quality_category, fill = type)) +
   geom_bar(position = "dodge") +
@@ -648,12 +685,36 @@ ggplot(combined_wine, aes(x = quality_category, fill = type)) +
     y = "Count",
     fill = "Wine Type"
   )
+```
 
+The chart shows that both red and white wines appear in all quality
+categories, but white wines are clearly more common, especially in the
+Medium and High groups. This imbalance should be kept in mind when
+comparing across wine types.
+
+#### Correlation Heatmap
+
+```{r}
 # Correlation heatmap
 numeric_data <- combined_wine %>% select(where(is.numeric))
 cor_matrix <- cor(numeric_data, use = "complete.obs")
 corrplot(cor_matrix, method = "color", type = "upper", tl.col = "black",
          tl.cex = 0.8, addCoef.col = "black", number.cex = 0.7, diag = FALSE)
+```
+
+The correlation matrix reveals that alcohol (r = 0.44) and density (r =
+–0.31) have the strongest linear relationships with wine quality. In
+contrast, sulphates shows only a weak correlation (r = 0.04). While
+correlation is useful for identifying direct, linear associations, it
+does not capture complex interactions between features. This is a key
+limitation, as some variables may appear weakly correlated but still
+play an important role when combined with others. For example, sulphates
+may influence wine quality in non-linear or conditional ways that are
+not reflected in its standalone correlation.
+
+#### Boxplots for Alcohol and Volatile Acidity
+
+```{r}
 
 # Boxplot for alcohol
 ggplot(combined_wine, aes(x = quality_category, y = alcohol, fill = type)) +
@@ -661,6 +722,14 @@ ggplot(combined_wine, aes(x = quality_category, y = alcohol, fill = type)) +
   labs(title = "Alcohol Content by Wine Quality and Type",
        x = "Quality Category", y = "Alcohol (%)", fill = "Wine Type") +
   theme_minimal()
+```
+
+This boxplot shows that alcohol content increases with wine quality.
+High quality wines tend to have higher median alcohol levels, especially
+among white wines. This supports the positive correlation observed
+earlier.
+
+```{r}
 
 # Boxplot for volatile acidity
 ggplot(combined_wine, aes(x = quality_category, y = volatile_acidity, fill = type)) +
@@ -668,93 +737,32 @@ ggplot(combined_wine, aes(x = quality_category, y = volatile_acidity, fill = typ
   labs(title = "Volatile Acidity by Wine Quality and Type",
        x = "Quality Category", y = "Volatile Acidity (g/L)", fill = "Wine Type") +
   theme_minimal()
-```
-
-### Variable Importance
-
-#### Combined Dataset
-
-```{r}
-# Split data and train
-set.seed(100)  
-train_indices_combined <- createDataPartition(combined_wine$quality_category, p = 0.7, list = FALSE)
-train_data_combined <- combined_wine[train_indices_combined, ]
-test_data_combined <- combined_wine[-train_indices_combined, ]
-
-train_rf_combined <- train_data_combined %>% select(-quality)
-test_rf_combined <- test_data_combined %>% select(-quality)
-
-rf_model_combined <- randomForest(quality_category ~ ., data = train_rf_combined, ntree = 200, mtry = 3, importance = TRUE)
-
-# Variable importance plot
-varImpPlot(rf_model_combined, , main = "Variable Importance - Combined Wine")
 
 ```
 
-#### Red Wine Dataset
-
-```{r}
-# Split data and train
-set.seed(100)  
-train_indices_red <- createDataPartition(red_wine_cleaned$quality_category, p = 0.7, list = FALSE)
-train_data_red <- red_wine_cleaned[train_indices_red, ]
-test_data_red <- red_wine_cleaned[-train_indices_red, ]
-
-train_rf_ml_red <- train_data_red %>% select(-quality)
-test_rf_ml_red <- test_data_red %>% select(-quality)
-
-rf_model_ml_red <- randomForest(quality_category ~ ., data = train_rf_ml_red, ntree = 200, mtry = 3, importance = TRUE)
-
-# Variable importance plot
-varImpPlot(rf_model_ml_red, main = "Variable Importance - Red Wine")
-
-```
-
-#### White Wine Dataset
-
-```{r}
-# Split data and train
-set.seed(100)  
-train_indices_white <- createDataPartition(white_wine_cleaned$quality_category, p = 0.7, list = FALSE)
-train_data_white <- white_wine_cleaned[train_indices_white, ]
-test_data_white <- white_wine_cleaned[-train_indices_white, ]
-
-train_rf_white <- train_data_white %>% select(-quality)
-test_rf_white <- test_data_white %>% select(-quality)
-
-rf_model_rf_white <- randomForest(quality_category ~ ., data = train_rf_white, ntree = 200, mtry = 3, importance = TRUE)
-
-# Variable importance plot
-varImpPlot(rf_model_rf_white, main = "Variable Importance - White Wine")
-
-```
-
-#### Which Chemical Features Are the Most Important Predictors of Wine Quality?
-
-To understand which features have the greatest impact on wine quality,
-we trained Random Forest models separately for red, white, and combined
-datasets, then visualized variable importance. This helped us highlight
-the most influential predictors in each case:
-
--   [Combined Dataset:]{.underline} Alcohol, volatile acidity, and
-    sulphates
-
--   [Red Wine:]{.underline} Sulphates, volatile acidity, and alcohol
-
--   [White Wine:]{.underline} Alcohol, sulphates, and volatile acidity
-
-These results suggest that while alcohol is consistently important,
-sulphates and volatile acidity also play key roles in predicting wine
-quality across both wine types.
-
-#### Can We Predict Wine Quality from Chemistry?
-
-Our analysis shows that the answer is yes. By training models such as
-logistic regression, decision trees, and random forests, we were able to
-make reasonably accurate predictions using features like alcohol
-content, acidity levels, and sulphates. These results highlight the
-strong relationship between a wine’s chemistry and its perceived
+Volatile acidity tends to be higher in lower quality wines, with median
+values decreasing from Low to High categories. This trend is especially
+noticeable in red wines, supporting its negative relationship with wine
 quality.
+
+### Key Predictor Insights
+
+The combined dataset shows a moderately imbalanced class distribution:
+Low (2,384), Medium (2,836), and High (1,277). Key predictors: alcohol,
+volatile acidity, and sulphates were analyzed across red, white, and
+combined datasets:
+
+-   Alcohol: Strongest positive correlation with quality (r = 0.44). It
+    consistently indicates higher wine quality across both wine types.
+
+-   Volatile Acidity: Moderate negative correlation (r = –0.27),
+    suggesting that higher levels are linked to lower quality.
+
+-   Sulphates: Weak correlation (r = 0.04), but included due to its
+    importance in the model.
+
+These relationships are supported by the visual patterns in the heatmap
+and boxplots shown earlier.
 
 ### Data Modeling and Results
 
@@ -935,6 +943,110 @@ physicochemical properties.
 
 Detailed R code for data preprocessing, visualizations, and model
 training is available [link](Wine%20Prediction.html).
+
+### Variable Importance
+
+While model performance tells us how well we predict wine quality,
+variable importance helps explain what drives those predictions.
+
+The Random Forest model identified alcohol as the most important
+predictor, followed by sulphates and volatile acidity. This aligns with
+earlier findings: alcohol had the strongest positive association with
+quality, and volatile acidity a negative one. On the other hand,
+features like residual sugar and chlorides ranked lower, suggesting
+limited predictive value.
+
+Interestingly, although density showed a stronger linear correlation
+with quality than sulphates, the model still ranked sulphates higher in
+importance. This highlights a key advantage of tree based methods: they
+can capture non-linear relationships and interactions between variables
+that simple correlations might miss. In Random Forests, importance
+reflects a variable’s cumulative role in splitting decisions across many
+trees, often discovering insights beyond pairwise associations.
+
+#### Combined Dataset
+
+```{r}
+# Split data and train
+set.seed(100)  
+train_indices_combined <- createDataPartition(combined_wine$quality_category, p = 0.7, list = FALSE)
+train_data_combined <- combined_wine[train_indices_combined, ]
+test_data_combined <- combined_wine[-train_indices_combined, ]
+
+train_rf_combined <- train_data_combined %>% select(-quality)
+test_rf_combined <- test_data_combined %>% select(-quality)
+
+rf_model_combined <- randomForest(quality_category ~ ., data = train_rf_combined, ntree = 200, mtry = 3, importance = TRUE)
+
+# Variable importance plot
+varImpPlot(rf_model_combined, , main = "Variable Importance - Combined Wine")
+
+```
+
+#### Red Wine Dataset
+
+```{r}
+# Split data and train
+set.seed(100)  
+train_indices_red <- createDataPartition(red_wine_cleaned$quality_category, p = 0.7, list = FALSE)
+train_data_red <- red_wine_cleaned[train_indices_red, ]
+test_data_red <- red_wine_cleaned[-train_indices_red, ]
+
+train_rf_ml_red <- train_data_red %>% select(-quality)
+test_rf_ml_red <- test_data_red %>% select(-quality)
+
+rf_model_ml_red <- randomForest(quality_category ~ ., data = train_rf_ml_red, ntree = 200, mtry = 3, importance = TRUE)
+
+# Variable importance plot
+varImpPlot(rf_model_ml_red, main = "Variable Importance - Red Wine")
+
+```
+
+#### White Wine Dataset
+
+```{r}
+# Split data and train
+set.seed(100)  
+train_indices_white <- createDataPartition(white_wine_cleaned$quality_category, p = 0.7, list = FALSE)
+train_data_white <- white_wine_cleaned[train_indices_white, ]
+test_data_white <- white_wine_cleaned[-train_indices_white, ]
+
+train_rf_white <- train_data_white %>% select(-quality)
+test_rf_white <- test_data_white %>% select(-quality)
+
+rf_model_rf_white <- randomForest(quality_category ~ ., data = train_rf_white, ntree = 200, mtry = 3, importance = TRUE)
+
+# Variable importance plot
+varImpPlot(rf_model_rf_white, main = "Variable Importance - White Wine")
+
+```
+
+#### Which Chemical Features Are the Most Important Predictors of Wine Quality?
+
+To understand which features have the greatest impact on wine quality,
+we trained Random Forest models separately for red, white, and combined
+datasets, then visualized variable importance. This helped us highlight
+the most influential predictors in each case:
+
+-   [Combined Dataset:]{.underline} Alcohol, volatile acidity, and
+    sulphates
+
+-   [Red Wine:]{.underline} Sulphates, volatile acidity, and alcohol
+
+-   [White Wine:]{.underline} Alcohol, sulphates, and volatile acidity
+
+These results suggest that while alcohol is consistently important,
+sulphates and volatile acidity also play key roles in predicting wine
+quality across both wine types.
+
+#### Can We Predict Wine Quality from Chemistry?
+
+Our analysis shows that the answer is yes. By training models such as
+logistic regression, decision trees, and random forests, we were able to
+make reasonably accurate predictions using features like alcohol
+content, acidity levels, and sulphates. These results highlight the
+strong relationship between a wine’s chemistry and its perceived
+quality.
 
 ## Conclusion
 
