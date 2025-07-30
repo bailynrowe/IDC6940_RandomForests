@@ -387,7 +387,7 @@ $$
 
 ### Random Forest
 
-Random Forest, developed by Leo Breiman in 2001, builds on the existing
+Random Forest, developed by Leo Breiman in 2001 [@breiman2001random], builds on the existing
 Decision Tree methodology and applies the principle of “divide and
 conquer”. [@biau2016random] It is an ensemble learning method that uses
 multiple decision tree models.
@@ -446,33 +446,6 @@ performance measures for a regression-based random forest model would
 align with a linear regression model. Similarly, the performance
 evaluation measures for a classification-based random forest model would
 align with the measures for a logistic regression model.
-
-#### Regression
-
-$$
-MAE = (1/n) * Σ |yᵢ - ŷᵢ|
-$$
-
-The mean absolute error (MAE) is the average of the absolute value
-differences between the predicted and actual values. It allows for the
-magnitude of error to be shown, without the cancellation of positives
-and negatives.
-
-$$
-MSE = (1/n) * Σ [ (yi - ŷi)² ]
-$$
-
-The mean squared error (MSE) is the squared difference between the
-predicted and actual values.
-
-$$
-R² = 1 - (RSS/TSS)
-$$
-
-The coefficient of determination (R²) is the proportion of variance in
-the target variable explained by the model on a 0 (poor) to 1
-(excellent) scale. In the formula above, RSS is the sum of squared
-residuals and TSS is the total sum of squares.
 
 #### Classification
 

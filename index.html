@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Bailyn Rowe, Gabriel Gonzalez Rincon, Morgan Watkins (Advisor: Dr. Cohen)">
-<meta name="dcterms.date" content="2025-07-28">
+<meta name="dcterms.date" content="2025-07-30">
 
 <title>A Grape Prediction: Using Random Forest to Predict Wine Quality</title>
 <style>
@@ -3263,7 +3263,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 28, 2025</p>
+      <p class="date">July 30, 2025</p>
     </div>
   </div>
   
@@ -3349,7 +3349,7 @@ Gini(p) = 1 - Σ &#39;(pᵢ²)
 </section>
 <section id="random-forest" class="level3">
 <h3 class="anchored" data-anchor-id="random-forest">Random Forest</h3>
-<p>Random Forest, developed by Leo Breiman in 2001, builds on the existing Decision Tree methodology and applies the principle of “divide and conquer”. <span class="citation" data-cites="biau2016random">(<a href="#ref-biau2016random" role="doc-biblioref">Biau and Scornet 2016</a>)</span> It is an ensemble learning method that uses multiple decision tree models.</p>
+<p>Random Forest, developed by Leo Breiman in 2001 <span class="citation" data-cites="breiman2001random">(<a href="#ref-breiman2001random" role="doc-biblioref">Breiman 2001</a>)</span>, builds on the existing Decision Tree methodology and applies the principle of “divide and conquer”. <span class="citation" data-cites="biau2016random">(<a href="#ref-biau2016random" role="doc-biblioref">Biau and Scornet 2016</a>)</span> It is an ensemble learning method that uses multiple decision tree models.</p>
 <p>In a simplistic zoomed-out view, random forest creates multiple decision trees, then averages the results of each of the decisions made by each individual tree to provide a prediction. <span class="citation" data-cites="simplilearn2023randomforest">(<a href="#ref-simplilearn2023randomforest" role="doc-biblioref">Simplilearn 2023</a>)</span> In a magical fairy tale view, imagine a person walking up to a forest filled with hundreds of trees and asking the trees a question. Each of the trees has its own answer to the question based on its unique thought process. But to give one final answer to the person, they take a vote, and the answer gets determined by the majority.</p>
 <p>In a zoomed-in view, the following process is conducted N times, with N acting as the total number of trees: selection of training data, tree growth, and random attribute selection. Followed by, prediction based on majority vote once all the N trees are created.</p>
 <ol type="1">
@@ -3364,21 +3364,6 @@ Gini(p) = 1 - Σ &#39;(pᵢ²)
 <section id="performance-measures" class="level3">
 <h3 class="anchored" data-anchor-id="performance-measures">Performance Measures</h3>
 <p>Since both decision trees and random forests are applicable to both classification and regression problems, the performance evaluation measures would depend on the type of problem being modeled. The performance measures for a regression-based random forest model would align with a linear regression model. Similarly, the performance evaluation measures for a classification-based random forest model would align with the measures for a logistic regression model.</p>
-<section id="regression" class="level4">
-<h4 class="anchored" data-anchor-id="regression">Regression</h4>
-<p><span class="math display">\[
-MAE = (1/n) * Σ |yᵢ - ŷᵢ|
-\]</span></p>
-<p>The mean absolute error (MAE) is the average of the absolute value differences between the predicted and actual values. It allows for the magnitude of error to be shown, without the cancellation of positives and negatives.</p>
-<p><span class="math display">\[
-MSE = (1/n) * Σ [ (yi - ŷi)² ]
-\]</span></p>
-<p>The mean squared error (MSE) is the squared difference between the predicted and actual values.</p>
-<p><span class="math display">\[
-R² = 1 - (RSS/TSS)
-\]</span></p>
-<p>The coefficient of determination (R²) is the proportion of variance in the target variable explained by the model on a 0 (poor) to 1 (excellent) scale. In the formula above, RSS is the sum of squared residuals and TSS is the total sum of squares.</p>
-</section>
 <section id="classification" class="level4">
 <h4 class="anchored" data-anchor-id="classification">Classification</h4>
 <p>A confusion matrix is a table that compares the predicted values with the actual values. The most common visual for a confusion matrix is describe as follows: A table with four squares divided into Actual Values (positive and negative) represented vertically and Predicted Values (positive and negative) represented horizontally. <span class="citation" data-cites="Wibowo2023MaskUseDetection">(<a href="#ref-Wibowo2023MaskUseDetection" role="doc-biblioref">Wibowo et al. 2023</a>)</span> If the classification problem is not binary, the confusion matrix would just scale in size following the n×n formula with n = number of classes.</p>
@@ -4053,7 +4038,7 @@ Prediction  Low  Medium  High
 <section id="best-model" class="level4">
 <h4 class="anchored" data-anchor-id="best-model">Best Model</h4>
 <p>All models show meaningful predictive power. Random Forest consistently outperformed others.</p>
-<p>Random Forest was the best model, achieving 71.6–74.1% accuracy and 0.879–0.884 AUC across datasets, excelling in capturing non-linear relationships. Alcohol, volatile acidity, and density were the strongest predictors of wine quality. Limitations include class imbalance, which impacts High quality wine detection, and the absence of sensory data, which could enhance predictions. These findings suggest Random Forest is a reliable tool for winemakers to predict quality based on physicochemical properties.</p>
+<p>Random Forest was the best model, achieving 71.6–74.1% accuracy and 0.879–0.884 AUC across datasets, excelling in capturing non-linear relationships. Alcohol, volatile acidity, and density were the strongest predictors of wine quality. Limitations include class imbalance, which impacts High quality wine detection. While sensory ratings are available as the target variable (wine quality), the dataset lacks additional metadata such as grape variety, wine brand, or pricing, which could further improve predictive models. These findings suggest Random Forest is a reliable tool for winemakers to predict quality based on physicochemical properties.</p>
 <p>Detailed R code for data preprocessing, visualizations, and model training is available <a href="Wine%20Prediction.html">link</a>.</p>
 </section>
 </section>
@@ -4083,6 +4068,9 @@ Biau, Gérard, and Erwan Scornet. 2016. <span>“A Random Forest Guided Tour.”
 </div>
 <div id="ref-bosch2007image" class="csl-entry" role="listitem">
 Bosch, Anna, Andrew Zisserman, and Xavier Munoz. 2007. <span>“Image Classification Using Random Forests and Ferns.”</span> In <em>2007 IEEE 11th International Conference on Computer Vision</em>, 1–8. Ieee.
+</div>
+<div id="ref-breiman2001random" class="csl-entry" role="listitem">
+Breiman, Leo. 2001. <span>“Random Forests.”</span> <em>Machine Learning</em> 45 (1): 5–32.
 </div>
 <div id="ref-chen2020modeling" class="csl-entry" role="listitem">
 Chen, Mu-Ming, and Mu-Chen Chen. 2020. <span>“Modeling Road Accident Severity with Comparisons of Logistic Regression, Decision Tree and Random Forest.”</span> <em>Information</em> 11 (5): 270.
@@ -5012,7 +5000,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb13-387"><a href="#cb13-387" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-388"><a href="#cb13-388" aria-hidden="true" tabindex="-1"></a><span class="fu">### Random Forest</span></span>
 <span id="cb13-389"><a href="#cb13-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-390"><a href="#cb13-390" aria-hidden="true" tabindex="-1"></a>Random Forest, developed by Leo Breiman in 2001, builds on the existing</span>
+<span id="cb13-390"><a href="#cb13-390" aria-hidden="true" tabindex="-1"></a>Random Forest, developed by Leo Breiman in 2001 <span class="co">[</span><span class="ot">@breiman2001random</span><span class="co">]</span>, builds on the existing</span>
 <span id="cb13-391"><a href="#cb13-391" aria-hidden="true" tabindex="-1"></a>Decision Tree methodology and applies the principle of “divide and</span>
 <span id="cb13-392"><a href="#cb13-392" aria-hidden="true" tabindex="-1"></a>conquer”. <span class="co">[</span><span class="ot">@biau2016random</span><span class="co">]</span> It is an ensemble learning method that uses</span>
 <span id="cb13-393"><a href="#cb13-393" aria-hidden="true" tabindex="-1"></a>multiple decision tree models.</span>
@@ -5072,535 +5060,544 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb13-447"><a href="#cb13-447" aria-hidden="true" tabindex="-1"></a>evaluation measures for a classification-based random forest model would</span>
 <span id="cb13-448"><a href="#cb13-448" aria-hidden="true" tabindex="-1"></a>align with the measures for a logistic regression model.</span>
 <span id="cb13-449"><a href="#cb13-449" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-450"><a href="#cb13-450" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Regression</span></span>
+<span id="cb13-450"><a href="#cb13-450" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Classification</span></span>
 <span id="cb13-451"><a href="#cb13-451" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-452"><a href="#cb13-452" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-453"><a href="#cb13-453" aria-hidden="true" tabindex="-1"></a>MAE = (1/n) * Σ |yᵢ - ŷᵢ|</span>
-<span id="cb13-454"><a href="#cb13-454" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-455"><a href="#cb13-455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-456"><a href="#cb13-456" aria-hidden="true" tabindex="-1"></a>The mean absolute error (MAE) is the average of the absolute value</span>
-<span id="cb13-457"><a href="#cb13-457" aria-hidden="true" tabindex="-1"></a>differences between the predicted and actual values. It allows for the</span>
-<span id="cb13-458"><a href="#cb13-458" aria-hidden="true" tabindex="-1"></a>magnitude of error to be shown, without the cancellation of positives</span>
-<span id="cb13-459"><a href="#cb13-459" aria-hidden="true" tabindex="-1"></a>and negatives.</span>
+<span id="cb13-452"><a href="#cb13-452" aria-hidden="true" tabindex="-1"></a>A confusion matrix is a table that compares the predicted values with</span>
+<span id="cb13-453"><a href="#cb13-453" aria-hidden="true" tabindex="-1"></a>the actual values. The most common visual for a confusion matrix is</span>
+<span id="cb13-454"><a href="#cb13-454" aria-hidden="true" tabindex="-1"></a>describe as follows: A table with four squares divided into Actual</span>
+<span id="cb13-455"><a href="#cb13-455" aria-hidden="true" tabindex="-1"></a>Values (positive and negative) represented vertically and Predicted</span>
+<span id="cb13-456"><a href="#cb13-456" aria-hidden="true" tabindex="-1"></a>Values (positive and negative) represented horizontally.</span>
+<span id="cb13-457"><a href="#cb13-457" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@Wibowo2023MaskUseDetection</span><span class="co">]</span> If the classification problem is not</span>
+<span id="cb13-458"><a href="#cb13-458" aria-hidden="true" tabindex="-1"></a>binary, the confusion matrix would just scale in size following the n×n</span>
+<span id="cb13-459"><a href="#cb13-459" aria-hidden="true" tabindex="-1"></a>formula with n = number of classes.</span>
 <span id="cb13-460"><a href="#cb13-460" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-461"><a href="#cb13-461" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-462"><a href="#cb13-462" aria-hidden="true" tabindex="-1"></a>MSE = (1/n) * Σ <span class="co">[</span><span class="ot"> (yi - ŷi)² </span><span class="co">]</span></span>
+<span id="cb13-461"><a href="#cb13-461" aria-hidden="true" tabindex="-1"></a><span class="al">![Confusion Matrix](ConfusionMatrix.png)</span></span>
+<span id="cb13-462"><a href="#cb13-462" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-463"><a href="#cb13-463" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-464"><a href="#cb13-464" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-465"><a href="#cb13-465" aria-hidden="true" tabindex="-1"></a>The mean squared error (MSE) is the squared difference between the</span>
-<span id="cb13-466"><a href="#cb13-466" aria-hidden="true" tabindex="-1"></a>predicted and actual values.</span>
-<span id="cb13-467"><a href="#cb13-467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-468"><a href="#cb13-468" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-469"><a href="#cb13-469" aria-hidden="true" tabindex="-1"></a>R² = 1 - (RSS/TSS)</span>
+<span id="cb13-464"><a href="#cb13-464" aria-hidden="true" tabindex="-1"></a>TP = True Positive; FP = False Positive; FN = False Negative; TN = True Negative</span>
+<span id="cb13-465"><a href="#cb13-465" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb13-466"><a href="#cb13-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-467"><a href="#cb13-467" aria-hidden="true" tabindex="-1"></a>From the confusion matrix, the accuracy, sensitivity, and specificity of</span>
+<span id="cb13-468"><a href="#cb13-468" aria-hidden="true" tabindex="-1"></a>the model can be calculated.</span>
+<span id="cb13-469"><a href="#cb13-469" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-470"><a href="#cb13-470" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-471"><a href="#cb13-471" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-472"><a href="#cb13-472" aria-hidden="true" tabindex="-1"></a>The coefficient of determination (R²) is the proportion of variance in</span>
-<span id="cb13-473"><a href="#cb13-473" aria-hidden="true" tabindex="-1"></a>the target variable explained by the model on a 0 (poor) to 1</span>
-<span id="cb13-474"><a href="#cb13-474" aria-hidden="true" tabindex="-1"></a>(excellent) scale. In the formula above, RSS is the sum of squared</span>
-<span id="cb13-475"><a href="#cb13-475" aria-hidden="true" tabindex="-1"></a>residuals and TSS is the total sum of squares.</span>
+<span id="cb13-471"><a href="#cb13-471" aria-hidden="true" tabindex="-1"></a>Accuracy=(TP+TN)/(TP+FP+TN+FN)</span>
+<span id="cb13-472"><a href="#cb13-472" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb13-473"><a href="#cb13-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-474"><a href="#cb13-474" aria-hidden="true" tabindex="-1"></a>The accuracy is the proportion of all predictions that the model got</span>
+<span id="cb13-475"><a href="#cb13-475" aria-hidden="true" tabindex="-1"></a>correct.</span>
 <span id="cb13-476"><a href="#cb13-476" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-477"><a href="#cb13-477" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Classification</span></span>
-<span id="cb13-478"><a href="#cb13-478" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-479"><a href="#cb13-479" aria-hidden="true" tabindex="-1"></a>A confusion matrix is a table that compares the predicted values with</span>
-<span id="cb13-480"><a href="#cb13-480" aria-hidden="true" tabindex="-1"></a>the actual values. The most common visual for a confusion matrix is</span>
-<span id="cb13-481"><a href="#cb13-481" aria-hidden="true" tabindex="-1"></a>describe as follows: A table with four squares divided into Actual</span>
-<span id="cb13-482"><a href="#cb13-482" aria-hidden="true" tabindex="-1"></a>Values (positive and negative) represented vertically and Predicted</span>
-<span id="cb13-483"><a href="#cb13-483" aria-hidden="true" tabindex="-1"></a>Values (positive and negative) represented horizontally.</span>
-<span id="cb13-484"><a href="#cb13-484" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@Wibowo2023MaskUseDetection</span><span class="co">]</span> If the classification problem is not</span>
-<span id="cb13-485"><a href="#cb13-485" aria-hidden="true" tabindex="-1"></a>binary, the confusion matrix would just scale in size following the n×n</span>
-<span id="cb13-486"><a href="#cb13-486" aria-hidden="true" tabindex="-1"></a>formula with n = number of classes.</span>
+<span id="cb13-477"><a href="#cb13-477" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb13-478"><a href="#cb13-478" aria-hidden="true" tabindex="-1"></a>Sensitivity=(TP)/(TP+FN)</span>
+<span id="cb13-479"><a href="#cb13-479" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb13-480"><a href="#cb13-480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-481"><a href="#cb13-481" aria-hidden="true" tabindex="-1"></a>The sensitivity is the proportion of true positives that the model got</span>
+<span id="cb13-482"><a href="#cb13-482" aria-hidden="true" tabindex="-1"></a>correct and measures the avoidance of false negatives.</span>
+<span id="cb13-483"><a href="#cb13-483" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-484"><a href="#cb13-484" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb13-485"><a href="#cb13-485" aria-hidden="true" tabindex="-1"></a>Specificity=(TN)/(TN+FP)</span>
+<span id="cb13-486"><a href="#cb13-486" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb13-487"><a href="#cb13-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-488"><a href="#cb13-488" aria-hidden="true" tabindex="-1"></a><span class="al">![Confusion Matrix](ConfusionMatrix.png)</span></span>
-<span id="cb13-489"><a href="#cb13-489" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-490"><a href="#cb13-490" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-491"><a href="#cb13-491" aria-hidden="true" tabindex="-1"></a>TP = True Positive; FP = False Positive; FN = False Negative; TN = True Negative</span>
-<span id="cb13-492"><a href="#cb13-492" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-493"><a href="#cb13-493" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-494"><a href="#cb13-494" aria-hidden="true" tabindex="-1"></a>From the confusion matrix, the accuracy, sensitivity, and specificity of</span>
-<span id="cb13-495"><a href="#cb13-495" aria-hidden="true" tabindex="-1"></a>the model can be calculated.</span>
-<span id="cb13-496"><a href="#cb13-496" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-497"><a href="#cb13-497" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-498"><a href="#cb13-498" aria-hidden="true" tabindex="-1"></a>Accuracy=(TP+TN)/(TP+FP+TN+FN)</span>
-<span id="cb13-499"><a href="#cb13-499" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-500"><a href="#cb13-500" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-501"><a href="#cb13-501" aria-hidden="true" tabindex="-1"></a>The accuracy is the proportion of all predictions that the model got</span>
-<span id="cb13-502"><a href="#cb13-502" aria-hidden="true" tabindex="-1"></a>correct.</span>
-<span id="cb13-503"><a href="#cb13-503" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-504"><a href="#cb13-504" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-505"><a href="#cb13-505" aria-hidden="true" tabindex="-1"></a>Sensitivity=(TP)/(TP+FN)</span>
-<span id="cb13-506"><a href="#cb13-506" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb13-488"><a href="#cb13-488" aria-hidden="true" tabindex="-1"></a>The specificity is the proportion of true negatives that the model got</span>
+<span id="cb13-489"><a href="#cb13-489" aria-hidden="true" tabindex="-1"></a>correct and measures the avoidance of false positives.</span>
+<span id="cb13-490"><a href="#cb13-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-491"><a href="#cb13-491" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis and Results</span></span>
+<span id="cb13-492"><a href="#cb13-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-493"><a href="#cb13-493" aria-hidden="true" tabindex="-1"></a><span class="fu">### Dataset Overview and Preprocessing</span></span>
+<span id="cb13-494"><a href="#cb13-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-495"><a href="#cb13-495" aria-hidden="true" tabindex="-1"></a>This analysis predicts wine quality using physicochemical properties</span>
+<span id="cb13-496"><a href="#cb13-496" aria-hidden="true" tabindex="-1"></a>from the [UCI Machine Learning</span>
+<span id="cb13-497"><a href="#cb13-497" aria-hidden="true" tabindex="-1"></a>Repository](https://archive.ics.uci.edu/dataset/186/wine+quality) &quot;Vinho</span>
+<span id="cb13-498"><a href="#cb13-498" aria-hidden="true" tabindex="-1"></a>Verde&quot; dataset, comprising 1,599 red and 4,898 white wine samples (6,497</span>
+<span id="cb13-499"><a href="#cb13-499" aria-hidden="true" tabindex="-1"></a>total). Each sample includes 11 features (e.g., alcohol, volatile</span>
+<span id="cb13-500"><a href="#cb13-500" aria-hidden="true" tabindex="-1"></a>acidity, sulphates) and a quality score (3–8) even though the quality</span>
+<span id="cb13-501"><a href="#cb13-501" aria-hidden="true" tabindex="-1"></a>score original was described as a range from 0-10 in practice was a</span>
+<span id="cb13-502"><a href="#cb13-502" aria-hidden="true" tabindex="-1"></a>range from 3-8, we binned it into a the new feature with three</span>
+<span id="cb13-503"><a href="#cb13-503" aria-hidden="true" tabindex="-1"></a>categories: Low (3–4), Medium (5–6), and High (7–8). This column</span>
+<span id="cb13-504"><a href="#cb13-504" aria-hidden="true" tabindex="-1"></a>distinguishes red and white wines. The goal is to identify key</span>
+<span id="cb13-505"><a href="#cb13-505" aria-hidden="true" tabindex="-1"></a>predictors of quality and evaluate classification models, with Random</span>
+<span id="cb13-506"><a href="#cb13-506" aria-hidden="true" tabindex="-1"></a>Forest as the primary focus.</span>
 <span id="cb13-507"><a href="#cb13-507" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-508"><a href="#cb13-508" aria-hidden="true" tabindex="-1"></a>The sensitivity is the proportion of true positives that the model got</span>
-<span id="cb13-509"><a href="#cb13-509" aria-hidden="true" tabindex="-1"></a>correct and measures the avoidance of false negatives.</span>
-<span id="cb13-510"><a href="#cb13-510" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-511"><a href="#cb13-511" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-512"><a href="#cb13-512" aria-hidden="true" tabindex="-1"></a>Specificity=(TN)/(TN+FP)</span>
-<span id="cb13-513"><a href="#cb13-513" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-514"><a href="#cb13-514" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-515"><a href="#cb13-515" aria-hidden="true" tabindex="-1"></a>The specificity is the proportion of true negatives that the model got</span>
-<span id="cb13-516"><a href="#cb13-516" aria-hidden="true" tabindex="-1"></a>correct and measures the avoidance of false positives.</span>
-<span id="cb13-517"><a href="#cb13-517" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-518"><a href="#cb13-518" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis and Results</span></span>
-<span id="cb13-519"><a href="#cb13-519" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-520"><a href="#cb13-520" aria-hidden="true" tabindex="-1"></a><span class="fu">### Dataset Overview and Preprocessing</span></span>
-<span id="cb13-521"><a href="#cb13-521" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-522"><a href="#cb13-522" aria-hidden="true" tabindex="-1"></a>This analysis predicts wine quality using physicochemical properties</span>
-<span id="cb13-523"><a href="#cb13-523" aria-hidden="true" tabindex="-1"></a>from the [UCI Machine Learning</span>
-<span id="cb13-524"><a href="#cb13-524" aria-hidden="true" tabindex="-1"></a>Repository](https://archive.ics.uci.edu/dataset/186/wine+quality) &quot;Vinho</span>
-<span id="cb13-525"><a href="#cb13-525" aria-hidden="true" tabindex="-1"></a>Verde&quot; dataset, comprising 1,599 red and 4,898 white wine samples (6,497</span>
-<span id="cb13-526"><a href="#cb13-526" aria-hidden="true" tabindex="-1"></a>total). Each sample includes 11 features (e.g., alcohol, volatile</span>
-<span id="cb13-527"><a href="#cb13-527" aria-hidden="true" tabindex="-1"></a>acidity, sulphates) and a quality score (3–8) even though the quality</span>
-<span id="cb13-528"><a href="#cb13-528" aria-hidden="true" tabindex="-1"></a>score original was described as a range from 0-10 in practice was a</span>
-<span id="cb13-529"><a href="#cb13-529" aria-hidden="true" tabindex="-1"></a>range from 3-8, we binned it into a the new feature with three</span>
-<span id="cb13-530"><a href="#cb13-530" aria-hidden="true" tabindex="-1"></a>categories: Low (3–4), Medium (5–6), and High (7–8). This column</span>
-<span id="cb13-531"><a href="#cb13-531" aria-hidden="true" tabindex="-1"></a>distinguishes red and white wines. The goal is to identify key</span>
-<span id="cb13-532"><a href="#cb13-532" aria-hidden="true" tabindex="-1"></a>predictors of quality and evaluate classification models, with Random</span>
-<span id="cb13-533"><a href="#cb13-533" aria-hidden="true" tabindex="-1"></a>Forest as the primary focus.</span>
-<span id="cb13-534"><a href="#cb13-534" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-535"><a href="#cb13-535" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Addressing Class Imbalance</span></span>
-<span id="cb13-536"><a href="#cb13-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-537"><a href="#cb13-537" aria-hidden="true" tabindex="-1"></a>This is a moderately imbalanced classification problem, where the</span>
-<span id="cb13-538"><a href="#cb13-538" aria-hidden="true" tabindex="-1"></a>&quot;Medium&quot; class dominates. Class imbalance can bias models toward</span>
-<span id="cb13-539"><a href="#cb13-539" aria-hidden="true" tabindex="-1"></a>majority predictions.</span>
-<span id="cb13-540"><a href="#cb13-540" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-543"><a href="#cb13-543" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-544"><a href="#cb13-544" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and load required packages</span></span>
-<span id="cb13-545"><a href="#cb13-545" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="fu">c</span>(<span class="at">CRAN =</span> <span class="st">&quot;https://cran.rstudio.com&quot;</span>))</span>
-<span id="cb13-546"><a href="#cb13-546" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(tidyverse)) <span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb13-547"><a href="#cb13-547" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(caret)) <span class="fu">install.packages</span>(<span class="st">&quot;caret&quot;</span>)</span>
-<span id="cb13-548"><a href="#cb13-548" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(randomForest)) <span class="fu">install.packages</span>(<span class="st">&quot;randomForest&quot;</span>)</span>
-<span id="cb13-549"><a href="#cb13-549" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(corrplot)) <span class="fu">install.packages</span>(<span class="st">&quot;corrplot&quot;</span>)</span>
-<span id="cb13-550"><a href="#cb13-550" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(pROC)) <span class="fu">install.packages</span>(<span class="st">&quot;pROC&quot;</span>)</span>
-<span id="cb13-551"><a href="#cb13-551" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(yardstick)) <span class="fu">install.packages</span>(<span class="st">&quot;yardstick&quot;</span>)</span>
-<span id="cb13-552"><a href="#cb13-552" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb13-553"><a href="#cb13-553" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
-<span id="cb13-554"><a href="#cb13-554" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span>
-<span id="cb13-555"><a href="#cb13-555" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb13-556"><a href="#cb13-556" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
-<span id="cb13-557"><a href="#cb13-557" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(yardstick)</span>
-<span id="cb13-558"><a href="#cb13-558" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-559"><a href="#cb13-559" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress warnings for cleaner output</span></span>
-<span id="cb13-560"><a href="#cb13-560" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb13-561"><a href="#cb13-561" aria-hidden="true" tabindex="-1"></a><span class="co"># Load and clean data</span></span>
-<span id="cb13-562"><a href="#cb13-562" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb13-563"><a href="#cb13-563" aria-hidden="true" tabindex="-1"></a>red_wine_cleaned <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;winequality-red.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-564"><a href="#cb13-564" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb13-565"><a href="#cb13-565" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb13-566"><a href="#cb13-566" aria-hidden="true" tabindex="-1"></a>    <span class="at">quality_category =</span> <span class="fu">factor</span>(<span class="fu">case_when</span>(</span>
-<span id="cb13-567"><a href="#cb13-567" aria-hidden="true" tabindex="-1"></a>      quality <span class="sc">&lt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;Low&quot;</span>,</span>
-<span id="cb13-568"><a href="#cb13-568" aria-hidden="true" tabindex="-1"></a>      quality <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="st">&quot;Medium&quot;</span>,</span>
-<span id="cb13-569"><a href="#cb13-569" aria-hidden="true" tabindex="-1"></a>      quality <span class="sc">&gt;=</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">&quot;High&quot;</span></span>
-<span id="cb13-570"><a href="#cb13-570" aria-hidden="true" tabindex="-1"></a>    ), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)),</span>
-<span id="cb13-571"><a href="#cb13-571" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;red&quot;</span></span>
-<span id="cb13-572"><a href="#cb13-572" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb13-573"><a href="#cb13-573" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(quality_category))</span>
-<span id="cb13-574"><a href="#cb13-574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-575"><a href="#cb13-575" aria-hidden="true" tabindex="-1"></a>white_wine_cleaned <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;winequality-white.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-576"><a href="#cb13-576" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb13-577"><a href="#cb13-577" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb13-578"><a href="#cb13-578" aria-hidden="true" tabindex="-1"></a>    <span class="at">quality_category =</span> <span class="fu">factor</span>(<span class="fu">case_when</span>(</span>
-<span id="cb13-579"><a href="#cb13-579" aria-hidden="true" tabindex="-1"></a>      quality <span class="sc">&lt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;Low&quot;</span>,</span>
-<span id="cb13-580"><a href="#cb13-580" aria-hidden="true" tabindex="-1"></a>      quality <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="st">&quot;Medium&quot;</span>,</span>
-<span id="cb13-581"><a href="#cb13-581" aria-hidden="true" tabindex="-1"></a>      quality <span class="sc">&gt;=</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">&quot;High&quot;</span></span>
-<span id="cb13-582"><a href="#cb13-582" aria-hidden="true" tabindex="-1"></a>    ), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)),</span>
-<span id="cb13-583"><a href="#cb13-583" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;white&quot;</span></span>
-<span id="cb13-584"><a href="#cb13-584" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb13-585"><a href="#cb13-585" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(quality_category))</span>
-<span id="cb13-586"><a href="#cb13-586" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-587"><a href="#cb13-587" aria-hidden="true" tabindex="-1"></a>combined_wine <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(red_wine_cleaned, white_wine_cleaned)</span>
-<span id="cb13-588"><a href="#cb13-588" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-589"><a href="#cb13-589" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart</span></span>
-<span id="cb13-590"><a href="#cb13-590" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(red_wine_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> quality_category)) <span class="sc">+</span></span>
-<span id="cb13-591"><a href="#cb13-591" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb13-592"><a href="#cb13-592" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-593"><a href="#cb13-593" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Wine Quality Categories (Red Wine)&quot;</span>,</span>
-<span id="cb13-594"><a href="#cb13-594" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Quality Category&quot;</span>,</span>
-<span id="cb13-595"><a href="#cb13-595" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Count&quot;</span></span>
-<span id="cb13-596"><a href="#cb13-596" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-508"><a href="#cb13-508" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Addressing Class Imbalance</span></span>
+<span id="cb13-509"><a href="#cb13-509" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-510"><a href="#cb13-510" aria-hidden="true" tabindex="-1"></a>This is a moderately imbalanced classification problem, where the</span>
+<span id="cb13-511"><a href="#cb13-511" aria-hidden="true" tabindex="-1"></a>&quot;Medium&quot; class dominates. Class imbalance can bias models toward</span>
+<span id="cb13-512"><a href="#cb13-512" aria-hidden="true" tabindex="-1"></a>majority predictions.</span>
+<span id="cb13-513"><a href="#cb13-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-516"><a href="#cb13-516" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-517"><a href="#cb13-517" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and load required packages</span></span>
+<span id="cb13-518"><a href="#cb13-518" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="fu">c</span>(<span class="at">CRAN =</span> <span class="st">&quot;https://cran.rstudio.com&quot;</span>))</span>
+<span id="cb13-519"><a href="#cb13-519" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(tidyverse)) <span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb13-520"><a href="#cb13-520" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(caret)) <span class="fu">install.packages</span>(<span class="st">&quot;caret&quot;</span>)</span>
+<span id="cb13-521"><a href="#cb13-521" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(randomForest)) <span class="fu">install.packages</span>(<span class="st">&quot;randomForest&quot;</span>)</span>
+<span id="cb13-522"><a href="#cb13-522" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(corrplot)) <span class="fu">install.packages</span>(<span class="st">&quot;corrplot&quot;</span>)</span>
+<span id="cb13-523"><a href="#cb13-523" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(pROC)) <span class="fu">install.packages</span>(<span class="st">&quot;pROC&quot;</span>)</span>
+<span id="cb13-524"><a href="#cb13-524" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(yardstick)) <span class="fu">install.packages</span>(<span class="st">&quot;yardstick&quot;</span>)</span>
+<span id="cb13-525"><a href="#cb13-525" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-526"><a href="#cb13-526" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb13-527"><a href="#cb13-527" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span>
+<span id="cb13-528"><a href="#cb13-528" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb13-529"><a href="#cb13-529" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)</span>
+<span id="cb13-530"><a href="#cb13-530" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(yardstick)</span>
+<span id="cb13-531"><a href="#cb13-531" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-532"><a href="#cb13-532" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress warnings for cleaner output</span></span>
+<span id="cb13-533"><a href="#cb13-533" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb13-534"><a href="#cb13-534" aria-hidden="true" tabindex="-1"></a><span class="co"># Load and clean data</span></span>
+<span id="cb13-535"><a href="#cb13-535" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb13-536"><a href="#cb13-536" aria-hidden="true" tabindex="-1"></a>red_wine_cleaned <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;winequality-red.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-537"><a href="#cb13-537" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb13-538"><a href="#cb13-538" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-539"><a href="#cb13-539" aria-hidden="true" tabindex="-1"></a>    <span class="at">quality_category =</span> <span class="fu">factor</span>(<span class="fu">case_when</span>(</span>
+<span id="cb13-540"><a href="#cb13-540" aria-hidden="true" tabindex="-1"></a>      quality <span class="sc">&lt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;Low&quot;</span>,</span>
+<span id="cb13-541"><a href="#cb13-541" aria-hidden="true" tabindex="-1"></a>      quality <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="st">&quot;Medium&quot;</span>,</span>
+<span id="cb13-542"><a href="#cb13-542" aria-hidden="true" tabindex="-1"></a>      quality <span class="sc">&gt;=</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">&quot;High&quot;</span></span>
+<span id="cb13-543"><a href="#cb13-543" aria-hidden="true" tabindex="-1"></a>    ), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)),</span>
+<span id="cb13-544"><a href="#cb13-544" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;red&quot;</span></span>
+<span id="cb13-545"><a href="#cb13-545" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-546"><a href="#cb13-546" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(quality_category))</span>
+<span id="cb13-547"><a href="#cb13-547" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-548"><a href="#cb13-548" aria-hidden="true" tabindex="-1"></a>white_wine_cleaned <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;winequality-white.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-549"><a href="#cb13-549" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb13-550"><a href="#cb13-550" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-551"><a href="#cb13-551" aria-hidden="true" tabindex="-1"></a>    <span class="at">quality_category =</span> <span class="fu">factor</span>(<span class="fu">case_when</span>(</span>
+<span id="cb13-552"><a href="#cb13-552" aria-hidden="true" tabindex="-1"></a>      quality <span class="sc">&lt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;Low&quot;</span>,</span>
+<span id="cb13-553"><a href="#cb13-553" aria-hidden="true" tabindex="-1"></a>      quality <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="st">&quot;Medium&quot;</span>,</span>
+<span id="cb13-554"><a href="#cb13-554" aria-hidden="true" tabindex="-1"></a>      quality <span class="sc">&gt;=</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">&quot;High&quot;</span></span>
+<span id="cb13-555"><a href="#cb13-555" aria-hidden="true" tabindex="-1"></a>    ), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;High&quot;</span>)),</span>
+<span id="cb13-556"><a href="#cb13-556" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;white&quot;</span></span>
+<span id="cb13-557"><a href="#cb13-557" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-558"><a href="#cb13-558" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(quality_category))</span>
+<span id="cb13-559"><a href="#cb13-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-560"><a href="#cb13-560" aria-hidden="true" tabindex="-1"></a>combined_wine <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(red_wine_cleaned, white_wine_cleaned)</span>
+<span id="cb13-561"><a href="#cb13-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-562"><a href="#cb13-562" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart</span></span>
+<span id="cb13-563"><a href="#cb13-563" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(red_wine_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> quality_category)) <span class="sc">+</span></span>
+<span id="cb13-564"><a href="#cb13-564" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-565"><a href="#cb13-565" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-566"><a href="#cb13-566" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Wine Quality Categories (Red Wine)&quot;</span>,</span>
+<span id="cb13-567"><a href="#cb13-567" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Quality Category&quot;</span>,</span>
+<span id="cb13-568"><a href="#cb13-568" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Count&quot;</span></span>
+<span id="cb13-569"><a href="#cb13-569" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-570"><a href="#cb13-570" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-571"><a href="#cb13-571" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart</span></span>
+<span id="cb13-572"><a href="#cb13-572" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(white_wine_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> quality_category)) <span class="sc">+</span></span>
+<span id="cb13-573"><a href="#cb13-573" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-574"><a href="#cb13-574" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-575"><a href="#cb13-575" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Wine Quality Categories (White Wine)&quot;</span>,</span>
+<span id="cb13-576"><a href="#cb13-576" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Quality Category&quot;</span>,</span>
+<span id="cb13-577"><a href="#cb13-577" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Count&quot;</span></span>
+<span id="cb13-578"><a href="#cb13-578" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-579"><a href="#cb13-579" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-580"><a href="#cb13-580" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-581"><a href="#cb13-581" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Class Distribution</span></span>
+<span id="cb13-582"><a href="#cb13-582" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-583"><a href="#cb13-583" aria-hidden="true" tabindex="-1"></a>To assess the overall patterns in wine quality, the red and white wine</span>
+<span id="cb13-584"><a href="#cb13-584" aria-hidden="true" tabindex="-1"></a>datasets were merged into a unified dataset (combined_wine). This</span>
+<span id="cb13-585"><a href="#cb13-585" aria-hidden="true" tabindex="-1"></a>combined set allows a broader perspective on how physicochemical</span>
+<span id="cb13-586"><a href="#cb13-586" aria-hidden="true" tabindex="-1"></a>properties vary across both wine types and quality levels.</span>
+<span id="cb13-587"><a href="#cb13-587" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-588"><a href="#cb13-588" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Total Samples: 6,497</span>
+<span id="cb13-589"><a href="#cb13-589" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-590"><a href="#cb13-590" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Red Wine: 1,599</span>
+<span id="cb13-591"><a href="#cb13-591" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-592"><a href="#cb13-592" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>White Wine: 4,898</span>
+<span id="cb13-593"><a href="#cb13-593" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-594"><a href="#cb13-594" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Quality Categories:</span>
+<span id="cb13-595"><a href="#cb13-595" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-596"><a href="#cb13-596" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Low (≤ 5): 2,384 samples</span>
 <span id="cb13-597"><a href="#cb13-597" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-598"><a href="#cb13-598" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart</span></span>
-<span id="cb13-599"><a href="#cb13-599" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(white_wine_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> quality_category)) <span class="sc">+</span></span>
-<span id="cb13-600"><a href="#cb13-600" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb13-601"><a href="#cb13-601" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-602"><a href="#cb13-602" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Wine Quality Categories (White Wine)&quot;</span>,</span>
-<span id="cb13-603"><a href="#cb13-603" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Quality Category&quot;</span>,</span>
-<span id="cb13-604"><a href="#cb13-604" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Count&quot;</span></span>
-<span id="cb13-605"><a href="#cb13-605" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-606"><a href="#cb13-606" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-607"><a href="#cb13-607" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-608"><a href="#cb13-608" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Class Distribution</span></span>
-<span id="cb13-609"><a href="#cb13-609" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-610"><a href="#cb13-610" aria-hidden="true" tabindex="-1"></a>To assess the overall patterns in wine quality, the red and white wine</span>
-<span id="cb13-611"><a href="#cb13-611" aria-hidden="true" tabindex="-1"></a>datasets were merged into a unified dataset (combined_wine). This</span>
-<span id="cb13-612"><a href="#cb13-612" aria-hidden="true" tabindex="-1"></a>combined set allows a broader perspective on how physicochemical</span>
-<span id="cb13-613"><a href="#cb13-613" aria-hidden="true" tabindex="-1"></a>properties vary across both wine types and quality levels.</span>
-<span id="cb13-614"><a href="#cb13-614" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-615"><a href="#cb13-615" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Total Samples: 6,497</span>
-<span id="cb13-616"><a href="#cb13-616" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-617"><a href="#cb13-617" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Red Wine: 1,599</span>
+<span id="cb13-598"><a href="#cb13-598" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Medium (= 6): 2,836 samples</span>
+<span id="cb13-599"><a href="#cb13-599" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-600"><a href="#cb13-600" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>High (≥ 7): 1,277 samples</span>
+<span id="cb13-601"><a href="#cb13-601" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-602"><a href="#cb13-602" aria-hidden="true" tabindex="-1"></a>Most wines fall into the medium category, with high-quality wines</span>
+<span id="cb13-603"><a href="#cb13-603" aria-hidden="true" tabindex="-1"></a>representing the smallest group.</span>
+<span id="cb13-604"><a href="#cb13-604" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-607"><a href="#cb13-607" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-608"><a href="#cb13-608" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart </span></span>
+<span id="cb13-609"><a href="#cb13-609" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_wine, <span class="fu">aes</span>(<span class="at">x =</span> quality_category, <span class="at">fill =</span> type)) <span class="sc">+</span></span>
+<span id="cb13-610"><a href="#cb13-610" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-611"><a href="#cb13-611" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-612"><a href="#cb13-612" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Wine Quality Categories by Wine Type&quot;</span>,</span>
+<span id="cb13-613"><a href="#cb13-613" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Quality Category&quot;</span>,</span>
+<span id="cb13-614"><a href="#cb13-614" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb13-615"><a href="#cb13-615" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Wine Type&quot;</span></span>
+<span id="cb13-616"><a href="#cb13-616" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-617"><a href="#cb13-617" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-618"><a href="#cb13-618" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-619"><a href="#cb13-619" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>White Wine: 4,898</span>
+<span id="cb13-619"><a href="#cb13-619" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exploratory Analysis</span></span>
 <span id="cb13-620"><a href="#cb13-620" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-621"><a href="#cb13-621" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Quality Categories:</span>
-<span id="cb13-622"><a href="#cb13-622" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-623"><a href="#cb13-623" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Low (≤ 5): 2,384 samples</span>
-<span id="cb13-624"><a href="#cb13-624" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-625"><a href="#cb13-625" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Medium (= 6): 2,836 samples</span>
-<span id="cb13-626"><a href="#cb13-626" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-627"><a href="#cb13-627" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>High (≥ 7): 1,277 samples</span>
-<span id="cb13-628"><a href="#cb13-628" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-629"><a href="#cb13-629" aria-hidden="true" tabindex="-1"></a>Most wines fall into the medium category, with high-quality wines</span>
-<span id="cb13-630"><a href="#cb13-630" aria-hidden="true" tabindex="-1"></a>representing the smallest group.</span>
-<span id="cb13-631"><a href="#cb13-631" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-634"><a href="#cb13-634" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-635"><a href="#cb13-635" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart </span></span>
-<span id="cb13-636"><a href="#cb13-636" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_wine, <span class="fu">aes</span>(<span class="at">x =</span> quality_category, <span class="at">fill =</span> type)) <span class="sc">+</span></span>
-<span id="cb13-637"><a href="#cb13-637" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
-<span id="cb13-638"><a href="#cb13-638" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-639"><a href="#cb13-639" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Wine Quality Categories by Wine Type&quot;</span>,</span>
-<span id="cb13-640"><a href="#cb13-640" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Quality Category&quot;</span>,</span>
-<span id="cb13-641"><a href="#cb13-641" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
-<span id="cb13-642"><a href="#cb13-642" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Wine Type&quot;</span></span>
-<span id="cb13-643"><a href="#cb13-643" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-644"><a href="#cb13-644" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-645"><a href="#cb13-645" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-646"><a href="#cb13-646" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exploratory Analysis</span></span>
-<span id="cb13-647"><a href="#cb13-647" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-648"><a href="#cb13-648" aria-hidden="true" tabindex="-1"></a>The combined dataset (6,497 samples) shows a moderately imbalanced class</span>
-<span id="cb13-649"><a href="#cb13-649" aria-hidden="true" tabindex="-1"></a>distribution: Low (2,384), Medium (2,836), and High (1,277). Key</span>
-<span id="cb13-650"><a href="#cb13-650" aria-hidden="true" tabindex="-1"></a>predictors: alcohol, volatile acidity, and sulphates, They were analyzed</span>
-<span id="cb13-651"><a href="#cb13-651" aria-hidden="true" tabindex="-1"></a>across red, white, and combined datasets.</span>
-<span id="cb13-652"><a href="#cb13-652" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-653"><a href="#cb13-653" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Alcohol**: Strongly positively correlated with quality (r = 0.44).</span>
-<span id="cb13-654"><a href="#cb13-654" aria-hidden="true" tabindex="-1"></a>    It is the most consistent indicator of higher wine quality across</span>
-<span id="cb13-655"><a href="#cb13-655" aria-hidden="true" tabindex="-1"></a>    all wine types.</span>
+<span id="cb13-621"><a href="#cb13-621" aria-hidden="true" tabindex="-1"></a>The combined dataset (6,497 samples) shows a moderately imbalanced class</span>
+<span id="cb13-622"><a href="#cb13-622" aria-hidden="true" tabindex="-1"></a>distribution: Low (2,384), Medium (2,836), and High (1,277). Key</span>
+<span id="cb13-623"><a href="#cb13-623" aria-hidden="true" tabindex="-1"></a>predictors: alcohol, volatile acidity, and sulphates, They were analyzed</span>
+<span id="cb13-624"><a href="#cb13-624" aria-hidden="true" tabindex="-1"></a>across red, white, and combined datasets.</span>
+<span id="cb13-625"><a href="#cb13-625" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-626"><a href="#cb13-626" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Alcohol**: Strongly positively correlated with quality (r = 0.44).</span>
+<span id="cb13-627"><a href="#cb13-627" aria-hidden="true" tabindex="-1"></a>    It is the most consistent indicator of higher wine quality across</span>
+<span id="cb13-628"><a href="#cb13-628" aria-hidden="true" tabindex="-1"></a>    all wine types.</span>
+<span id="cb13-629"><a href="#cb13-629" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-630"><a href="#cb13-630" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Volatile Acidity**: Moderately negatively correlated (r = -0.27),</span>
+<span id="cb13-631"><a href="#cb13-631" aria-hidden="true" tabindex="-1"></a>    suggesting that excessive volatile acidity is linked to lower wine</span>
+<span id="cb13-632"><a href="#cb13-632" aria-hidden="true" tabindex="-1"></a>    quality.</span>
+<span id="cb13-633"><a href="#cb13-633" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-634"><a href="#cb13-634" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Sulphates**: Very weak positive correlation with quality (r =</span>
+<span id="cb13-635"><a href="#cb13-635" aria-hidden="true" tabindex="-1"></a>    0.04), showing minimal practical impact overall, particularly in</span>
+<span id="cb13-636"><a href="#cb13-636" aria-hidden="true" tabindex="-1"></a>    white wines.</span>
+<span id="cb13-637"><a href="#cb13-637" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-638"><a href="#cb13-638" aria-hidden="true" tabindex="-1"></a>The boxplot below illustrates these trends for the combined dataset,</span>
+<span id="cb13-639"><a href="#cb13-639" aria-hidden="true" tabindex="-1"></a>with clear separation for alcohol across quality categories. The</span>
+<span id="cb13-640"><a href="#cb13-640" aria-hidden="true" tabindex="-1"></a>correlation heatmap confirms alcohol (r = 0.44), volatile acidity (r =</span>
+<span id="cb13-641"><a href="#cb13-641" aria-hidden="true" tabindex="-1"></a>-0.27), while other features (including sulphates) show weaker</span>
+<span id="cb13-642"><a href="#cb13-642" aria-hidden="true" tabindex="-1"></a>associations.</span>
+<span id="cb13-643"><a href="#cb13-643" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-646"><a href="#cb13-646" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-647"><a href="#cb13-647" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart </span></span>
+<span id="cb13-648"><a href="#cb13-648" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_wine, <span class="fu">aes</span>(<span class="at">x =</span> quality_category, <span class="at">fill =</span> type)) <span class="sc">+</span></span>
+<span id="cb13-649"><a href="#cb13-649" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-650"><a href="#cb13-650" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-651"><a href="#cb13-651" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Wine Quality Categories by Wine Type&quot;</span>,</span>
+<span id="cb13-652"><a href="#cb13-652" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Quality Category&quot;</span>,</span>
+<span id="cb13-653"><a href="#cb13-653" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb13-654"><a href="#cb13-654" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Wine Type&quot;</span></span>
+<span id="cb13-655"><a href="#cb13-655" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb13-656"><a href="#cb13-656" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-657"><a href="#cb13-657" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Volatile Acidity**: Moderately negatively correlated (r = -0.27),</span>
-<span id="cb13-658"><a href="#cb13-658" aria-hidden="true" tabindex="-1"></a>    suggesting that excessive volatile acidity is linked to lower wine</span>
-<span id="cb13-659"><a href="#cb13-659" aria-hidden="true" tabindex="-1"></a>    quality.</span>
-<span id="cb13-660"><a href="#cb13-660" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-661"><a href="#cb13-661" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Sulphates**: Very weak positive correlation with quality (r =</span>
-<span id="cb13-662"><a href="#cb13-662" aria-hidden="true" tabindex="-1"></a>    0.04), showing minimal practical impact overall, particularly in</span>
-<span id="cb13-663"><a href="#cb13-663" aria-hidden="true" tabindex="-1"></a>    white wines.</span>
-<span id="cb13-664"><a href="#cb13-664" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-665"><a href="#cb13-665" aria-hidden="true" tabindex="-1"></a>The boxplot below illustrates these trends for the combined dataset,</span>
-<span id="cb13-666"><a href="#cb13-666" aria-hidden="true" tabindex="-1"></a>with clear separation for alcohol across quality categories. The</span>
-<span id="cb13-667"><a href="#cb13-667" aria-hidden="true" tabindex="-1"></a>correlation heatmap confirms alcohol (r = 0.44), volatile acidity (r =</span>
-<span id="cb13-668"><a href="#cb13-668" aria-hidden="true" tabindex="-1"></a>-0.27), while other features (including sulphates) show weaker</span>
-<span id="cb13-669"><a href="#cb13-669" aria-hidden="true" tabindex="-1"></a>associations.</span>
-<span id="cb13-670"><a href="#cb13-670" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-673"><a href="#cb13-673" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-674"><a href="#cb13-674" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart </span></span>
-<span id="cb13-675"><a href="#cb13-675" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_wine, <span class="fu">aes</span>(<span class="at">x =</span> quality_category, <span class="at">fill =</span> type)) <span class="sc">+</span></span>
-<span id="cb13-676"><a href="#cb13-676" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
-<span id="cb13-677"><a href="#cb13-677" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-678"><a href="#cb13-678" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Wine Quality Categories by Wine Type&quot;</span>,</span>
-<span id="cb13-679"><a href="#cb13-679" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Quality Category&quot;</span>,</span>
-<span id="cb13-680"><a href="#cb13-680" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
-<span id="cb13-681"><a href="#cb13-681" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Wine Type&quot;</span></span>
-<span id="cb13-682"><a href="#cb13-682" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-683"><a href="#cb13-683" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-684"><a href="#cb13-684" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation heatmap</span></span>
-<span id="cb13-685"><a href="#cb13-685" aria-hidden="true" tabindex="-1"></a>numeric_data <span class="ot">&lt;-</span> combined_wine <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">where</span>(is.numeric))</span>
-<span id="cb13-686"><a href="#cb13-686" aria-hidden="true" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(numeric_data, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
-<span id="cb13-687"><a href="#cb13-687" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(cor_matrix, <span class="at">method =</span> <span class="st">&quot;color&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>,</span>
-<span id="cb13-688"><a href="#cb13-688" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.cex =</span> <span class="fl">0.8</span>, <span class="at">addCoef.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">number.cex =</span> <span class="fl">0.7</span>, <span class="at">diag =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb13-689"><a href="#cb13-689" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-690"><a href="#cb13-690" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot for alcohol</span></span>
-<span id="cb13-691"><a href="#cb13-691" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_wine, <span class="fu">aes</span>(<span class="at">x =</span> quality_category, <span class="at">y =</span> alcohol, <span class="at">fill =</span> type)) <span class="sc">+</span></span>
-<span id="cb13-692"><a href="#cb13-692" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>)) <span class="sc">+</span></span>
-<span id="cb13-693"><a href="#cb13-693" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Alcohol Content by Wine Quality and Type&quot;</span>,</span>
-<span id="cb13-694"><a href="#cb13-694" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Quality Category&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Alcohol (%)&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Wine Type&quot;</span>) <span class="sc">+</span></span>
-<span id="cb13-695"><a href="#cb13-695" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb13-696"><a href="#cb13-696" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-697"><a href="#cb13-697" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot for volatile acidity</span></span>
-<span id="cb13-698"><a href="#cb13-698" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_wine, <span class="fu">aes</span>(<span class="at">x =</span> quality_category, <span class="at">y =</span> volatile_acidity, <span class="at">fill =</span> type)) <span class="sc">+</span></span>
-<span id="cb13-699"><a href="#cb13-699" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>)) <span class="sc">+</span></span>
-<span id="cb13-700"><a href="#cb13-700" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Volatile Acidity by Wine Quality and Type&quot;</span>,</span>
-<span id="cb13-701"><a href="#cb13-701" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Quality Category&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Volatile Acidity (g/L)&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Wine Type&quot;</span>) <span class="sc">+</span></span>
-<span id="cb13-702"><a href="#cb13-702" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb13-703"><a href="#cb13-703" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-704"><a href="#cb13-704" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-705"><a href="#cb13-705" aria-hidden="true" tabindex="-1"></a><span class="fu">### Variable Importance</span></span>
-<span id="cb13-706"><a href="#cb13-706" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-707"><a href="#cb13-707" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Combined Dataset</span></span>
-<span id="cb13-708"><a href="#cb13-708" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-711"><a href="#cb13-711" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-712"><a href="#cb13-712" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data and train</span></span>
-<span id="cb13-713"><a href="#cb13-713" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)  </span>
-<span id="cb13-714"><a href="#cb13-714" aria-hidden="true" tabindex="-1"></a>train_indices_combined <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(combined_wine<span class="sc">$</span>quality_category, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb13-715"><a href="#cb13-715" aria-hidden="true" tabindex="-1"></a>train_data_combined <span class="ot">&lt;-</span> combined_wine[train_indices_combined, ]</span>
-<span id="cb13-716"><a href="#cb13-716" aria-hidden="true" tabindex="-1"></a>test_data_combined <span class="ot">&lt;-</span> combined_wine[<span class="sc">-</span>train_indices_combined, ]</span>
-<span id="cb13-717"><a href="#cb13-717" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-718"><a href="#cb13-718" aria-hidden="true" tabindex="-1"></a>train_rf_combined <span class="ot">&lt;-</span> train_data_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
-<span id="cb13-719"><a href="#cb13-719" aria-hidden="true" tabindex="-1"></a>test_rf_combined <span class="ot">&lt;-</span> test_data_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
-<span id="cb13-720"><a href="#cb13-720" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-721"><a href="#cb13-721" aria-hidden="true" tabindex="-1"></a>rf_model_combined <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality_category <span class="sc">~</span> ., <span class="at">data =</span> train_rf_combined, <span class="at">ntree =</span> <span class="dv">200</span>, <span class="at">mtry =</span> <span class="dv">3</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-722"><a href="#cb13-722" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-723"><a href="#cb13-723" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable importance plot</span></span>
-<span id="cb13-724"><a href="#cb13-724" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf_model_combined, , <span class="at">main =</span> <span class="st">&quot;Variable Importance - Combined Wine&quot;</span>)</span>
-<span id="cb13-725"><a href="#cb13-725" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-726"><a href="#cb13-726" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-727"><a href="#cb13-727" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-728"><a href="#cb13-728" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Red Wine Dataset</span></span>
-<span id="cb13-729"><a href="#cb13-729" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-732"><a href="#cb13-732" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-733"><a href="#cb13-733" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data and train</span></span>
-<span id="cb13-734"><a href="#cb13-734" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)  </span>
-<span id="cb13-735"><a href="#cb13-735" aria-hidden="true" tabindex="-1"></a>train_indices_red <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(red_wine_cleaned<span class="sc">$</span>quality_category, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb13-736"><a href="#cb13-736" aria-hidden="true" tabindex="-1"></a>train_data_red <span class="ot">&lt;-</span> red_wine_cleaned[train_indices_red, ]</span>
-<span id="cb13-737"><a href="#cb13-737" aria-hidden="true" tabindex="-1"></a>test_data_red <span class="ot">&lt;-</span> red_wine_cleaned[<span class="sc">-</span>train_indices_red, ]</span>
-<span id="cb13-738"><a href="#cb13-738" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-739"><a href="#cb13-739" aria-hidden="true" tabindex="-1"></a>train_rf_ml_red <span class="ot">&lt;-</span> train_data_red <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
-<span id="cb13-740"><a href="#cb13-740" aria-hidden="true" tabindex="-1"></a>test_rf_ml_red <span class="ot">&lt;-</span> test_data_red <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
-<span id="cb13-741"><a href="#cb13-741" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-742"><a href="#cb13-742" aria-hidden="true" tabindex="-1"></a>rf_model_ml_red <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality_category <span class="sc">~</span> ., <span class="at">data =</span> train_rf_ml_red, <span class="at">ntree =</span> <span class="dv">200</span>, <span class="at">mtry =</span> <span class="dv">3</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-743"><a href="#cb13-743" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-744"><a href="#cb13-744" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable importance plot</span></span>
-<span id="cb13-745"><a href="#cb13-745" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf_model_ml_red, <span class="at">main =</span> <span class="st">&quot;Variable Importance - Red Wine&quot;</span>)</span>
-<span id="cb13-746"><a href="#cb13-746" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-747"><a href="#cb13-747" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-748"><a href="#cb13-748" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-749"><a href="#cb13-749" aria-hidden="true" tabindex="-1"></a><span class="fu">#### White Wine Dataset</span></span>
-<span id="cb13-750"><a href="#cb13-750" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-753"><a href="#cb13-753" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-754"><a href="#cb13-754" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data and train</span></span>
-<span id="cb13-755"><a href="#cb13-755" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)  </span>
-<span id="cb13-756"><a href="#cb13-756" aria-hidden="true" tabindex="-1"></a>train_indices_white <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(white_wine_cleaned<span class="sc">$</span>quality_category, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb13-757"><a href="#cb13-757" aria-hidden="true" tabindex="-1"></a>train_data_white <span class="ot">&lt;-</span> white_wine_cleaned[train_indices_white, ]</span>
-<span id="cb13-758"><a href="#cb13-758" aria-hidden="true" tabindex="-1"></a>test_data_white <span class="ot">&lt;-</span> white_wine_cleaned[<span class="sc">-</span>train_indices_white, ]</span>
-<span id="cb13-759"><a href="#cb13-759" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-760"><a href="#cb13-760" aria-hidden="true" tabindex="-1"></a>train_rf_white <span class="ot">&lt;-</span> train_data_white <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
-<span id="cb13-761"><a href="#cb13-761" aria-hidden="true" tabindex="-1"></a>test_rf_white <span class="ot">&lt;-</span> test_data_white <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
+<span id="cb13-657"><a href="#cb13-657" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation heatmap</span></span>
+<span id="cb13-658"><a href="#cb13-658" aria-hidden="true" tabindex="-1"></a>numeric_data <span class="ot">&lt;-</span> combined_wine <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">where</span>(is.numeric))</span>
+<span id="cb13-659"><a href="#cb13-659" aria-hidden="true" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(numeric_data, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
+<span id="cb13-660"><a href="#cb13-660" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(cor_matrix, <span class="at">method =</span> <span class="st">&quot;color&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, <span class="at">tl.col =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb13-661"><a href="#cb13-661" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.cex =</span> <span class="fl">0.8</span>, <span class="at">addCoef.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">number.cex =</span> <span class="fl">0.7</span>, <span class="at">diag =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb13-662"><a href="#cb13-662" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-663"><a href="#cb13-663" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot for alcohol</span></span>
+<span id="cb13-664"><a href="#cb13-664" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_wine, <span class="fu">aes</span>(<span class="at">x =</span> quality_category, <span class="at">y =</span> alcohol, <span class="at">fill =</span> type)) <span class="sc">+</span></span>
+<span id="cb13-665"><a href="#cb13-665" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>)) <span class="sc">+</span></span>
+<span id="cb13-666"><a href="#cb13-666" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Alcohol Content by Wine Quality and Type&quot;</span>,</span>
+<span id="cb13-667"><a href="#cb13-667" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Quality Category&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Alcohol (%)&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Wine Type&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-668"><a href="#cb13-668" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb13-669"><a href="#cb13-669" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-670"><a href="#cb13-670" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot for volatile acidity</span></span>
+<span id="cb13-671"><a href="#cb13-671" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_wine, <span class="fu">aes</span>(<span class="at">x =</span> quality_category, <span class="at">y =</span> volatile_acidity, <span class="at">fill =</span> type)) <span class="sc">+</span></span>
+<span id="cb13-672"><a href="#cb13-672" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>)) <span class="sc">+</span></span>
+<span id="cb13-673"><a href="#cb13-673" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Volatile Acidity by Wine Quality and Type&quot;</span>,</span>
+<span id="cb13-674"><a href="#cb13-674" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Quality Category&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Volatile Acidity (g/L)&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Wine Type&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-675"><a href="#cb13-675" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb13-676"><a href="#cb13-676" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-677"><a href="#cb13-677" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-678"><a href="#cb13-678" aria-hidden="true" tabindex="-1"></a><span class="fu">### Variable Importance</span></span>
+<span id="cb13-679"><a href="#cb13-679" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-680"><a href="#cb13-680" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Combined Dataset</span></span>
+<span id="cb13-681"><a href="#cb13-681" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-684"><a href="#cb13-684" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-685"><a href="#cb13-685" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data and train</span></span>
+<span id="cb13-686"><a href="#cb13-686" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)  </span>
+<span id="cb13-687"><a href="#cb13-687" aria-hidden="true" tabindex="-1"></a>train_indices_combined <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(combined_wine<span class="sc">$</span>quality_category, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb13-688"><a href="#cb13-688" aria-hidden="true" tabindex="-1"></a>train_data_combined <span class="ot">&lt;-</span> combined_wine[train_indices_combined, ]</span>
+<span id="cb13-689"><a href="#cb13-689" aria-hidden="true" tabindex="-1"></a>test_data_combined <span class="ot">&lt;-</span> combined_wine[<span class="sc">-</span>train_indices_combined, ]</span>
+<span id="cb13-690"><a href="#cb13-690" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-691"><a href="#cb13-691" aria-hidden="true" tabindex="-1"></a>train_rf_combined <span class="ot">&lt;-</span> train_data_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
+<span id="cb13-692"><a href="#cb13-692" aria-hidden="true" tabindex="-1"></a>test_rf_combined <span class="ot">&lt;-</span> test_data_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
+<span id="cb13-693"><a href="#cb13-693" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-694"><a href="#cb13-694" aria-hidden="true" tabindex="-1"></a>rf_model_combined <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality_category <span class="sc">~</span> ., <span class="at">data =</span> train_rf_combined, <span class="at">ntree =</span> <span class="dv">200</span>, <span class="at">mtry =</span> <span class="dv">3</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-695"><a href="#cb13-695" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-696"><a href="#cb13-696" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable importance plot</span></span>
+<span id="cb13-697"><a href="#cb13-697" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf_model_combined, , <span class="at">main =</span> <span class="st">&quot;Variable Importance - Combined Wine&quot;</span>)</span>
+<span id="cb13-698"><a href="#cb13-698" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-699"><a href="#cb13-699" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-700"><a href="#cb13-700" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-701"><a href="#cb13-701" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Red Wine Dataset</span></span>
+<span id="cb13-702"><a href="#cb13-702" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-705"><a href="#cb13-705" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-706"><a href="#cb13-706" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data and train</span></span>
+<span id="cb13-707"><a href="#cb13-707" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)  </span>
+<span id="cb13-708"><a href="#cb13-708" aria-hidden="true" tabindex="-1"></a>train_indices_red <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(red_wine_cleaned<span class="sc">$</span>quality_category, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb13-709"><a href="#cb13-709" aria-hidden="true" tabindex="-1"></a>train_data_red <span class="ot">&lt;-</span> red_wine_cleaned[train_indices_red, ]</span>
+<span id="cb13-710"><a href="#cb13-710" aria-hidden="true" tabindex="-1"></a>test_data_red <span class="ot">&lt;-</span> red_wine_cleaned[<span class="sc">-</span>train_indices_red, ]</span>
+<span id="cb13-711"><a href="#cb13-711" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-712"><a href="#cb13-712" aria-hidden="true" tabindex="-1"></a>train_rf_ml_red <span class="ot">&lt;-</span> train_data_red <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
+<span id="cb13-713"><a href="#cb13-713" aria-hidden="true" tabindex="-1"></a>test_rf_ml_red <span class="ot">&lt;-</span> test_data_red <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
+<span id="cb13-714"><a href="#cb13-714" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-715"><a href="#cb13-715" aria-hidden="true" tabindex="-1"></a>rf_model_ml_red <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality_category <span class="sc">~</span> ., <span class="at">data =</span> train_rf_ml_red, <span class="at">ntree =</span> <span class="dv">200</span>, <span class="at">mtry =</span> <span class="dv">3</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-716"><a href="#cb13-716" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-717"><a href="#cb13-717" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable importance plot</span></span>
+<span id="cb13-718"><a href="#cb13-718" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf_model_ml_red, <span class="at">main =</span> <span class="st">&quot;Variable Importance - Red Wine&quot;</span>)</span>
+<span id="cb13-719"><a href="#cb13-719" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-720"><a href="#cb13-720" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-721"><a href="#cb13-721" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-722"><a href="#cb13-722" aria-hidden="true" tabindex="-1"></a><span class="fu">#### White Wine Dataset</span></span>
+<span id="cb13-723"><a href="#cb13-723" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-726"><a href="#cb13-726" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-727"><a href="#cb13-727" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data and train</span></span>
+<span id="cb13-728"><a href="#cb13-728" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)  </span>
+<span id="cb13-729"><a href="#cb13-729" aria-hidden="true" tabindex="-1"></a>train_indices_white <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(white_wine_cleaned<span class="sc">$</span>quality_category, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb13-730"><a href="#cb13-730" aria-hidden="true" tabindex="-1"></a>train_data_white <span class="ot">&lt;-</span> white_wine_cleaned[train_indices_white, ]</span>
+<span id="cb13-731"><a href="#cb13-731" aria-hidden="true" tabindex="-1"></a>test_data_white <span class="ot">&lt;-</span> white_wine_cleaned[<span class="sc">-</span>train_indices_white, ]</span>
+<span id="cb13-732"><a href="#cb13-732" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-733"><a href="#cb13-733" aria-hidden="true" tabindex="-1"></a>train_rf_white <span class="ot">&lt;-</span> train_data_white <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
+<span id="cb13-734"><a href="#cb13-734" aria-hidden="true" tabindex="-1"></a>test_rf_white <span class="ot">&lt;-</span> test_data_white <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
+<span id="cb13-735"><a href="#cb13-735" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-736"><a href="#cb13-736" aria-hidden="true" tabindex="-1"></a>rf_model_rf_white <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality_category <span class="sc">~</span> ., <span class="at">data =</span> train_rf_white, <span class="at">ntree =</span> <span class="dv">200</span>, <span class="at">mtry =</span> <span class="dv">3</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-737"><a href="#cb13-737" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-738"><a href="#cb13-738" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable importance plot</span></span>
+<span id="cb13-739"><a href="#cb13-739" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf_model_rf_white, <span class="at">main =</span> <span class="st">&quot;Variable Importance - White Wine&quot;</span>)</span>
+<span id="cb13-740"><a href="#cb13-740" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-741"><a href="#cb13-741" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-742"><a href="#cb13-742" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-743"><a href="#cb13-743" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Which Chemical Features Are the Most Important Predictors of Wine Quality?</span></span>
+<span id="cb13-744"><a href="#cb13-744" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-745"><a href="#cb13-745" aria-hidden="true" tabindex="-1"></a>To understand which features have the greatest impact on wine quality,</span>
+<span id="cb13-746"><a href="#cb13-746" aria-hidden="true" tabindex="-1"></a>we trained Random Forest models separately for red, white, and combined</span>
+<span id="cb13-747"><a href="#cb13-747" aria-hidden="true" tabindex="-1"></a>datasets, then visualized variable importance. This helped us highlight</span>
+<span id="cb13-748"><a href="#cb13-748" aria-hidden="true" tabindex="-1"></a>the most influential predictors in each case:</span>
+<span id="cb13-749"><a href="#cb13-749" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-750"><a href="#cb13-750" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Combined Dataset:</span><span class="co">]</span>{.underline} Alcohol, volatile acidity, and</span>
+<span id="cb13-751"><a href="#cb13-751" aria-hidden="true" tabindex="-1"></a>    sulphates</span>
+<span id="cb13-752"><a href="#cb13-752" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-753"><a href="#cb13-753" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Red Wine:</span><span class="co">]</span>{.underline} Sulphates, volatile acidity, and alcohol</span>
+<span id="cb13-754"><a href="#cb13-754" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-755"><a href="#cb13-755" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">White Wine:</span><span class="co">]</span>{.underline} Alcohol, sulphates, and volatile acidity</span>
+<span id="cb13-756"><a href="#cb13-756" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-757"><a href="#cb13-757" aria-hidden="true" tabindex="-1"></a>These results suggest that while alcohol is consistently important,</span>
+<span id="cb13-758"><a href="#cb13-758" aria-hidden="true" tabindex="-1"></a>sulphates and volatile acidity also play key roles in predicting wine</span>
+<span id="cb13-759"><a href="#cb13-759" aria-hidden="true" tabindex="-1"></a>quality across both wine types.</span>
+<span id="cb13-760"><a href="#cb13-760" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-761"><a href="#cb13-761" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Can We Predict Wine Quality from Chemistry?</span></span>
 <span id="cb13-762"><a href="#cb13-762" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-763"><a href="#cb13-763" aria-hidden="true" tabindex="-1"></a>rf_model_rf_white <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality_category <span class="sc">~</span> ., <span class="at">data =</span> train_rf_white, <span class="at">ntree =</span> <span class="dv">200</span>, <span class="at">mtry =</span> <span class="dv">3</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-764"><a href="#cb13-764" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-765"><a href="#cb13-765" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable importance plot</span></span>
-<span id="cb13-766"><a href="#cb13-766" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf_model_rf_white, <span class="at">main =</span> <span class="st">&quot;Variable Importance - White Wine&quot;</span>)</span>
-<span id="cb13-767"><a href="#cb13-767" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-768"><a href="#cb13-768" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-763"><a href="#cb13-763" aria-hidden="true" tabindex="-1"></a>Our analysis shows that the answer is yes. By training models such as</span>
+<span id="cb13-764"><a href="#cb13-764" aria-hidden="true" tabindex="-1"></a>logistic regression, decision trees, and random forests, we were able to</span>
+<span id="cb13-765"><a href="#cb13-765" aria-hidden="true" tabindex="-1"></a>make reasonably accurate predictions using features like alcohol</span>
+<span id="cb13-766"><a href="#cb13-766" aria-hidden="true" tabindex="-1"></a>content, acidity levels, and sulphates. These results highlight the</span>
+<span id="cb13-767"><a href="#cb13-767" aria-hidden="true" tabindex="-1"></a>strong relationship between a wine’s chemistry and its perceived</span>
+<span id="cb13-768"><a href="#cb13-768" aria-hidden="true" tabindex="-1"></a>quality.</span>
 <span id="cb13-769"><a href="#cb13-769" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-770"><a href="#cb13-770" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Which Chemical Features Are the Most Important Predictors of Wine Quality?</span></span>
+<span id="cb13-770"><a href="#cb13-770" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Modeling and Results</span></span>
 <span id="cb13-771"><a href="#cb13-771" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-772"><a href="#cb13-772" aria-hidden="true" tabindex="-1"></a>To understand which features have the greatest impact on wine quality,</span>
-<span id="cb13-773"><a href="#cb13-773" aria-hidden="true" tabindex="-1"></a>we trained Random Forest models separately for red, white, and combined</span>
-<span id="cb13-774"><a href="#cb13-774" aria-hidden="true" tabindex="-1"></a>datasets, then visualized variable importance. This helped us highlight</span>
-<span id="cb13-775"><a href="#cb13-775" aria-hidden="true" tabindex="-1"></a>the most influential predictors in each case:</span>
-<span id="cb13-776"><a href="#cb13-776" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-777"><a href="#cb13-777" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Combined Dataset:</span><span class="co">]</span>{.underline} Alcohol, volatile acidity, and</span>
-<span id="cb13-778"><a href="#cb13-778" aria-hidden="true" tabindex="-1"></a>    sulphates</span>
-<span id="cb13-779"><a href="#cb13-779" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-780"><a href="#cb13-780" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Red Wine:</span><span class="co">]</span>{.underline} Sulphates, volatile acidity, and alcohol</span>
-<span id="cb13-781"><a href="#cb13-781" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-782"><a href="#cb13-782" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">White Wine:</span><span class="co">]</span>{.underline} Alcohol, sulphates, and volatile acidity</span>
-<span id="cb13-783"><a href="#cb13-783" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-784"><a href="#cb13-784" aria-hidden="true" tabindex="-1"></a>These results suggest that while alcohol is consistently important,</span>
-<span id="cb13-785"><a href="#cb13-785" aria-hidden="true" tabindex="-1"></a>sulphates and volatile acidity also play key roles in predicting wine</span>
-<span id="cb13-786"><a href="#cb13-786" aria-hidden="true" tabindex="-1"></a>quality across both wine types.</span>
-<span id="cb13-787"><a href="#cb13-787" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-788"><a href="#cb13-788" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Can We Predict Wine Quality from Chemistry?</span></span>
-<span id="cb13-789"><a href="#cb13-789" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-790"><a href="#cb13-790" aria-hidden="true" tabindex="-1"></a>Our analysis shows that the answer is yes. By training models such as</span>
-<span id="cb13-791"><a href="#cb13-791" aria-hidden="true" tabindex="-1"></a>logistic regression, decision trees, and random forests, we were able to</span>
-<span id="cb13-792"><a href="#cb13-792" aria-hidden="true" tabindex="-1"></a>make reasonably accurate predictions using features like alcohol</span>
-<span id="cb13-793"><a href="#cb13-793" aria-hidden="true" tabindex="-1"></a>content, acidity levels, and sulphates. These results highlight the</span>
-<span id="cb13-794"><a href="#cb13-794" aria-hidden="true" tabindex="-1"></a>strong relationship between a wine’s chemistry and its perceived</span>
-<span id="cb13-795"><a href="#cb13-795" aria-hidden="true" tabindex="-1"></a>quality.</span>
+<span id="cb13-772"><a href="#cb13-772" aria-hidden="true" tabindex="-1"></a>Three classification models: Random Forest, Decision Tree, and Logistic</span>
+<span id="cb13-773"><a href="#cb13-773" aria-hidden="true" tabindex="-1"></a>Regression (combined dataset only) were trained using a 70/30 train-test</span>
+<span id="cb13-774"><a href="#cb13-774" aria-hidden="true" tabindex="-1"></a>split. Random Forest outperformed the baselines, leveraging its ability</span>
+<span id="cb13-775"><a href="#cb13-775" aria-hidden="true" tabindex="-1"></a>to capture non-linear relationships. The table below summarizes model</span>
+<span id="cb13-776"><a href="#cb13-776" aria-hidden="true" tabindex="-1"></a>performance, followed by detailed Random Forest results for the combined</span>
+<span id="cb13-777"><a href="#cb13-777" aria-hidden="true" tabindex="-1"></a>dataset.</span>
+<span id="cb13-778"><a href="#cb13-778" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-779"><a href="#cb13-779" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Precision, Recall, and F1 – Combined Dataset</span></span>
+<span id="cb13-780"><a href="#cb13-780" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-781"><a href="#cb13-781" aria-hidden="true" tabindex="-1"></a>| Class  | Model               | Precision | Recall   | F1 Score |</span>
+<span id="cb13-782"><a href="#cb13-782" aria-hidden="true" tabindex="-1"></a>|--------|---------------------|-----------|----------|----------|</span>
+<span id="cb13-783"><a href="#cb13-783" aria-hidden="true" tabindex="-1"></a>| Low    | **Random Forest**   | **0.79**  | **0.75** | **0.77** |</span>
+<span id="cb13-784"><a href="#cb13-784" aria-hidden="true" tabindex="-1"></a>|        | Logistic Regression | 0.64      | 0.64     | 0.64     |</span>
+<span id="cb13-785"><a href="#cb13-785" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree       | 0.64      | 0.62     | 0.63     |</span>
+<span id="cb13-786"><a href="#cb13-786" aria-hidden="true" tabindex="-1"></a>| Medium | **Random Forest**   | **0.66**  | **0.76** | **0.71** |</span>
+<span id="cb13-787"><a href="#cb13-787" aria-hidden="true" tabindex="-1"></a>|        | Logistic Regression | 0.52      | 0.63     | 0.57     |</span>
+<span id="cb13-788"><a href="#cb13-788" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree       | 0.51      | 0.58     | 0.54     |</span>
+<span id="cb13-789"><a href="#cb13-789" aria-hidden="true" tabindex="-1"></a>| High   | **Random Forest**   | **0.75**  | **0.57** | **0.65** |</span>
+<span id="cb13-790"><a href="#cb13-790" aria-hidden="true" tabindex="-1"></a>|        | Logistic Regression | 0.54      | 0.30     | 0.38     |</span>
+<span id="cb13-791"><a href="#cb13-791" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree       | 0.51      | 0.39     | 0.44     |</span>
+<span id="cb13-792"><a href="#cb13-792" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-793"><a href="#cb13-793" aria-hidden="true" tabindex="-1"></a>Note: Random Forest consistently delivers better balance across all</span>
+<span id="cb13-794"><a href="#cb13-794" aria-hidden="true" tabindex="-1"></a>classes. Logistic Regression performs competitively for the Medium class</span>
+<span id="cb13-795"><a href="#cb13-795" aria-hidden="true" tabindex="-1"></a>but drops significantly for High quality wines compare to Random Forest.</span>
 <span id="cb13-796"><a href="#cb13-796" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-797"><a href="#cb13-797" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Modeling and Results</span></span>
+<span id="cb13-797"><a href="#cb13-797" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Precision, Recall, and F1 – White Wine</span></span>
 <span id="cb13-798"><a href="#cb13-798" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-799"><a href="#cb13-799" aria-hidden="true" tabindex="-1"></a>Three classification models: Random Forest, Decision Tree, and Logistic</span>
-<span id="cb13-800"><a href="#cb13-800" aria-hidden="true" tabindex="-1"></a>Regression (combined dataset only) were trained using a 70/30 train-test</span>
-<span id="cb13-801"><a href="#cb13-801" aria-hidden="true" tabindex="-1"></a>split. Random Forest outperformed the baselines, leveraging its ability</span>
-<span id="cb13-802"><a href="#cb13-802" aria-hidden="true" tabindex="-1"></a>to capture non-linear relationships. The table below summarizes model</span>
-<span id="cb13-803"><a href="#cb13-803" aria-hidden="true" tabindex="-1"></a>performance, followed by detailed Random Forest results for the combined</span>
-<span id="cb13-804"><a href="#cb13-804" aria-hidden="true" tabindex="-1"></a>dataset.</span>
-<span id="cb13-805"><a href="#cb13-805" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-806"><a href="#cb13-806" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Precision, Recall, and F1 – Combined Dataset</span></span>
+<span id="cb13-799"><a href="#cb13-799" aria-hidden="true" tabindex="-1"></a>| Class  | Model             | Precision | Recall   | F1 Score |</span>
+<span id="cb13-800"><a href="#cb13-800" aria-hidden="true" tabindex="-1"></a>|--------|-------------------|-----------|----------|----------|</span>
+<span id="cb13-801"><a href="#cb13-801" aria-hidden="true" tabindex="-1"></a>| Low    | **Random Forest** | **0.79**  | **0.67** | **0.73** |</span>
+<span id="cb13-802"><a href="#cb13-802" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree     | 0.64      | 0.52     | 0.58     |</span>
+<span id="cb13-803"><a href="#cb13-803" aria-hidden="true" tabindex="-1"></a>| Medium | **Random Forest** | **0.66**  | **0.78** | **0.71** |</span>
+<span id="cb13-804"><a href="#cb13-804" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree     | 0.52      | 0.75     | 0.61     |</span>
+<span id="cb13-805"><a href="#cb13-805" aria-hidden="true" tabindex="-1"></a>| High   | **Random Forest** | **0.75**  | **0.64** | **0.69** |</span>
+<span id="cb13-806"><a href="#cb13-806" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree     | 0.65      | 0.23     | 0.34     |</span>
 <span id="cb13-807"><a href="#cb13-807" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-808"><a href="#cb13-808" aria-hidden="true" tabindex="-1"></a>| Class  | Model               | Precision | Recall   | F1 Score |</span>
-<span id="cb13-809"><a href="#cb13-809" aria-hidden="true" tabindex="-1"></a>|--------|---------------------|-----------|----------|----------|</span>
-<span id="cb13-810"><a href="#cb13-810" aria-hidden="true" tabindex="-1"></a>| Low    | **Random Forest**   | **0.79**  | **0.75** | **0.77** |</span>
-<span id="cb13-811"><a href="#cb13-811" aria-hidden="true" tabindex="-1"></a>|        | Logistic Regression | 0.64      | 0.64     | 0.64     |</span>
-<span id="cb13-812"><a href="#cb13-812" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree       | 0.64      | 0.62     | 0.63     |</span>
-<span id="cb13-813"><a href="#cb13-813" aria-hidden="true" tabindex="-1"></a>| Medium | **Random Forest**   | **0.66**  | **0.76** | **0.71** |</span>
-<span id="cb13-814"><a href="#cb13-814" aria-hidden="true" tabindex="-1"></a>|        | Logistic Regression | 0.52      | 0.63     | 0.57     |</span>
-<span id="cb13-815"><a href="#cb13-815" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree       | 0.51      | 0.58     | 0.54     |</span>
-<span id="cb13-816"><a href="#cb13-816" aria-hidden="true" tabindex="-1"></a>| High   | **Random Forest**   | **0.75**  | **0.57** | **0.65** |</span>
-<span id="cb13-817"><a href="#cb13-817" aria-hidden="true" tabindex="-1"></a>|        | Logistic Regression | 0.54      | 0.30     | 0.38     |</span>
-<span id="cb13-818"><a href="#cb13-818" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree       | 0.51      | 0.39     | 0.44     |</span>
-<span id="cb13-819"><a href="#cb13-819" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-820"><a href="#cb13-820" aria-hidden="true" tabindex="-1"></a>Note: Random Forest consistently delivers better balance across all</span>
-<span id="cb13-821"><a href="#cb13-821" aria-hidden="true" tabindex="-1"></a>classes. Logistic Regression performs competitively for the Medium class</span>
-<span id="cb13-822"><a href="#cb13-822" aria-hidden="true" tabindex="-1"></a>but drops significantly for High quality wines compare to Random Forest.</span>
+<span id="cb13-808"><a href="#cb13-808" aria-hidden="true" tabindex="-1"></a>Note: Random Forest produced higher and more balanced scores across all</span>
+<span id="cb13-809"><a href="#cb13-809" aria-hidden="true" tabindex="-1"></a>classes, particularly High quality wines, where the Decision Tree showed</span>
+<span id="cb13-810"><a href="#cb13-810" aria-hidden="true" tabindex="-1"></a>very poor recall. The improvement in precision for both Low and High</span>
+<span id="cb13-811"><a href="#cb13-811" aria-hidden="true" tabindex="-1"></a>categories also highlights better overall performance.</span>
+<span id="cb13-812"><a href="#cb13-812" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-813"><a href="#cb13-813" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Precision, Recall, and F1 – Red Wine</span></span>
+<span id="cb13-814"><a href="#cb13-814" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-815"><a href="#cb13-815" aria-hidden="true" tabindex="-1"></a>| Class  | Model             | Precision | Recall   | F1 Score |</span>
+<span id="cb13-816"><a href="#cb13-816" aria-hidden="true" tabindex="-1"></a>|--------|-------------------|-----------|----------|----------|</span>
+<span id="cb13-817"><a href="#cb13-817" aria-hidden="true" tabindex="-1"></a>| Low    | **Random Forest** | **0.80**  | **0.80** | **0.80** |</span>
+<span id="cb13-818"><a href="#cb13-818" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree     | 0.70      | 0.78     | 0.74     |</span>
+<span id="cb13-819"><a href="#cb13-819" aria-hidden="true" tabindex="-1"></a>| Medium | **Random Forest** | **0.69**  | **0.71** | **0.70** |</span>
+<span id="cb13-820"><a href="#cb13-820" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree     | 0.56      | 0.56     | 0.56     |</span>
+<span id="cb13-821"><a href="#cb13-821" aria-hidden="true" tabindex="-1"></a>| High   | **Random Forest** | **0.72**  | **0.63** | **0.67** |</span>
+<span id="cb13-822"><a href="#cb13-822" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree     | 0.62      | 0.40     | 0.48     |</span>
 <span id="cb13-823"><a href="#cb13-823" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-824"><a href="#cb13-824" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Precision, Recall, and F1 – White Wine</span></span>
-<span id="cb13-825"><a href="#cb13-825" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-826"><a href="#cb13-826" aria-hidden="true" tabindex="-1"></a>| Class  | Model             | Precision | Recall   | F1 Score |</span>
-<span id="cb13-827"><a href="#cb13-827" aria-hidden="true" tabindex="-1"></a>|--------|-------------------|-----------|----------|----------|</span>
-<span id="cb13-828"><a href="#cb13-828" aria-hidden="true" tabindex="-1"></a>| Low    | **Random Forest** | **0.79**  | **0.67** | **0.73** |</span>
-<span id="cb13-829"><a href="#cb13-829" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree     | 0.64      | 0.52     | 0.58     |</span>
-<span id="cb13-830"><a href="#cb13-830" aria-hidden="true" tabindex="-1"></a>| Medium | **Random Forest** | **0.66**  | **0.78** | **0.71** |</span>
-<span id="cb13-831"><a href="#cb13-831" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree     | 0.52      | 0.75     | 0.61     |</span>
-<span id="cb13-832"><a href="#cb13-832" aria-hidden="true" tabindex="-1"></a>| High   | **Random Forest** | **0.75**  | **0.64** | **0.69** |</span>
-<span id="cb13-833"><a href="#cb13-833" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree     | 0.65      | 0.23     | 0.34     |</span>
-<span id="cb13-834"><a href="#cb13-834" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-835"><a href="#cb13-835" aria-hidden="true" tabindex="-1"></a>Note: Random Forest produced higher and more balanced scores across all</span>
-<span id="cb13-836"><a href="#cb13-836" aria-hidden="true" tabindex="-1"></a>classes, particularly High quality wines, where the Decision Tree showed</span>
-<span id="cb13-837"><a href="#cb13-837" aria-hidden="true" tabindex="-1"></a>very poor recall. The improvement in precision for both Low and High</span>
-<span id="cb13-838"><a href="#cb13-838" aria-hidden="true" tabindex="-1"></a>categories also highlights better overall performance.</span>
+<span id="cb13-824"><a href="#cb13-824" aria-hidden="true" tabindex="-1"></a>Note: Overall, Random Forest had stronger precision and recall across</span>
+<span id="cb13-825"><a href="#cb13-825" aria-hidden="true" tabindex="-1"></a>all classes, especially in minority class (High), leading to a more</span>
+<span id="cb13-826"><a href="#cb13-826" aria-hidden="true" tabindex="-1"></a>balanced model.</span>
+<span id="cb13-827"><a href="#cb13-827" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-828"><a href="#cb13-828" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Accuraccy and AUC&#39;s</span></span>
+<span id="cb13-829"><a href="#cb13-829" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-830"><a href="#cb13-830" aria-hidden="true" tabindex="-1"></a>| Dataset    | Model               | Accuracy  | Avg AUC   |</span>
+<span id="cb13-831"><a href="#cb13-831" aria-hidden="true" tabindex="-1"></a>|------------|---------------------|-----------|-----------|</span>
+<span id="cb13-832"><a href="#cb13-832" aria-hidden="true" tabindex="-1"></a>| Red Wine   | Random Forest       | **74.1%** | **0.879** |</span>
+<span id="cb13-833"><a href="#cb13-833" aria-hidden="true" tabindex="-1"></a>|            | Decision Tree       | 63.9%     | 0.777     |</span>
+<span id="cb13-834"><a href="#cb13-834" aria-hidden="true" tabindex="-1"></a>| White Wine | Random Forest       | **71.6%** | **0.882** |</span>
+<span id="cb13-835"><a href="#cb13-835" aria-hidden="true" tabindex="-1"></a>|            | Decision Tree       | 56.1%     | 0.710     |</span>
+<span id="cb13-836"><a href="#cb13-836" aria-hidden="true" tabindex="-1"></a>| Combined   | Random Forest       | **72.1%** | **0.884** |</span>
+<span id="cb13-837"><a href="#cb13-837" aria-hidden="true" tabindex="-1"></a>|            | Decision Tree       | 55.5%     | 0.723     |</span>
+<span id="cb13-838"><a href="#cb13-838" aria-hidden="true" tabindex="-1"></a>|            | Logistic Regression | 56.7%     | 0.756     |</span>
 <span id="cb13-839"><a href="#cb13-839" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-840"><a href="#cb13-840" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Precision, Recall, and F1 – Red Wine</span></span>
+<span id="cb13-840"><a href="#cb13-840" aria-hidden="true" tabindex="-1"></a><span class="fu">### Random Forest Results (Combined Dataset)</span></span>
 <span id="cb13-841"><a href="#cb13-841" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-842"><a href="#cb13-842" aria-hidden="true" tabindex="-1"></a>| Class  | Model             | Precision | Recall   | F1 Score |</span>
-<span id="cb13-843"><a href="#cb13-843" aria-hidden="true" tabindex="-1"></a>|--------|-------------------|-----------|----------|----------|</span>
-<span id="cb13-844"><a href="#cb13-844" aria-hidden="true" tabindex="-1"></a>| Low    | **Random Forest** | **0.80**  | **0.80** | **0.80** |</span>
-<span id="cb13-845"><a href="#cb13-845" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree     | 0.70      | 0.78     | 0.74     |</span>
-<span id="cb13-846"><a href="#cb13-846" aria-hidden="true" tabindex="-1"></a>| Medium | **Random Forest** | **0.69**  | **0.71** | **0.70** |</span>
-<span id="cb13-847"><a href="#cb13-847" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree     | 0.56      | 0.56     | 0.56     |</span>
-<span id="cb13-848"><a href="#cb13-848" aria-hidden="true" tabindex="-1"></a>| High   | **Random Forest** | **0.72**  | **0.63** | **0.67** |</span>
-<span id="cb13-849"><a href="#cb13-849" aria-hidden="true" tabindex="-1"></a>|        | Decision Tree     | 0.62      | 0.40     | 0.48     |</span>
-<span id="cb13-850"><a href="#cb13-850" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-851"><a href="#cb13-851" aria-hidden="true" tabindex="-1"></a>Note: Overall, Random Forest had stronger precision and recall across</span>
-<span id="cb13-852"><a href="#cb13-852" aria-hidden="true" tabindex="-1"></a>all classes, especially in minority class (High), leading to a more</span>
-<span id="cb13-853"><a href="#cb13-853" aria-hidden="true" tabindex="-1"></a>balanced model.</span>
-<span id="cb13-854"><a href="#cb13-854" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-855"><a href="#cb13-855" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Accuraccy and AUC&#39;s</span></span>
-<span id="cb13-856"><a href="#cb13-856" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-857"><a href="#cb13-857" aria-hidden="true" tabindex="-1"></a>| Dataset    | Model               | Accuracy  | Avg AUC   |</span>
-<span id="cb13-858"><a href="#cb13-858" aria-hidden="true" tabindex="-1"></a>|------------|---------------------|-----------|-----------|</span>
-<span id="cb13-859"><a href="#cb13-859" aria-hidden="true" tabindex="-1"></a>| Red Wine   | Random Forest       | **74.1%** | **0.879** |</span>
-<span id="cb13-860"><a href="#cb13-860" aria-hidden="true" tabindex="-1"></a>|            | Decision Tree       | 63.9%     | 0.777     |</span>
-<span id="cb13-861"><a href="#cb13-861" aria-hidden="true" tabindex="-1"></a>| White Wine | Random Forest       | **71.6%** | **0.882** |</span>
-<span id="cb13-862"><a href="#cb13-862" aria-hidden="true" tabindex="-1"></a>|            | Decision Tree       | 56.1%     | 0.710     |</span>
-<span id="cb13-863"><a href="#cb13-863" aria-hidden="true" tabindex="-1"></a>| Combined   | Random Forest       | **72.1%** | **0.884** |</span>
-<span id="cb13-864"><a href="#cb13-864" aria-hidden="true" tabindex="-1"></a>|            | Decision Tree       | 55.5%     | 0.723     |</span>
-<span id="cb13-865"><a href="#cb13-865" aria-hidden="true" tabindex="-1"></a>|            | Logistic Regression | 56.7%     | 0.756     |</span>
-<span id="cb13-866"><a href="#cb13-866" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-867"><a href="#cb13-867" aria-hidden="true" tabindex="-1"></a><span class="fu">### Random Forest Results (Combined Dataset)</span></span>
-<span id="cb13-868"><a href="#cb13-868" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-869"><a href="#cb13-869" aria-hidden="true" tabindex="-1"></a>The Random Forest model achieved 72.1% accuracy and an average AUC of</span>
-<span id="cb13-870"><a href="#cb13-870" aria-hidden="true" tabindex="-1"></a>0.884. The confusion matrix shows strong performance for Low</span>
-<span id="cb13-871"><a href="#cb13-871" aria-hidden="true" tabindex="-1"></a>(sensitivity: 0.75) and Medium (0.76) classes, with High quality wines</span>
-<span id="cb13-872"><a href="#cb13-872" aria-hidden="true" tabindex="-1"></a>(0.57) less accurate due to class imbalance.</span>
-<span id="cb13-873"><a href="#cb13-873" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-874"><a href="#cb13-874" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
-<span id="cb13-875"><a href="#cb13-875" aria-hidden="true" tabindex="-1"></a><span class="in">Confusion Matrix (Random Forest, Combined Dataset):</span></span>
-<span id="cb13-876"><a href="#cb13-876" aria-hidden="true" tabindex="-1"></a><span class="in">         Reference</span></span>
-<span id="cb13-877"><a href="#cb13-877" aria-hidden="true" tabindex="-1"></a><span class="in">Prediction  Low  Medium  High</span></span>
-<span id="cb13-878"><a href="#cb13-878" aria-hidden="true" tabindex="-1"></a><span class="in">    Low     536    136     5</span></span>
-<span id="cb13-879"><a href="#cb13-879" aria-hidden="true" tabindex="-1"></a><span class="in">    Medium  171    650   159</span></span>
-<span id="cb13-880"><a href="#cb13-880" aria-hidden="true" tabindex="-1"></a><span class="in">    High      8     64   219</span></span>
-<span id="cb13-881"><a href="#cb13-881" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-882"><a href="#cb13-882" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-883"><a href="#cb13-883" aria-hidden="true" tabindex="-1"></a>ROC curves demonstrate excellent discriminative power, particularly for</span>
-<span id="cb13-884"><a href="#cb13-884" aria-hidden="true" tabindex="-1"></a>High (AUC: 0.916) and Low (0.909) quality wines.</span>
-<span id="cb13-885"><a href="#cb13-885" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-888"><a href="#cb13-888" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-889"><a href="#cb13-889" aria-hidden="true" tabindex="-1"></a><span class="co"># Train Random Forest</span></span>
-<span id="cb13-890"><a href="#cb13-890" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
-<span id="cb13-891"><a href="#cb13-891" aria-hidden="true" tabindex="-1"></a>train_indices_combined <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(combined_wine<span class="sc">$</span>quality_category, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb13-892"><a href="#cb13-892" aria-hidden="true" tabindex="-1"></a>train_data_combined <span class="ot">&lt;-</span> combined_wine[train_indices_combined, ]</span>
-<span id="cb13-893"><a href="#cb13-893" aria-hidden="true" tabindex="-1"></a>test_data_combined <span class="ot">&lt;-</span> combined_wine[<span class="sc">-</span>train_indices_combined, ]</span>
-<span id="cb13-894"><a href="#cb13-894" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-895"><a href="#cb13-895" aria-hidden="true" tabindex="-1"></a>train_rf_combined <span class="ot">&lt;-</span> train_data_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
-<span id="cb13-896"><a href="#cb13-896" aria-hidden="true" tabindex="-1"></a>test_rf_combined <span class="ot">&lt;-</span> test_data_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
-<span id="cb13-897"><a href="#cb13-897" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-898"><a href="#cb13-898" aria-hidden="true" tabindex="-1"></a>rf_model_combined <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality_category <span class="sc">~</span> ., <span class="at">data =</span> train_rf_combined, <span class="at">ntree =</span> <span class="dv">200</span>, <span class="at">mtry =</span> <span class="dv">3</span>)</span>
-<span id="cb13-899"><a href="#cb13-899" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-900"><a href="#cb13-900" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict and evaluate</span></span>
-<span id="cb13-901"><a href="#cb13-901" aria-hidden="true" tabindex="-1"></a>rf_preds_combined <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf_model_combined, test_rf_combined)</span>
-<span id="cb13-902"><a href="#cb13-902" aria-hidden="true" tabindex="-1"></a>rf_probs_combined <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf_model_combined, test_rf_combined, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)</span>
-<span id="cb13-903"><a href="#cb13-903" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-904"><a href="#cb13-904" aria-hidden="true" tabindex="-1"></a><span class="co"># ROC curves</span></span>
-<span id="cb13-905"><a href="#cb13-905" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)</span>
-<span id="cb13-906"><a href="#cb13-906" aria-hidden="true" tabindex="-1"></a>classes <span class="ot">&lt;-</span> <span class="fu">colnames</span>(rf_probs_combined)</span>
-<span id="cb13-907"><a href="#cb13-907" aria-hidden="true" tabindex="-1"></a>roc_first <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_rf_combined<span class="sc">$</span>quality_category <span class="sc">==</span> classes[<span class="dv">1</span>], rf_probs_combined[, classes[<span class="dv">1</span>]])</span>
-<span id="cb13-908"><a href="#cb13-908" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_first, <span class="at">col =</span> colors[<span class="dv">1</span>], <span class="at">main =</span> <span class="st">&quot;Random Forest ROC Curves (Combined Wine)&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb13-909"><a href="#cb13-909" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(classes)) {</span>
-<span id="cb13-910"><a href="#cb13-910" aria-hidden="true" tabindex="-1"></a>  roc_i <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_rf_combined<span class="sc">$</span>quality_category <span class="sc">==</span> classes[i], rf_probs_combined[, classes[i]])</span>
-<span id="cb13-911"><a href="#cb13-911" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(roc_i, <span class="at">col =</span> colors[i], <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb13-912"><a href="#cb13-912" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-913"><a href="#cb13-913" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">legend =</span> classes, <span class="at">col =</span> colors, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb13-914"><a href="#cb13-914" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-915"><a href="#cb13-915" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-916"><a href="#cb13-916" aria-hidden="true" tabindex="-1"></a><span class="fu">### Performance of Baseline Models</span></span>
-<span id="cb13-917"><a href="#cb13-917" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-918"><a href="#cb13-918" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Decision Tree**: Achieved lower accuracy (55.5–63.9%) and AUC</span>
-<span id="cb13-919"><a href="#cb13-919" aria-hidden="true" tabindex="-1"></a>    (0.710–0.777), struggling with High quality wines due to overfitting</span>
-<span id="cb13-920"><a href="#cb13-920" aria-hidden="true" tabindex="-1"></a>    and simpler decision boundaries.</span>
-<span id="cb13-921"><a href="#cb13-921" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Logistic Regression**: Recorded 56.7% accuracy and 0.756 AUC, with</span>
-<span id="cb13-922"><a href="#cb13-922" aria-hidden="true" tabindex="-1"></a>    poor performance on High quality wines (sensitivity: 0.30).</span>
+<span id="cb13-842"><a href="#cb13-842" aria-hidden="true" tabindex="-1"></a>The Random Forest model achieved 72.1% accuracy and an average AUC of</span>
+<span id="cb13-843"><a href="#cb13-843" aria-hidden="true" tabindex="-1"></a>0.884. The confusion matrix shows strong performance for Low</span>
+<span id="cb13-844"><a href="#cb13-844" aria-hidden="true" tabindex="-1"></a>(sensitivity: 0.75) and Medium (0.76) classes, with High quality wines</span>
+<span id="cb13-845"><a href="#cb13-845" aria-hidden="true" tabindex="-1"></a>(0.57) less accurate due to class imbalance.</span>
+<span id="cb13-846"><a href="#cb13-846" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-847"><a href="#cb13-847" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb13-848"><a href="#cb13-848" aria-hidden="true" tabindex="-1"></a><span class="in">Confusion Matrix (Random Forest, Combined Dataset):</span></span>
+<span id="cb13-849"><a href="#cb13-849" aria-hidden="true" tabindex="-1"></a><span class="in">         Reference</span></span>
+<span id="cb13-850"><a href="#cb13-850" aria-hidden="true" tabindex="-1"></a><span class="in">Prediction  Low  Medium  High</span></span>
+<span id="cb13-851"><a href="#cb13-851" aria-hidden="true" tabindex="-1"></a><span class="in">    Low     536    136     5</span></span>
+<span id="cb13-852"><a href="#cb13-852" aria-hidden="true" tabindex="-1"></a><span class="in">    Medium  171    650   159</span></span>
+<span id="cb13-853"><a href="#cb13-853" aria-hidden="true" tabindex="-1"></a><span class="in">    High      8     64   219</span></span>
+<span id="cb13-854"><a href="#cb13-854" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-855"><a href="#cb13-855" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-856"><a href="#cb13-856" aria-hidden="true" tabindex="-1"></a>ROC curves demonstrate excellent discriminative power, particularly for</span>
+<span id="cb13-857"><a href="#cb13-857" aria-hidden="true" tabindex="-1"></a>High (AUC: 0.916) and Low (0.909) quality wines.</span>
+<span id="cb13-858"><a href="#cb13-858" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-861"><a href="#cb13-861" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-862"><a href="#cb13-862" aria-hidden="true" tabindex="-1"></a><span class="co"># Train Random Forest</span></span>
+<span id="cb13-863"><a href="#cb13-863" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
+<span id="cb13-864"><a href="#cb13-864" aria-hidden="true" tabindex="-1"></a>train_indices_combined <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(combined_wine<span class="sc">$</span>quality_category, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb13-865"><a href="#cb13-865" aria-hidden="true" tabindex="-1"></a>train_data_combined <span class="ot">&lt;-</span> combined_wine[train_indices_combined, ]</span>
+<span id="cb13-866"><a href="#cb13-866" aria-hidden="true" tabindex="-1"></a>test_data_combined <span class="ot">&lt;-</span> combined_wine[<span class="sc">-</span>train_indices_combined, ]</span>
+<span id="cb13-867"><a href="#cb13-867" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-868"><a href="#cb13-868" aria-hidden="true" tabindex="-1"></a>train_rf_combined <span class="ot">&lt;-</span> train_data_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
+<span id="cb13-869"><a href="#cb13-869" aria-hidden="true" tabindex="-1"></a>test_rf_combined <span class="ot">&lt;-</span> test_data_combined <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>quality)</span>
+<span id="cb13-870"><a href="#cb13-870" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-871"><a href="#cb13-871" aria-hidden="true" tabindex="-1"></a>rf_model_combined <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(quality_category <span class="sc">~</span> ., <span class="at">data =</span> train_rf_combined, <span class="at">ntree =</span> <span class="dv">200</span>, <span class="at">mtry =</span> <span class="dv">3</span>)</span>
+<span id="cb13-872"><a href="#cb13-872" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-873"><a href="#cb13-873" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict and evaluate</span></span>
+<span id="cb13-874"><a href="#cb13-874" aria-hidden="true" tabindex="-1"></a>rf_preds_combined <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf_model_combined, test_rf_combined)</span>
+<span id="cb13-875"><a href="#cb13-875" aria-hidden="true" tabindex="-1"></a>rf_probs_combined <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf_model_combined, test_rf_combined, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)</span>
+<span id="cb13-876"><a href="#cb13-876" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-877"><a href="#cb13-877" aria-hidden="true" tabindex="-1"></a><span class="co"># ROC curves</span></span>
+<span id="cb13-878"><a href="#cb13-878" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)</span>
+<span id="cb13-879"><a href="#cb13-879" aria-hidden="true" tabindex="-1"></a>classes <span class="ot">&lt;-</span> <span class="fu">colnames</span>(rf_probs_combined)</span>
+<span id="cb13-880"><a href="#cb13-880" aria-hidden="true" tabindex="-1"></a>roc_first <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_rf_combined<span class="sc">$</span>quality_category <span class="sc">==</span> classes[<span class="dv">1</span>], rf_probs_combined[, classes[<span class="dv">1</span>]])</span>
+<span id="cb13-881"><a href="#cb13-881" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_first, <span class="at">col =</span> colors[<span class="dv">1</span>], <span class="at">main =</span> <span class="st">&quot;Random Forest ROC Curves (Combined Wine)&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb13-882"><a href="#cb13-882" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(classes)) {</span>
+<span id="cb13-883"><a href="#cb13-883" aria-hidden="true" tabindex="-1"></a>  roc_i <span class="ot">&lt;-</span> <span class="fu">roc</span>(test_rf_combined<span class="sc">$</span>quality_category <span class="sc">==</span> classes[i], rf_probs_combined[, classes[i]])</span>
+<span id="cb13-884"><a href="#cb13-884" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(roc_i, <span class="at">col =</span> colors[i], <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb13-885"><a href="#cb13-885" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-886"><a href="#cb13-886" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">legend =</span> classes, <span class="at">col =</span> colors, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb13-887"><a href="#cb13-887" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-888"><a href="#cb13-888" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-889"><a href="#cb13-889" aria-hidden="true" tabindex="-1"></a><span class="fu">### Performance of Baseline Models</span></span>
+<span id="cb13-890"><a href="#cb13-890" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-891"><a href="#cb13-891" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Decision Tree**: Achieved lower accuracy (55.5–63.9%) and AUC</span>
+<span id="cb13-892"><a href="#cb13-892" aria-hidden="true" tabindex="-1"></a>    (0.710–0.777), struggling with High quality wines due to overfitting</span>
+<span id="cb13-893"><a href="#cb13-893" aria-hidden="true" tabindex="-1"></a>    and simpler decision boundaries.</span>
+<span id="cb13-894"><a href="#cb13-894" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Logistic Regression**: Recorded 56.7% accuracy and 0.756 AUC, with</span>
+<span id="cb13-895"><a href="#cb13-895" aria-hidden="true" tabindex="-1"></a>    poor performance on High quality wines (sensitivity: 0.30).</span>
+<span id="cb13-896"><a href="#cb13-896" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-897"><a href="#cb13-897" aria-hidden="true" tabindex="-1"></a><span class="fu">### Results</span></span>
+<span id="cb13-898"><a href="#cb13-898" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-899"><a href="#cb13-899" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Impact of Class Imbalance</span></span>
+<span id="cb13-900"><a href="#cb13-900" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-901"><a href="#cb13-901" aria-hidden="true" tabindex="-1"></a>The dataset is moderately imbalanced, with the Medium quality class</span>
+<span id="cb13-902"><a href="#cb13-902" aria-hidden="true" tabindex="-1"></a>being the most common. This imbalance affects model performance, as seen</span>
+<span id="cb13-903"><a href="#cb13-903" aria-hidden="true" tabindex="-1"></a>in Logistic Regression and Decision Tree models, which tend to over</span>
+<span id="cb13-904"><a href="#cb13-904" aria-hidden="true" tabindex="-1"></a>predict Medium wines. High quality wines, being the least represented,</span>
+<span id="cb13-905"><a href="#cb13-905" aria-hidden="true" tabindex="-1"></a>are harder to classify accurately, with models showing lower sensitivity</span>
+<span id="cb13-906"><a href="#cb13-906" aria-hidden="true" tabindex="-1"></a>for this class. Random Forest mitigates this effect better than the</span>
+<span id="cb13-907"><a href="#cb13-907" aria-hidden="true" tabindex="-1"></a>other models, offering more balanced performance across all classes.</span>
+<span id="cb13-908"><a href="#cb13-908" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-909"><a href="#cb13-909" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Wine Quality</span></span>
+<span id="cb13-910"><a href="#cb13-910" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-911"><a href="#cb13-911" aria-hidden="true" tabindex="-1"></a>Across models and datasets, alcohol show to the strongest predictor for</span>
+<span id="cb13-912"><a href="#cb13-912" aria-hidden="true" tabindex="-1"></a>high quality wines. Higher quality wines also tend to have lower</span>
+<span id="cb13-913"><a href="#cb13-913" aria-hidden="true" tabindex="-1"></a>volatile acidity and, in red wines, higher sulphate levels. These</span>
+<span id="cb13-914"><a href="#cb13-914" aria-hidden="true" tabindex="-1"></a>patterns provide a strong basis for understanding what distinguishes</span>
+<span id="cb13-915"><a href="#cb13-915" aria-hidden="true" tabindex="-1"></a>high and low quality wines based on their chemical properties.</span>
+<span id="cb13-916"><a href="#cb13-916" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-917"><a href="#cb13-917" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Red vs. White Prediction Performance</span></span>
+<span id="cb13-918"><a href="#cb13-918" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-919"><a href="#cb13-919" aria-hidden="true" tabindex="-1"></a>When we tested the models separately, Random Forest did a bit better on</span>
+<span id="cb13-920"><a href="#cb13-920" aria-hidden="true" tabindex="-1"></a>red wine than white. It was especially more accurate at classifying low</span>
+<span id="cb13-921"><a href="#cb13-921" aria-hidden="true" tabindex="-1"></a>and high quality red wines. On the other hand, the white wine model was</span>
+<span id="cb13-922"><a href="#cb13-922" aria-hidden="true" tabindex="-1"></a>more balanced overall, but its precision was a little lower.</span>
 <span id="cb13-923"><a href="#cb13-923" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-924"><a href="#cb13-924" aria-hidden="true" tabindex="-1"></a><span class="fu">### Results</span></span>
+<span id="cb13-924"><a href="#cb13-924" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Model Reliability and Real-World</span></span>
 <span id="cb13-925"><a href="#cb13-925" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-926"><a href="#cb13-926" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Impact of Class Imbalance</span></span>
-<span id="cb13-927"><a href="#cb13-927" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-928"><a href="#cb13-928" aria-hidden="true" tabindex="-1"></a>The dataset is moderately imbalanced, with the Medium quality class</span>
-<span id="cb13-929"><a href="#cb13-929" aria-hidden="true" tabindex="-1"></a>being the most common. This imbalance affects model performance, as seen</span>
-<span id="cb13-930"><a href="#cb13-930" aria-hidden="true" tabindex="-1"></a>in Logistic Regression and Decision Tree models, which tend to over</span>
-<span id="cb13-931"><a href="#cb13-931" aria-hidden="true" tabindex="-1"></a>predict Medium wines. High quality wines, being the least represented,</span>
-<span id="cb13-932"><a href="#cb13-932" aria-hidden="true" tabindex="-1"></a>are harder to classify accurately, with models showing lower sensitivity</span>
-<span id="cb13-933"><a href="#cb13-933" aria-hidden="true" tabindex="-1"></a>for this class. Random Forest mitigates this effect better than the</span>
-<span id="cb13-934"><a href="#cb13-934" aria-hidden="true" tabindex="-1"></a>other models, offering more balanced performance across all classes.</span>
-<span id="cb13-935"><a href="#cb13-935" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-936"><a href="#cb13-936" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Wine Quality</span></span>
+<span id="cb13-926"><a href="#cb13-926" aria-hidden="true" tabindex="-1"></a>The Random Forest model proved to be reliable across all datasets (red,</span>
+<span id="cb13-927"><a href="#cb13-927" aria-hidden="true" tabindex="-1"></a>white, and combined). It handled even the difficult classes like High</span>
+<span id="cb13-928"><a href="#cb13-928" aria-hidden="true" tabindex="-1"></a>quality wines pretty well, with good sensitivity and precision. Because</span>
+<span id="cb13-929"><a href="#cb13-929" aria-hidden="true" tabindex="-1"></a>it captures complex patterns and gives balanced results, it could</span>
+<span id="cb13-930"><a href="#cb13-930" aria-hidden="true" tabindex="-1"></a>actually be useful in real life wine product creation, quality checks,</span>
+<span id="cb13-931"><a href="#cb13-931" aria-hidden="true" tabindex="-1"></a>and marketing.</span>
+<span id="cb13-932"><a href="#cb13-932" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-933"><a href="#cb13-933" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Best Model</span></span>
+<span id="cb13-934"><a href="#cb13-934" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-935"><a href="#cb13-935" aria-hidden="true" tabindex="-1"></a>All models show meaningful predictive power. Random Forest consistently</span>
+<span id="cb13-936"><a href="#cb13-936" aria-hidden="true" tabindex="-1"></a>outperformed others.</span>
 <span id="cb13-937"><a href="#cb13-937" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-938"><a href="#cb13-938" aria-hidden="true" tabindex="-1"></a>Across models and datasets, alcohol show to the strongest predictor for</span>
-<span id="cb13-939"><a href="#cb13-939" aria-hidden="true" tabindex="-1"></a>high quality wines. Higher quality wines also tend to have lower</span>
-<span id="cb13-940"><a href="#cb13-940" aria-hidden="true" tabindex="-1"></a>volatile acidity and, in red wines, higher sulphate levels. These</span>
-<span id="cb13-941"><a href="#cb13-941" aria-hidden="true" tabindex="-1"></a>patterns provide a strong basis for understanding what distinguishes</span>
-<span id="cb13-942"><a href="#cb13-942" aria-hidden="true" tabindex="-1"></a>high and low quality wines based on their chemical properties.</span>
-<span id="cb13-943"><a href="#cb13-943" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-944"><a href="#cb13-944" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Red vs. White Prediction Performance</span></span>
-<span id="cb13-945"><a href="#cb13-945" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-946"><a href="#cb13-946" aria-hidden="true" tabindex="-1"></a>When we tested the models separately, Random Forest did a bit better on</span>
-<span id="cb13-947"><a href="#cb13-947" aria-hidden="true" tabindex="-1"></a>red wine than white. It was especially more accurate at classifying low</span>
-<span id="cb13-948"><a href="#cb13-948" aria-hidden="true" tabindex="-1"></a>and high quality red wines. On the other hand, the white wine model was</span>
-<span id="cb13-949"><a href="#cb13-949" aria-hidden="true" tabindex="-1"></a>more balanced overall, but its precision was a little lower.</span>
-<span id="cb13-950"><a href="#cb13-950" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-951"><a href="#cb13-951" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Model Reliability and Real-World</span></span>
-<span id="cb13-952"><a href="#cb13-952" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-953"><a href="#cb13-953" aria-hidden="true" tabindex="-1"></a>The Random Forest model proved to be reliable across all datasets (red,</span>
-<span id="cb13-954"><a href="#cb13-954" aria-hidden="true" tabindex="-1"></a>white, and combined). It handled even the difficult classes like High</span>
-<span id="cb13-955"><a href="#cb13-955" aria-hidden="true" tabindex="-1"></a>quality wines pretty well, with good sensitivity and precision. Because</span>
-<span id="cb13-956"><a href="#cb13-956" aria-hidden="true" tabindex="-1"></a>it captures complex patterns and gives balanced results, it could</span>
-<span id="cb13-957"><a href="#cb13-957" aria-hidden="true" tabindex="-1"></a>actually be useful in real life wine product creation, quality checks,</span>
-<span id="cb13-958"><a href="#cb13-958" aria-hidden="true" tabindex="-1"></a>and marketing.</span>
-<span id="cb13-959"><a href="#cb13-959" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-960"><a href="#cb13-960" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Best Model</span></span>
-<span id="cb13-961"><a href="#cb13-961" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-962"><a href="#cb13-962" aria-hidden="true" tabindex="-1"></a>All models show meaningful predictive power. Random Forest consistently</span>
-<span id="cb13-963"><a href="#cb13-963" aria-hidden="true" tabindex="-1"></a>outperformed others.</span>
-<span id="cb13-964"><a href="#cb13-964" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-965"><a href="#cb13-965" aria-hidden="true" tabindex="-1"></a>Random Forest was the best model, achieving 71.6–74.1% accuracy and</span>
-<span id="cb13-966"><a href="#cb13-966" aria-hidden="true" tabindex="-1"></a>0.879–0.884 AUC across datasets, excelling in capturing non-linear</span>
-<span id="cb13-967"><a href="#cb13-967" aria-hidden="true" tabindex="-1"></a>relationships. Alcohol, volatile acidity, and density were the strongest</span>
-<span id="cb13-968"><a href="#cb13-968" aria-hidden="true" tabindex="-1"></a>predictors of wine quality. Limitations include class imbalance, which</span>
-<span id="cb13-969"><a href="#cb13-969" aria-hidden="true" tabindex="-1"></a>impacts High quality wine detection, and the absence of sensory data,</span>
-<span id="cb13-970"><a href="#cb13-970" aria-hidden="true" tabindex="-1"></a>which could enhance predictions. These findings suggest Random Forest is</span>
-<span id="cb13-971"><a href="#cb13-971" aria-hidden="true" tabindex="-1"></a>a reliable tool for winemakers to predict quality based on</span>
-<span id="cb13-972"><a href="#cb13-972" aria-hidden="true" tabindex="-1"></a>physicochemical properties.</span>
-<span id="cb13-973"><a href="#cb13-973" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-974"><a href="#cb13-974" aria-hidden="true" tabindex="-1"></a>Detailed R code for data preprocessing, visualizations, and model</span>
-<span id="cb13-975"><a href="#cb13-975" aria-hidden="true" tabindex="-1"></a>training is available <span class="co">[</span><span class="ot">link</span><span class="co">](Wine%20Prediction.html)</span>.</span>
-<span id="cb13-976"><a href="#cb13-976" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-977"><a href="#cb13-977" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
-<span id="cb13-978"><a href="#cb13-978" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-979"><a href="#cb13-979" aria-hidden="true" tabindex="-1"></a>Decision tree and random forest methodology were applied to the red and white wine dataset on the UC Irvine’s Machine Learning Repository in order to predict the quality on the scale, of low to medium to high, of the wine based on its chemical properties.</span>
-<span id="cb13-980"><a href="#cb13-980" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-981"><a href="#cb13-981" aria-hidden="true" tabindex="-1"></a>A decision tree resembles a flowchart with nodes connected by branches. Random forest builds on this by adding randomness in the form of bootstrap sampling and random attribute selection and then creating multiple trees that provide a final prediction via majority voting. </span>
-<span id="cb13-982"><a href="#cb13-982" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-983"><a href="#cb13-983" aria-hidden="true" tabindex="-1"></a>The red and white wine datasets were used to create a decision tree and a random forest. Then, they were combined into one dataset, and decision tree, random forest, and logistic regression methodologies were applied. </span>
-<span id="cb13-984"><a href="#cb13-984" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-985"><a href="#cb13-985" aria-hidden="true" tabindex="-1"></a>Wine quality was measured on a scale of 0 (poor) to 10 (excellent). Then, the variable was computed on a low (less than or equal to 5), medium(six), and high (greater than or equal to 7) scale. While in differing orders of importance between datasets, the features that have the most impact on wine quality are alcohol content, volatile acidity, and sulphates. </span>
-<span id="cb13-986"><a href="#cb13-986" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-987"><a href="#cb13-987" aria-hidden="true" tabindex="-1"></a>Much of the existing research on predicting wine quality from its chemical composition uses the same dataset used in this paper. This is likely due to data collection in the viticulture (wine production) industry being “extremely difficult and expensive”. <span class="co">[</span><span class="ot">@bhardwaj2022machine</span><span class="co">]</span> Therefore, the results found here align with existing research on the topic. Gupta applied linear regression and labeled volatile acidity, sulphates, and alcohol as the most impactful due to having a low p-value. <span class="co">[</span><span class="ot">@gupta2018selection</span><span class="co">]</span> Dahal et al. employed four machine learning models on the data; the Gradient Boosting Regressor showed the best performance and labeled alcohol, sulphates, and volatile acidity as having the highest feature importance. <span class="co">[</span><span class="ot">@dahal2021prediction</span><span class="co">]</span> Free sulfur dioxide, citric acid, and residual sugar as the lowest. </span>
+<span id="cb13-938"><a href="#cb13-938" aria-hidden="true" tabindex="-1"></a>Random Forest was the best model, achieving 71.6–74.1% accuracy and</span>
+<span id="cb13-939"><a href="#cb13-939" aria-hidden="true" tabindex="-1"></a>0.879–0.884 AUC across datasets, excelling in capturing non-linear</span>
+<span id="cb13-940"><a href="#cb13-940" aria-hidden="true" tabindex="-1"></a>relationships. Alcohol, volatile acidity, and density were the strongest</span>
+<span id="cb13-941"><a href="#cb13-941" aria-hidden="true" tabindex="-1"></a>predictors of wine quality. Limitations include class imbalance, which</span>
+<span id="cb13-942"><a href="#cb13-942" aria-hidden="true" tabindex="-1"></a>impacts High quality wine detection. While sensory ratings are available</span>
+<span id="cb13-943"><a href="#cb13-943" aria-hidden="true" tabindex="-1"></a>as the target variable (wine quality), the dataset lacks additional</span>
+<span id="cb13-944"><a href="#cb13-944" aria-hidden="true" tabindex="-1"></a>metadata such as grape variety, wine brand, or pricing, which could</span>
+<span id="cb13-945"><a href="#cb13-945" aria-hidden="true" tabindex="-1"></a>further improve predictive models. These findings suggest Random Forest</span>
+<span id="cb13-946"><a href="#cb13-946" aria-hidden="true" tabindex="-1"></a>is a reliable tool for winemakers to predict quality based on</span>
+<span id="cb13-947"><a href="#cb13-947" aria-hidden="true" tabindex="-1"></a>physicochemical properties.</span>
+<span id="cb13-948"><a href="#cb13-948" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-949"><a href="#cb13-949" aria-hidden="true" tabindex="-1"></a>Detailed R code for data preprocessing, visualizations, and model</span>
+<span id="cb13-950"><a href="#cb13-950" aria-hidden="true" tabindex="-1"></a>training is available <span class="co">[</span><span class="ot">link</span><span class="co">](Wine%20Prediction.html)</span>.</span>
+<span id="cb13-951"><a href="#cb13-951" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-952"><a href="#cb13-952" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
+<span id="cb13-953"><a href="#cb13-953" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-954"><a href="#cb13-954" aria-hidden="true" tabindex="-1"></a>Decision tree and random forest methodology were applied to the red and</span>
+<span id="cb13-955"><a href="#cb13-955" aria-hidden="true" tabindex="-1"></a>white wine dataset on the UC Irvine’s Machine Learning Repository in</span>
+<span id="cb13-956"><a href="#cb13-956" aria-hidden="true" tabindex="-1"></a>order to predict the quality on the scale, of low to medium to high, of</span>
+<span id="cb13-957"><a href="#cb13-957" aria-hidden="true" tabindex="-1"></a>the wine based on its chemical properties.</span>
+<span id="cb13-958"><a href="#cb13-958" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-959"><a href="#cb13-959" aria-hidden="true" tabindex="-1"></a>A decision tree resembles a flowchart with nodes connected by branches.</span>
+<span id="cb13-960"><a href="#cb13-960" aria-hidden="true" tabindex="-1"></a>Random forest builds on this by adding randomness in the form of</span>
+<span id="cb13-961"><a href="#cb13-961" aria-hidden="true" tabindex="-1"></a>bootstrap sampling and random attribute selection and then creating</span>
+<span id="cb13-962"><a href="#cb13-962" aria-hidden="true" tabindex="-1"></a>multiple trees that provide a final prediction via majority voting.</span>
+<span id="cb13-963"><a href="#cb13-963" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-964"><a href="#cb13-964" aria-hidden="true" tabindex="-1"></a>The red and white wine datasets were used to create a decision tree and</span>
+<span id="cb13-965"><a href="#cb13-965" aria-hidden="true" tabindex="-1"></a>a random forest. Then, they were combined into one dataset, and decision</span>
+<span id="cb13-966"><a href="#cb13-966" aria-hidden="true" tabindex="-1"></a>tree, random forest, and logistic regression methodologies were applied.</span>
+<span id="cb13-967"><a href="#cb13-967" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-968"><a href="#cb13-968" aria-hidden="true" tabindex="-1"></a>Wine quality was measured on a scale of 0 (poor) to 10 (excellent).</span>
+<span id="cb13-969"><a href="#cb13-969" aria-hidden="true" tabindex="-1"></a>Then, the variable was computed on a low (less than or equal to 5),</span>
+<span id="cb13-970"><a href="#cb13-970" aria-hidden="true" tabindex="-1"></a>medium(six), and high (greater than or equal to 7) scale. While in</span>
+<span id="cb13-971"><a href="#cb13-971" aria-hidden="true" tabindex="-1"></a>differing orders of importance between datasets, the features that have</span>
+<span id="cb13-972"><a href="#cb13-972" aria-hidden="true" tabindex="-1"></a>the most impact on wine quality are alcohol content, volatile acidity,</span>
+<span id="cb13-973"><a href="#cb13-973" aria-hidden="true" tabindex="-1"></a>and sulphates.</span>
+<span id="cb13-974"><a href="#cb13-974" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-975"><a href="#cb13-975" aria-hidden="true" tabindex="-1"></a>Much of the existing research on predicting wine quality from its</span>
+<span id="cb13-976"><a href="#cb13-976" aria-hidden="true" tabindex="-1"></a>chemical composition uses the same dataset used in this paper. This is</span>
+<span id="cb13-977"><a href="#cb13-977" aria-hidden="true" tabindex="-1"></a>likely due to data collection in the viticulture (wine production)</span>
+<span id="cb13-978"><a href="#cb13-978" aria-hidden="true" tabindex="-1"></a>industry being “extremely difficult and expensive”.</span>
+<span id="cb13-979"><a href="#cb13-979" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@bhardwaj2022machine</span><span class="co">]</span> Therefore, the results found here align with</span>
+<span id="cb13-980"><a href="#cb13-980" aria-hidden="true" tabindex="-1"></a>existing research on the topic. Gupta applied linear regression and</span>
+<span id="cb13-981"><a href="#cb13-981" aria-hidden="true" tabindex="-1"></a>labeled volatile acidity, sulphates, and alcohol as the most impactful</span>
+<span id="cb13-982"><a href="#cb13-982" aria-hidden="true" tabindex="-1"></a>due to having a low p-value. <span class="co">[</span><span class="ot">@gupta2018selection</span><span class="co">]</span> Dahal et al. employed</span>
+<span id="cb13-983"><a href="#cb13-983" aria-hidden="true" tabindex="-1"></a>four machine learning models on the data; the Gradient Boosting</span>
+<span id="cb13-984"><a href="#cb13-984" aria-hidden="true" tabindex="-1"></a>Regressor showed the best performance and labeled alcohol, sulphates,</span>
+<span id="cb13-985"><a href="#cb13-985" aria-hidden="true" tabindex="-1"></a>and volatile acidity as having the highest feature importance.</span>
+<span id="cb13-986"><a href="#cb13-986" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@dahal2021prediction</span><span class="co">]</span> Free sulfur dioxide, citric acid, and residual</span>
+<span id="cb13-987"><a href="#cb13-987" aria-hidden="true" tabindex="-1"></a>sugar as the lowest.</span>
 <span id="cb13-988"><a href="#cb13-988" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-989"><a href="#cb13-989" aria-hidden="true" tabindex="-1"></a>Future work in the field could include labeling the chemical compounds specifically, rather than grouping them. The dataset used here groups the chemicals based on their classification: volatile acids, chlorides, alcohol, and sulphates. But there are many chemicals that fall under these groupings. For example, Bhardwaj et al. used a dataset on New Zealand Pinot noir wine that had a more zoomed-in view of the chemical composition. They found that the variables with the highest importance were heptan-1-ol, 2-phenethyl acetate, and ethyl octanoate. <span class="co">[</span><span class="ot">@bhardwaj2022machine</span><span class="co">]</span> Ethyl octanoate and 2-phenethyl acetate are esters, and heptan-1-ol is an alcohol. These results are not comparable to our data due to the lack of ester content as a variable. </span>
-<span id="cb13-990"><a href="#cb13-990" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-991"><a href="#cb13-991" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-992"><a href="#cb13-992" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb13-989"><a href="#cb13-989" aria-hidden="true" tabindex="-1"></a>Future work in the field could include labeling the chemical compounds</span>
+<span id="cb13-990"><a href="#cb13-990" aria-hidden="true" tabindex="-1"></a>specifically, rather than grouping them. The dataset used here groups</span>
+<span id="cb13-991"><a href="#cb13-991" aria-hidden="true" tabindex="-1"></a>the chemicals based on their classification: volatile acids, chlorides,</span>
+<span id="cb13-992"><a href="#cb13-992" aria-hidden="true" tabindex="-1"></a>alcohol, and sulphates. But there are many chemicals that fall under</span>
+<span id="cb13-993"><a href="#cb13-993" aria-hidden="true" tabindex="-1"></a>these groupings. For example, Bhardwaj et al. used a dataset on New</span>
+<span id="cb13-994"><a href="#cb13-994" aria-hidden="true" tabindex="-1"></a>Zealand Pinot noir wine that had a more zoomed-in view of the chemical</span>
+<span id="cb13-995"><a href="#cb13-995" aria-hidden="true" tabindex="-1"></a>composition. They found that the variables with the highest importance</span>
+<span id="cb13-996"><a href="#cb13-996" aria-hidden="true" tabindex="-1"></a>were heptan-1-ol, 2-phenethyl acetate, and ethyl octanoate.</span>
+<span id="cb13-997"><a href="#cb13-997" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@bhardwaj2022machine</span><span class="co">]</span> Ethyl octanoate and 2-phenethyl acetate are</span>
+<span id="cb13-998"><a href="#cb13-998" aria-hidden="true" tabindex="-1"></a>esters, and heptan-1-ol is an alcohol. These results are not comparable</span>
+<span id="cb13-999"><a href="#cb13-999" aria-hidden="true" tabindex="-1"></a>to our data due to the lack of ester content as a variable.</span>
+<span id="cb13-1000"><a href="#cb13-1000" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-1001"><a href="#cb13-1001" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
