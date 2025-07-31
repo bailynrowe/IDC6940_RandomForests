@@ -934,7 +934,7 @@ is a reliable tool for winemakers to predict quality based on
 physicochemical properties.
 
 Detailed R code for data preprocessing, visualizations, and model
-training is available [link](Wine%20Prediction.html).
+training is available [link](Wine%20Prediction.html).[@rstudio]
 
 ## Conclusion
 
