@@ -1049,7 +1049,7 @@ multiple trees that provide a final prediction via majority voting.
 
 The red and white wine datasets were used to create a decision tree and
 a random forest. Then, they were combined into one dataset, and decision
-tree, random forest, and logistic regression methodologies were applied.
+tree, random forest, and logistic regression methodologies were applied. All analysis was done using R studio. [@rstudio]
 
 Wine quality was measured on a scale of 0 (poor) to 10 (excellent).
 Then, the variable was computed on a low (less than or equal to 5),
