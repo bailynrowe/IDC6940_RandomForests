@@ -2,12 +2,10 @@
 title: "Using Random Forest to Predict Wine Quality"
 subtitle: "Summer 2025"
 author: "Bailyn Rowe, Gabriel Gonzalez Rincon, Morgan Watkins (Advisor: Dr. Cohen)"
-date: '`r Sys.Date()`'
+date: 'today'
 format:
   revealjs
 course: Capstone Projects in Data Science
-bibliography: references.bib # file contains bibtex for references
-#always_allow_html: true # this allows to get PDF with HTML features
 self-contained: true
 execute: 
   warning: false
@@ -107,95 +105,134 @@ prediction.
 
 ## Data Exploration
 
--   Dataset: 6,497 wine samples (Red: 1,599 \| White: 4,898)
+-   Combined dataset: 6,497 wines
+    -   Red: 1,599
+    -   White: 4,898
+-   Quality scores (0–10) converted to categories:
+    -   Low (≤5), Medium (6), High (≥7)
+-   Features: 11 chemical attributes
 
--   Features: 11 chemical properties + wine type
-
--   Target: Wine Quality (originally 0–10, binned into Low, Medium,
-    High)
-
--   Class Imbalance:
-
-    Medium class dominates, which can bias models
+Initial exploration helps reveal structure and potential predictive
+patterns.
 
 ## Wine Quality by Wine Type
 
--   ![](Wine_Quality_Class_Dist.jpg)
+![](Wine_Quality_Class_Dist.jpg)
 
-## Preprocessing & Feature Insights
+-   White wine dominates medium and high categories
 
-Feature Selection: Focused on top correlated features
+-   Red wine more evenly distributed
 
-Key Predictors:
+Important to account for this imbalance in classification.
 
--   Alcohol (+0.44): Strongest positive correlation
+## Preprocessing Steps
 
--   Volatile Acidity (–0.27): Negative correlation
-
--   Sulphates (+0.04): Weak and dataset-specific
+-   Merged datasets and added "type" variable
+-   Created "quality_category" (Low, Medium, High)
+-   Selected features based on:
+    -   Correlation
+    -   Prior domain knowledge
 
 ## Correlation Results
 
-![](correlations.jpg)
+![](images/clipboard-3719160229.png)
+
+-   Linear relationships between features and wine quality.
+
+## Correlation Results
+
+-   Strongest correlations:
+
+    -   Alcohol (r = 0.44)
+    -   Density (r = –0.31)
+    -   Volatile Acidity (r = –0.27)
+
+-   Sulphates (r = 0.04): low correlation, but may still be important
+
+-   Correlation captures linear relationships only — not interactions.
 
 ## Modeling Approach
 
--   Models Used:
+-   Classification goal: predict Low, Medium, High wine quality
+-   Train/test split: 70%/30%
+-   Models trained:
+    -   Random Forest (all datasets)
+    -   Decision Tree (all datasets)
+    -   Logistic Regression (combined only)
 
-    -   Random Forest (primary)
+## Evaluation Metrics
 
-    -   Decision Tree (baseline)
+To compare model performance, we used:
 
-    -   Logistic Regression (combined dataset only)
-
--   Split: 70/30 train-test split
-
--   Goal: Predict quality class based on chemistry
-
--   Metrics: Accuracy, AUC and others
+-   **Accuracy**: Overall correctness\
+-   **AUC (macro)**: Average across classes\
+-   **Sensitivity**: Focus on high-quality wine detection
 
 ## Accuracy & AUC
 
-| Dataset    | Model               | Accuracy | Avg AUC |
-|------------|---------------------|----------|---------|
-| Red Wine   | Random Forest       | 74.1%    | 0.879   |
-| Red Wine   | Decision Tree       | 63.9%    | 0.777   |
-| White Wine | Random Forest       | 71.6%    | 0.882   |
-| White Wine | Decision Tree       | 56.1%    | 0.710   |
-| Combined   | Random Forest       | 72.1%    | 0.884   |
-| Combined   | Logistic Regression | 56.7%    | 0.756   |
-| Combined   | Decision Tree       | 55.5%    | 0.723   |
+| Dataset    | Model               | Accuracy  | Avg AUC   |
+|------------|---------------------|-----------|-----------|
+| Red Wine   | Random Forest       | **74.1%** | **0.879** |
+| Red Wine   | Decision Tree       | 63.9%     | 0.777     |
+| White Wine | Random Forest       | **71.6%** | **0.882** |
+| White Wine | Decision Tree       | 56.1%     | 0.710     |
+| Combined   | Random Forest       | **72.1%** | **0.884** |
+| Combined   | Logistic Regression | 56.7%     | 0.756     |
+| Combined   | Decision Tree       | 55.5%     | 0.723     |
 
-## Insights & Real-World Use
+-   Random Forest outperformed all others
+-   Logistic Regression underperformed
+-   Best AUC: Random Forest on white wine
 
--   **Best Model:**
-    -   Random Forest consistently achieved the best results across all
-        datasets (red, white, and combined).
-    -   Captures complex, non-linear patterns and delivers balanced
-        precision and recall, especially for minority classes.
--   **Most Predictive Features:**
-    -   Alcohol (strongest positive correlation with quality)
-    -   Volatile Acidity (negatively correlated)
-    -   Sulphates (dataset-dependent relevance)
--   **Limitations:**
-    -   Limitations include class imbalance and lack of broader metadata
-        (e.g., grape type, wine brand, price), though quality ratings
-        themselves are derived from sensory evaluation.
--   **Real-World Application Potential:**
-    -   Can assist winemakers and distributors in automating quality
-        control, optimizing production, or targeting high quality wines
-        for marketing.
+Random Forest handled class imbalance and complex interactions best.
+
+## Variable Importance – Combined
+
+![](images/clipboard-2307895199.png)
+
+-   Top features: Alcohol, Volatile Acidity, Sulphates
+-   Importance ≠ correlation
+-   Tree models consider feature interactions and splits across samples
+
+## Variable Importance – Red vs White
+
+![](images/clipboard-886325247.png){width="702" height="242"}
+
+-   **Red Wine**: Sulphates \> Volatile Acidity \> Alcohol
+-   **White Wine**: Alcohol \> Volatile Acidity \> Free Sulfur Dioxide
+
+Feature importance shifts slightly by wine type — alcohol remains
+consistently relevant.
+
+## Boxplot: Alcohol vs Quality
+
+![](images/clipboard-1482690385.png)
+
+-   Alcohol content increases with wine quality
+-   Trend is clear in both red and white wines
+
+Confirms model’s selection of alcohol as top predictor.
+
+## Boxplot: Volatile Acidity vs Quality
+
+![](images/clipboard-25951971.png)
+
+-   Higher VA in lower quality wines
+-   Decreasing trend most apparent in red wine
+
+Matches correlation and importance findings.
 
 ## Conclusion
 
-The red and white wine datasets were used to create a decision tree and
-a random forest. Then, they were combined into one dataset, and decision
-tree, random forest, and logistic regression methodologies were applied
-in order to predict the quality on the scale, of low to medium to high,
-of the wine based on its chemical properties.
+-   Alcohol, volatile acidity, and sulphates are the most influential
+    features
+-   Random Forest showed the best predictive performance
+-   Correlation analysis offered insights, but feature importance
+    revealed deeper interactions
+-   Results align with prior literature
 
-While in differing orders of importance between datasets, the features
-that have the most impact on wine quality are alcohol content, volatile
-acidity, and sulphates.
+Future work: include more detailed chemical breakdowns (e.g., esters,
+alcohol subtypes)
 
-## References
+## Thanks for your attention!
+
