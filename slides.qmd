@@ -166,7 +166,8 @@ To compare model performance, we used:
 
 -   **Accuracy**: Overall correctness\
 -   **AUC (macro)**: Average across classes\
--   **Sensitivity**: Focus on high-quality wine detection
+-   **Recall (Sensitivity)**: Measures ability to detect actual
+    positives
 
 ## Accuracy & AUC
 
@@ -186,12 +187,26 @@ To compare model performance, we used:
 
 Random Forest handled class imbalance and complex interactions best.
 
+## Class-Level Performance – Combined Dataset
+
+| Class      | Model               | Precision | Recall   | F1 Score |
+|------------|---------------------|-----------|----------|----------|
+| **Low**    | Random Forest       | **0.79**  | **0.75** | **0.77** |
+|            | Logistic Regression | 0.64      | 0.64     | 0.64     |
+|            | Decision Tree       | 0.64      | 0.62     | 0.63     |
+| **Medium** | Random Forest       | **0.66**  | **0.76** | **0.71** |
+|            | Logistic Regression | 0.52      | 0.63     | 0.57     |
+|            | Decision Tree       | 0.51      | 0.58     | 0.54     |
+| **High**   | Random Forest       | **0.75**  | **0.57** | **0.65** |
+|            | Logistic Regression | 0.54      | 0.30     | 0.38     |
+|            | Decision Tree       | 0.51      | 0.39     | 0.44     |
+
 ## Variable Importance – Combined
 
 ![](images/clipboard-2307895199.png)
 
 -   Top features: Alcohol, Volatile Acidity, Sulphates
--   Importance ≠ correlation
+-   Importance reveals interactions, unlike correlation
 -   Tree models consider feature interactions and splits across samples
 
 ## Variable Importance – Red vs White
@@ -235,4 +250,3 @@ Future work: include more detailed chemical breakdowns (e.g., esters,
 alcohol subtypes)
 
 ## Thanks for your attention!
-
