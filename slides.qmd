@@ -103,6 +103,10 @@ prediction.
 
 4.  Majority Vote
 
+::: {.revealjs-slide .center .middle}
+# Analysis, Results and Conclusion
+:::
+
 ## Data Exploration
 
 -   Combined dataset: 6,497 wines
@@ -189,17 +193,7 @@ Random Forest handled class imbalance and complex interactions best.
 
 ## Class-Level Performance – Combined Dataset
 
-| Class      | Model               | Precision | Recall   | F1 Score |
-|------------|---------------------|-----------|----------|----------|
-| **Low**    | Random Forest       | **0.79**  | **0.75** | **0.77** |
-|            | Logistic Regression | 0.64      | 0.64     | 0.64     |
-|            | Decision Tree       | 0.64      | 0.62     | 0.63     |
-| **Medium** | Random Forest       | **0.66**  | **0.76** | **0.71** |
-|            | Logistic Regression | 0.52      | 0.63     | 0.57     |
-|            | Decision Tree       | 0.51      | 0.58     | 0.54     |
-| **High**   | Random Forest       | **0.75**  | **0.57** | **0.65** |
-|            | Logistic Regression | 0.54      | 0.30     | 0.38     |
-|            | Decision Tree       | 0.51      | 0.39     | 0.44     |
+![](images/clipboard-152547827.png)
 
 ## Variable Importance – Combined
 
@@ -216,26 +210,8 @@ Random Forest handled class imbalance and complex interactions best.
 -   **Red Wine**: Sulphates \> Volatile Acidity \> Alcohol
 -   **White Wine**: Alcohol \> Volatile Acidity \> Free Sulfur Dioxide
 
-Feature importance shifts slightly by wine type — alcohol remains
+Feature importance shifts slightly by wine type, alcohol remains
 consistently relevant.
-
-## Boxplot: Alcohol vs Quality
-
-![](images/clipboard-1482690385.png)
-
--   Alcohol content increases with wine quality
--   Trend is clear in both red and white wines
-
-Confirms model’s selection of alcohol as top predictor.
-
-## Boxplot: Volatile Acidity vs Quality
-
-![](images/clipboard-25951971.png)
-
--   Higher VA in lower quality wines
--   Decreasing trend most apparent in red wine
-
-Matches correlation and importance findings.
 
 ## Conclusion
 
